@@ -217,10 +217,10 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║
 ╠══─⊱ ❰ *THANGKS TO* ❱ ⊰─══➤
 ║
-╠☞ *AFFIS JUNIANTO*
-╠☞ *FADHIL GRAPHY*
-╠☞ *XPTN (AGUNG)*
-╠☞ *MYBOT TEAM*
+╠☞ *Botol - LoL*
+╠☞ *Taufik - Kun*
+╠☞ *Keito Klein*
+╠☞ *Tester Bot*
 ╠☞ *MiKako⚔️*
 ╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
 `
