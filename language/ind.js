@@ -159,16 +159,16 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}rate*
 ╠☞ *${prefix}slap*
 ╠☞ *${prefix}tampar (Error)*
-╠☞ *${prefix}speed*
+╠☞ *${prefix}speed (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}toxic*
-╠☞ *${prefix}quotes*
+╠☞ *${prefix}quotes (error)*
 ╠☞ *${prefix}beritahoax*
 ╠☞ *${prefix}brainly*
 ╠☞ *${prefix}pinterest*
-╠☞ *${prefix}resepmasakan*
-╠☞ *${prefix}igstalk*
+╠☞ *${prefix}resepmasakan (error)*
+╠☞ *${prefix}igstalk (error)*
 ║
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
@@ -222,8 +222,8 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *Damar Herlambng*
 ╠☞ *Sa!!*
 ╠☞ *Mutia*
-╠☞ *MiKako⚔️*
-╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
+╠☞ *Taufik - Ku*
+╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
 `
 }
 
