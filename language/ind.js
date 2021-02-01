@@ -23,7 +23,7 @@ exports.lvlnoon = () => {
 }
 
 exports.noregis = () => {
-	return`*「 BELUM DAFTAR 」*\n\n*cara daftar ${prefix}daftar nama|umur* \n*contoh ${prefix}daftar affis|17*`
+	return`*「 BELUM DAFTAR 」*\n\n*cara daftar ${prefix}daftar nama|umur* \n*contoh ${prefix}daftar MiKako|17*`
 }
 
 exports.rediregis = () => {
@@ -136,7 +136,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ●⧐ *Gunakan Bot Sebaik-baiknya!*
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
 
-╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
+╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker*
 ╠☞ *${prefix}vinta*
 ╠☞ *${prefix}avengers*
@@ -158,7 +158,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}apakah*
 ╠☞ *${prefix}rate*
 ╠☞ *${prefix}slap*
-╠☞ *${prefix}tampar*
+╠☞ *${prefix}tampar (Error)*
 ╠☞ *${prefix}speed*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
@@ -218,9 +218,10 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠══─⊱ ❰ *THANGKS TO* ❱ ⊰─══➤
 ║
 ╠☞ *Botol - LoL*
-╠☞ *Taufik - Kun*
-╠☞ *Keito Klein*
-╠☞ *Tester Bot*
+╠☞ *Reyna*
+╠☞ *Damar Herlambng*
+╠☞ *Sa!!*
+╠☞ *Mutia*
 ╠☞ *MiKako⚔️*
 ╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
 `
