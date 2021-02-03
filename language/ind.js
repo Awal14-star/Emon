@@ -162,7 +162,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}speed (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
-╠☞ *${prefix}toxic*
+╠☞ *${prefix}toxic (error)*
 ╠☞ *${prefix}quotes (error)*
 ╠☞ *${prefix}beritahoax*
 ╠☞ *${prefix}brainly*
@@ -178,7 +178,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠══─⊱ ❰ *NSFW MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}pokemon*
 ╠☞ *${prefix}anjing*
-╠☞ *${prefix}1cak*
+╠☞ *${prefix}1cak (error)*
 ║
 ╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}hidetag*
