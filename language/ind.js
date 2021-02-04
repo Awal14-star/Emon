@@ -221,9 +221,9 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *Botol - LoL*
 ╠☞ *Reyna*
 ╠☞ *Damar Herlambng*
-╠☞ *Sa!!*
+╠☞ *FEBRI*
 ╠☞ *Mutia*
-╠☞ *Taufik - Ku*
+╠☞ *Taufik - Kun*
 ╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
 `
 }
