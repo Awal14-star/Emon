@@ -60,7 +60,69 @@ const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 /*********** END LOAD ***********/
 /***********AUTO Responder*********/
-
+ if (text == 'assalamualaikum'){
+conn.sendMessage(id, 'Waalaikumsalam, Ada yang bisa saya bantu? kalo bingung ketik !menu ya kak🤗...' ,MessageType.text);
+}
+ if (text == 'Assalamualaikum'){
+conn.sendMessage(id, 'Waalaikumsalam, Ada yang bisa saya bantu? kalo bingung ketik !menu ya kak🤗...' ,MessageType.text);
+}
+ if (text == 'Hallo'){
+conn.sendMessage(id, 'Hai, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'p'){
+conn.sendMessage(id, 'Ya?, ada yang bisa saya bantu? kalo bingung ketik !menu ya ngentot..' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'P'){
+conn.sendMessage(id, 'Ya?, ada yang bisa saya bantu? kalo bingung ketik !menu ya ngentot..' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'hallo'){
+conn.sendMessage(id, 'Hai, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Halo'){
+conn.sendMessage(id, 'Hai, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'halo'){
+conn.sendMessage(id, 'Hai, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Hai'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'hai'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Hi'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'hi'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Bot'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'bot'){
+conn.sendMessage(id, 'Hallo, ketik #menu untuk melihat fitur bot🤗...' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Ohayou'){
+conn.sendMessage(id, 'Ohayou Gozaimasu... :)' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'ohayou'){
+conn.sendMessage(id, 'Ohayou Gozaimasu... :)' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Ohayo'){
+conn.sendMessage(id, 'Ohayou Gozaimasu... :)' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'ohayo'){
+conn.sendMessage(id, 'Ohayou Gozaimasu... :)' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'makasi'){
+conn.sendMessage(id, 'Oke lord' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'makaci'){
+conn.sendMessage(id, 'Oke lord' ,MessageType.text, {quoted : m} )
+}
+else if (text == 'Terima kasih'){
+conn.sendMessage(id, 'Oke lord' ,MessageType.text, {quoted : m} )
+}
 /********** FUNCTION ***************/
 const getLevelingXp = (sender) => {
             let position = false
