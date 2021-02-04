@@ -34,7 +34,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
-            + 'FN:Botol-LoL Admin\n' 
+            + 'FN:MiKako\n' 
             + 'ORG: Pengembang Taufik-Kun;\n' 
             + 'TEL;type=CELL;type=VOICE;waid=6289675651966:+62 896-7565-1966\n' 
             + 'END:VCARD' 
@@ -59,6 +59,7 @@ const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 /*********** END LOAD ***********/
+/***********AUTO Responder*********/
 
 /********** FUNCTION ***************/
 const getLevelingXp = (sender) => {
@@ -862,6 +863,16 @@ client.on('group-participants-update', async (anu) => {
 					const te = ra[Math.floor(Math.random() * ra.length)]
 					client.sendMessage(from, 'Pertanyaan : *'+rate+'*\n\nJawaban : '+ te+'%', text, { quoted: mek })
 					await limitAdd(sender)
+					break
+	  case 'seberapagay':
+           if (isBanned) return reply(ind.baned())
+           if (!isRegistered) return reply(ind.noregis())
+           if (isLimit(sender)) return reply(ind.limitend(pusname))
+					teks = body.slice(1)
+		   anu = await fetchJson(`https://arugaz.herokuapp.com/api/howgay`, {method: 'get'})
+		   hasil = `Nih Liat Data Gay Si ${teks}\n\n\nPersentase Gay : ${anu.persen}%\nAlert!!! : ${anu.desc}`
+		   reply(hasil)
+		   await limitAdd(sender)
 					break
           case 'speed':
           case 'ping':
