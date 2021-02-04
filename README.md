@@ -1,18 +1,37 @@
-Botwasap v3
-
-Bayak yang baru
-Check aja sendiri
-
-|-----------------|
-
-lots of updates
-Just check it yourself 
-If you can help me to translate the bot language please chat me in whatsapp
-
-|-----------------|
-
-My whatsapp
-wa.me/6282334297175
-
-My Instagram
-https://Instagram.com/affis_saputro123
+## <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Hi.gif" width="29px"> Yahallo minna!
+<p align="center">
+<img src="https://user-images.githubusercontent.com/77515527/106854697-fce66b80-6678-11eb-905d-2b2e1d9bb973.jpg"
+  </p>
+<br>
+  
+  
+ <p align="center">
+ <a href="#"><img title="🐊Botol LoL🐊" src="https://img.shields.io/badge/Botol LoL-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
+</p>
+<p align="center">
+<a href="https://github.com/Keito-Klein"><img title="Author" src="https://img.shields.io/badge/AUTHOR-MiKako-blue.svg?style=for-the-badge&logo=github"></a>
+</p>
+<div align="center">
+<details>
+  
+  >Bot ini sedang dalam masa pengembangan 
+  
+  >Banyak fitur yang masih error
+  
+  >Belum ada APIkey
+  </details>
+  
+  ##THANKS YANG UDAH LIHAT PROJECT INI
+ 
+ <p align="center">
+   "Contact Me On"
+  <div align="center">
+  
+  > FB          : https://www.facebook.com/taufik.qillah.73
+  
+  > IG          : https://www.instagram.com/gamerz_garena
+  
+  > WhatsApp    : https://wa.wizard.id/2fd29f
+  
+  > grub santay : https://chat.whatsapp.com/CksC12oojKADthIqHqncDF
+  
