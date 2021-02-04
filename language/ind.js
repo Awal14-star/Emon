@@ -220,7 +220,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║
 ╠☞ *Botol - LoL*
 ╠☞ *Reyna*
-╠☞ *Damar Herlambng*
+╠☞ *Damar*
 ╠☞ *FEBRI*
 ╠☞ *Mutia*
 ╠☞ *Taufik - Kun*
