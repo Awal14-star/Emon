@@ -136,6 +136,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 
 ╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker (jika video max. 9det)*
+║     Mengubah gambar/video yang kamu kirimkan menjadi sticker.
 ╠☞ *${prefix}vinta*
 ╠☞ *${prefix}avengers*
 ╠☞ *${prefix}summer*
@@ -150,13 +151,19 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}lava*
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
-╠☞ *${prefix}mining*
+╠☞ *${prefix}mining (error)*
 ╠☞ *${prefix}bisakah*
+║    Bertanya kepada Bot apakah kamu bisa melakukan suatu hal
 ╠☞ *${prefix}kapankah*
+║    Bertanya kepada Bot kapankah kamu bisa/melakukan suatu hal
 ╠☞ *${prefix}apakah*
+║    Bertanya kepada Bot tentang kebenaran suatu hal
 ╠☞ *${prefix}seberapagay* (testing/new)
+║    Bertanya kepada Bot berapa % tingkat Gay kamu
 ╠☞ *${prefix}rate*
+║    Bertanya kepada Bot tentang nilai suatu hal
 ╠☞ *${prefix}slap*
+║    Tamaparan dengan Toxic
 ╠☞ *${prefix}tampar (Error)*
 ╠☞ *${prefix}speed (error)*
 ║
@@ -164,41 +171,68 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}toxic (error)*
 ╠☞ *${prefix}quotes (error)*
 ╠☞ *${prefix}beritahoax*
+║    Mencari berita Hoax
 ╠☞ *${prefix}brainly*
+║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
+║    Mencari gambar di pinterest dengan keyword yang kamu ketik
 ╠☞ *${prefix}resepmasakan (error)*
 ╠☞ *${prefix}igstalk (error)*
 ║
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
+║    Mengecek sisa penggunaan Bot kamu
 ╠☞ *${prefix}buylimit*
+║    Membeli token untuk pengunaan Bot
 ╠☞ *${prefix}dompet*
+║    Mengecek sisa pointmu
 ║
 ╠══─⊱ ❰ *NSFW MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}pokemon*
+║    Bot akan mengirimkan gambar pokemon
 ╠☞ *${prefix}anjing*
+║    Bot akan mengirimkan gambar anjing
 ╠☞ *${prefix}1cak (error)*
 ║
 ╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}hidetag*
+║    Mengetag semua orang dengan teks kosong
 ╠☞ *${prefix}grouplist*
+║    Menampilkan anggota grub
 ╠☞ *${prefix}limit*
+║    Menampilkan sisa penggunaan Bot kamu
 ╠☞ *${prefix}level*
+║    Mengecek tingkat Levelmu
 ╠☞ *${prefix}linkgc*
+║    Bot akan mengirim Link Grub
 ╠☞ *${prefix}tagall*
+║    Mengetag semua orang yg ada di grub
 ╠☞ *${prefix}setpp*
+║    Mengubah foto profil grup
 ╠☞ *${prefix}add*
+║    Menambahkan seseorang ke dalam grup
 ╠☞ *${prefix}kick*
+║    Mengeluarkan salah satu anggota grub
 ╠☞ *${prefix}setname*
+║    Mengubah nama grup
 ╠☞ *${prefix}setdesc*
+║    Mengubah deskripsi grup
 ╠☞ *${prefix}demote*
+║    Menurunkan status admin seseorang menjadi anggota grub
 ╠☞ *${prefix}promote*
+║    Menaikkan salah satu member menjadi admin grub
 ╠☞ *${prefix}listadmin*
+║    Menampilkan daftar admin di grub
 ╠☞ *${prefix}group* [buka/tutup]
+║    Mengaktifkan/menonaktifkan Grub
 ╠☞ *${prefix}leveling* [enable/disable]
+║    Mengaktifkan/menonaktifkan fitur Level
 ╠☞ *${prefix}nsfw* [1/0]
+║    Mengaktifkan/menonaktifkan NSFW
 ╠☞ *${prefix}simih* [1/0]
+║    Mengobrol dengan Bot
 ╠☞ *${prefix}welcome* [1/0]
+║    Mengaktifkan/menonaktifkan selamat datang
 ║
 ╠══─⊱ ❰ *OWNER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}bc*
