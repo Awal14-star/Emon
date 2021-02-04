@@ -156,6 +156,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}bisakah*
 ╠☞ *${prefix}kapankah*
 ╠☞ *${prefix}apakah*
+╠☞ *${prefix}seberapagay* (testing/new)
 ╠☞ *${prefix}rate*
 ╠☞ *${prefix}slap*
 ╠☞ *${prefix}tampar (Error)*
