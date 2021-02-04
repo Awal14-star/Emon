@@ -130,14 +130,12 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ●⧐ *Spam : Auto Block!*
 ●⧐ *Beri Jeda 5detik Saat Menggunakannya!!*
 ●⧐ *Bug/Error Harap Cht Owner!*
-●⧐ *Untuk Memastikan Bot Off Atau On*
-●⧐ *Ketik ${prefix}bot*
 ●⧐ *Harap Sabar Dengan Bug²nya!*
 ●⧐ *Gunakan Bot Sebaik-baiknya!*
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
 
 ╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
-╠☞ *${prefix}sticker*
+╠☞ *${prefix}sticker (jika video max. 9det)*
 ╠☞ *${prefix}vinta*
 ╠☞ *${prefix}avengers*
 ╠☞ *${prefix}summer*
