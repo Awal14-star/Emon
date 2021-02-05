@@ -149,6 +149,8 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}blood*
 ╠☞ *${prefix}firework*
 ╠☞ *${prefix}lava*
+╠☞ *${prefix}toimg*
+║     Mengubah stiker menjadi gambar
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
 ╠☞ *${prefix}mining (error)*
@@ -176,6 +178,9 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
 ║    Mencari gambar di pinterest dengan keyword yang kamu ketik
+╠☞ *${prefix}tts*
+║    Mengirimkan suara dari yang kamu ketik
+║    contoh : #tts id MiKako yang tampan
 ╠☞ *${prefix}resepmasakan (error)*
 ╠☞ *${prefix}igstalk (error)*
 ║
