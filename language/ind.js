@@ -124,10 +124,11 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *Level* : ${getLevelingLevel(sender)}
 ╠☞ *User register* : ${_registered.length}
 ╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
-
+*linkgc Bot :* https://chat.whatsapp.com/HvTTW1DUskZAkf9t6XWg0e
            Rules - Simple
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
 ●⧐ *Spam : Auto Block!*
+●⧐ *telpon/chat bot block*
 ●⧐ *Beri Jeda 5detik Saat Menggunakannya!!*
 ●⧐ *Bug/Error Harap Cht Owner!*
 ●⧐ *Harap Sabar Dengan Bug²nya!*
@@ -164,6 +165,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Bertanya kepada Bot berapa % tingkat Gay kamu
 ╠☞ *${prefix}rate*
 ║    Bertanya kepada Bot tentang nilai suatu hal
+╠☞ *${prefix}fitnah*
 ╠☞ *${prefix}slap*
 ║    Tamaparan dengan Toxic
 ╠☞ *${prefix}tampar (Error)*
@@ -178,6 +180,10 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
 ║    Mencari gambar di pinterest dengan keyword yang kamu ketik
+╠☞ *${prefix}meme* (testing/new)
+║    Mengirimkan meme cringe bahasa inggris
+╠☞ *${prefix}memeindo* (testing/new)
+║    Mengirimkan meme cringe
 ╠☞ *${prefix}tts*
 ║    Mengirimkan suara dari yang kamu ketik
 ║    contoh : #tts id MiKako yang tampan
@@ -248,6 +254,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}clearall*
 ╠☞ *${prefix}block*
 ╠☞ *${prefix}unblock*
+╠☞ *${prefix}listblock*
 ╠☞ *${prefix}leave*
 ╠☞ *${prefix}event* [1/0]
 ╠☞ *${prefix}clone*
