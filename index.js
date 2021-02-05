@@ -790,6 +790,14 @@ client.on('group-participants-update', async (anu) => {
 					teks += `\n\`\`\`Total grup : ${groupId.length}\`\`\``
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek})
 					break
+					case 'blocklist':
+					teks = 'List Beban Kontak :\n'
+					for (let block of blocked) {
+						teks += `➢ @${block.split('@')[0]}\n`
+					}
+					teks += `Total : ${blocked.length}`
+					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": blocked}})
+					break
 				case 'daftar':
                 if (isRegistered) return  reply(ind.rediregis())
                 if (!q.includes('|')) return  reply(ind.wrongf())
@@ -864,7 +872,6 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 	  case 'seberapagay':
-           if (isBanned) return reply(ind.baned())
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
 					teks = body.slice(1)
@@ -872,6 +879,32 @@ client.on('group-participants-update', async (anu) => {
 		   hasil = `Nih Liat Data Gay Si ${teks}\n\n\nPersentase Gay : ${anu.persen}%\nAlert!!! : ${anu.desc}`
 		   reply(hasil)
 		   await limitAdd(sender)
+					break
+				case 'fitnah':	
+				case 'fake':             
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pushname))
+                    if (!isGroup) return reply(ind.groupo())
+                    arg = body.substring(body.indexOf(' ') + 1)
+				    isi = arg.split('/')[0] 
+			        pesan = arg.split('/')[1] 
+				    pesan2 = arg.split('/')[2] 
+                    costum(pesan, isi, pesan2)
+                    await limitAdd(sender) 
+                    break
+				case 'meme':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					meme = await kagApi.memes()
+					buffer = await getBuffer(`https://imgur.com/${meme.hash}.jpg`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+					break
+				case 'memeindo':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					memein = await kagApi.memeindo()
+					buffer = await getBuffer(`https://imgur.com/${memein.hash}.jpg`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
 					break
           case 'speed':
           case 'ping':
