@@ -124,7 +124,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *Level* : ${getLevelingLevel(sender)}
 ╠☞ *User register* : ${_registered.length}
 ╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
-*linkgc Bot :* https://chat.whatsapp.com/HvTTW1DUskZAkf9t6XWg0e
+
            Rules - Simple
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
 ●⧐ *Spam : Auto Block!*
@@ -138,58 +138,59 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker (jika video max. 9det)*
 ║     Mengubah gambar/video yang kamu kirimkan menjadi sticker.
-╠☞ *${prefix}vinta*
-╠☞ *${prefix}avengers*
-╠☞ *${prefix}summer*
-╠☞ *${prefix}sandwrite*
-╠☞ *${prefix}metaldark*
-╠☞ *${prefix}dropwater*
-╠☞ *${prefix}greenneon*
-╠☞ *${prefix}neontext*
-╠☞ *${prefix}sumery*
-╠☞ *${prefix}blood*
-╠☞ *${prefix}firework*
-╠☞ *${prefix}lava*
+╠☞ *_${prefix}vinta_*
+╠☞ *_${prefix}avengers_*
+╠☞ *_${prefix}summer_*
+╠☞ *_${prefix}sandwrite_*
+╠☞ *_${prefix}metaldark_*
+╠☞ *_${prefix}dropwater_*
+╠☞ *_${prefix}greenneon_*
+╠☞ *_${prefix}neontext_*
+╠☞ *_${prefix}sumery_*
+╠☞ *_${prefix}blood_*
+╠☞ *_${prefix}firework_*
+╠☞ *_${prefix}lava_*
 ╠☞ *${prefix}toimg*
 ║     Mengubah stiker menjadi gambar
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
-╠☞ *${prefix}mining (error)*
+╠☞ *_${prefix}mining_ (error)*
 ╠☞ *${prefix}bisakah*
 ║    Bertanya kepada Bot apakah kamu bisa melakukan suatu hal
 ╠☞ *${prefix}kapankah*
 ║    Bertanya kepada Bot kapankah kamu bisa/melakukan suatu hal
 ╠☞ *${prefix}apakah*
 ║    Bertanya kepada Bot tentang kebenaran suatu hal
-╠☞ *${prefix}seberapagay* (testing/new)
+╠☞ *${prefix}seberapagay*
 ║    Bertanya kepada Bot berapa % tingkat Gay kamu
 ╠☞ *${prefix}rate*
 ║    Bertanya kepada Bot tentang nilai suatu hal
-╠☞ *${prefix}fitnah*
+╠☞ *_${prefix}fitnah_*
 ╠☞ *${prefix}slap*
 ║    Tamaparan dengan Toxic
-╠☞ *${prefix}tampar (Error)*
-╠☞ *${prefix}speed (error)*
+╠☞ *_${prefix}tampar_ (Error)*
+╠☞ *_${prefix}speed_ (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
-╠☞ *${prefix}toxic (error)*
-╠☞ *${prefix}quotes (error)*
+╠☞ *_${prefix}toxic_ (error)*
+╠☞ *_${prefix}quotes_ (error)*
+╠☞ *${prefix}makequote*
 ╠☞ *${prefix}beritahoax*
 ║    Mencari berita Hoax
 ╠☞ *${prefix}brainly*
 ║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
 ║    Mencari gambar di pinterest dengan keyword yang kamu ketik
-╠☞ *${prefix}meme* (testing/new)
+╠☞ *_${prefix}meme_*
 ║    Mengirimkan meme cringe bahasa inggris
-╠☞ *${prefix}memeindo* (testing/new)
+╠☞ *_${prefix}memeindo_*
 ║    Mengirimkan meme cringe
 ╠☞ *${prefix}tts*
 ║    Mengirimkan suara dari yang kamu ketik
 ║    contoh : #tts id MiKako yang tampan
-╠☞ *${prefix}resepmasakan (error)*
-╠☞ *${prefix}igstalk (error)*
-║
+╠☞ *_${prefix}resepmasakan_ (error)*
+╠☞ *_${prefix}igstalk_*
+║    
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
 ║    Mengecek sisa penggunaan Bot kamu
@@ -203,7 +204,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Bot akan mengirimkan gambar pokemon
 ╠☞ *${prefix}anjing*
 ║    Bot akan mengirimkan gambar anjing
-╠☞ *${prefix}1cak (error)*
+╠☞ *_${prefix}1cak_ (error)*
 ║
 ╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}hidetag*
