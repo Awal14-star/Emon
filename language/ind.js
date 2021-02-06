@@ -249,7 +249,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠══─⊱ ❰ *OWNER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}bc*
 ╠☞ *${prefix}bcgc*
-╠☞ *${prefix}kickall*
+╠☞ *${prefix}kickall* Mau Ngapain Tod? >:
 ╠☞ *${prefix}setreply*
 ╠☞ *${prefix}setprefix*
 ╠☞ *${prefix}clearall*
