@@ -481,6 +481,22 @@ client.on('group-participants-update', async (anu) => {
 					await reply(`*「 PEMBAYARAN BERHASIL 」*\n\n*pengirim* : Admin\n*penerima* : ${pushname}\n*nominal pembelian* : ${payout} \n *harga limit* : ${koinPerlimit}/limit\n *sisa uang mu* : ${checkATMuser(sender)}\n\nproses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
 				} 
 				break
+				case 'transfer':
+				if (!isRegistered) return reply(ind.noregis())
+				if (!q.includes('|')) return  reply(ind.wrongf())
+                const tujuan = q.substring(0, q.indexOf('|') - 1)
+                const jumblah = q.substring(q.lastIndexOf('|') + 1)
+                if(isNaN(jumblah)) return await reply('jumlah harus berupa angka!!')
+                if (jumblah < 100 ) return reply(`minimal transfer 100`)
+                if (checkATMuser(sender) < jumblah) return reply(`uang mu tidak mencukupi untuk melakukan transfer`)
+                const tujuantf = `${tujuan.replace("@", '')}@s.whatsapp.net`
+                fee = 0.005 *  jumblah
+                hasiltf = jumblah - fee
+                addKoinUser(tujuantf, hasiltf)
+                confirmATM(sender, jumblah)
+                addKoinUser('62895710073737@s.whatsapp.net', fee)
+                reply(`*「 SUKSES 」*\n\npengiriman uang telah sukses\ndari : +${sender.split("@")[0]}\nke : +${tujuan}\njumblah transfer : ${jumblah}\npajak : ${fee}`)
+                break
 				case 'limit':
 				   if (!isRegistered) return reply(ind.noregis())
 				   checkLimit(sender)
@@ -665,9 +681,9 @@ client.on('group-participants-update', async (anu) => {
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
 					buffer = await getBuffer('https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif', {method: 'get'})
-					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					exec(`wget ${buffer.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 						fs.unlinkSync(ranp)
-						if (err) return reply(mess.error.stick)
+						if (err) return reply(ind.stikga())
 						buffer = fs.readFileSync(rano)
 						client.sendMessage(from, buffer, sticker, {quoted: mek})
 						fs.unlinkSync(rano)
@@ -938,6 +954,26 @@ client.on('group-participants-update', async (anu) => {
                         await reply(`Error!\n${err}`)
                     })
 					break
+				case 'leaderboard':
+				case 'lb':
+				_level.sort((a, b) => (a.xp < b.xp) ? 1 : -1)
+				uang.sort((a, b) => (a.uang < b.uang) ? 1 : -1)
+                let leaderboardlvl = '-----[ *LEADERBOARD LEVEL* ]----\n\n'
+                let leaderboarduang = '-----[ *LEADERBOARD UANG* ]----\n\n'
+                let nom = 0
+                try {
+                    for (let i = 0; i < 10; i++) {
+                        nom++
+                        leaderboardlvl += `*[${nom}]* wa.me/${_level[i].id.replace('@s.whatsapp.net', '')}\n┗⊱ *XP*: ${_level[i].xp} *Level*: ${_level[i].level}\n`
+                        leaderboarduang += `*[${nom}]* wa.me/${uang[i].id.replace('@s.whatsapp.net', '')}\n┣⊱ *Uang*: _Rp${uang[i].uang}_\n┗⊱ *Limit*: ${limitawal - _limit[i].limit}\n`
+                    }
+                    await reply(leaderboardlvl)
+                    await reply(leaderboarduang)
+                } catch (err) {
+                    console.error(err)
+                    await reply(`minimal 10 user untuk bisa mengakses database`)
+                }
+				break
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
