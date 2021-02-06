@@ -669,7 +669,7 @@ client.on('group-participants-update', async (anu) => {
                 case 'slap':
                     kapankah = body.slice(1)
                     if (isLimit(sender)) return reply(ind.limitend(pusname))
-					const slap =['anjing','babi lu','anak anjing','udah tolol nub Lagi','muka lo kek monyet','udah jomblo sendirian lagi dirumah tolol','so so an mau punya pacar muka aja kek monyet lepass dari kandang','ganteng doang di toxic aja dibilang baperan','pantek kau','bangsat kau','ku entod kalian nangis kau','memek lu semua','lihat anak anjing lagi baca','ngentot lu ya?','ganteng doang jemput cewe dipanggang','kamu cantik beb bullshit anjing cowo buaya','anak dajjal','puki lu','anjing ngajak gelud','sama hantu takut cupu ngentod','cupu cupu aja gausah bacot','kontol lu semua','bocah lu semua kontol','3 Hari Lagi','Ngontol Amat']
+					const slap =['anjing','babi lu','anak anjing','udah tolol nub Lagi','muka lo kek monyet','udah jomblo sendirian lagi dirumah tolol','so so an mau punya pacar muka aja kek monyet lepass dari kandang','ganteng doang di toxic aja dibilang baperan','pantek kau','bangsat kau','ku entod kalian nangis kau','memek lu semua','lihat anak anjing lagi baca','ngentot lu ya?','ganteng doang jemput cewe dipanggang','kamu cantik beb bullshit anjing cowo buaya','anak dajjal','puki lu','anjing ngajak gelud?','sama hantu takut cupu ngentod','cupu cupu aja gausah bacot','kontol lu semua','bocah lu semua kontol','3 Hari Lagi','Ngontol Amat']
 					const ple = slap[Math.floor(Math.random() * slap.length)]
 					pod = await getBuffer(`https://media.giphy.com/media/S8507sBJm1598XnsgD/source.gif`)
 					client.sendMessage(from, pod, image, { quoted: mek, caption: '*Toxic*\n\n'+ ple })
@@ -838,7 +838,6 @@ client.on('group-participants-update', async (anu) => {
             	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
-                      if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan oleh owner`)
                       if (isOwner) {
                       const one = 999999999
                       addLevelingXp(sender, one)
@@ -855,7 +854,7 @@ client.on('group-participants-update', async (anu) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					bisakah = body.slice(1)
-					const bisa =['Bisa','Tidak Bisa','Coba Ulangi','Ngimpi kah?']
+					const bisa =['Bisa','Tidak Bisa','Coba Ulangi','Ngimpi kah?','yakin bisa?']
 					const keh = bisa[Math.floor(Math.random() * bisa.length)]
 					client.sendMessage(from, 'Pertanyaan : *'+bisakah+'*\n\nJawaban : '+ keh, text, { quoted: mek })
 					await limitAdd(sender)
@@ -925,10 +924,11 @@ client.on('group-participants-update', async (anu) => {
           case 'speed':
           case 'ping':
           if (!isRegistered) return reply(ind.noregis())
-            await client.sendMessage(from, `Pong!!!!\nSpeed: ${processTime(time, moment())} _Second_`)
+            await client.sendMessage(from, `Pong!!!!\nSpeed: ${ProcessTime(time, moment())} _Second_`)
 					break
                case 'help': 
 				case 'menu':
+				case 'openmenu':
 				if (!isRegistered) return reply(ind.noregis())
 				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 				    const uangku = checkATMuser(sender)
@@ -940,6 +940,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, donasi(), text)
 					break
                 case 'level':
+		case 'lvl':
                 if (!isRegistered) return reply(ind.noregis())
                 if (!isLevelingOn) return reply(ind.lvlnoon())
                 if (!isGroup) return reply(ind.groupo())
@@ -975,6 +976,8 @@ client.on('group-participants-update', async (anu) => {
                 }
 				break
 				case 'info':
+				case 'ingfo':
+				case 'ingfokan':
 					me = client.user
 					uptime = process.uptime()
 					teks = `*Nama bot* : ${me.name}\n*OWNER* : *MiKako*\n*AUTHOR* : Taufik-Kun\n*Nomor Bot* : @${me.jid.split('@')[0]}\n*Prefix* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
@@ -1010,6 +1013,7 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
                 case 'quotemaker':
+		case 'makequote':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
                 var gh = body.slice(12)
