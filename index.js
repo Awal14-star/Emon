@@ -20,6 +20,7 @@ const crypto = require('crypto')
 const imageToBase64 = require('image-to-base64')
 const axios = require('axios')
 const { color, bgcolor } = require('./lib/color')
+const kagApi = require('@kagchi/kag-api')
 const { help } = require('./lib/help')
 const { donasi } = require('./lib/donasi')
 const { fetchJson } = require('./lib/fetcher')
@@ -32,19 +33,19 @@ const ffmpeg = require('fluent-ffmpeg')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
-const vcard = 'BEGIN:VCARD\n' 
-            + 'VERSION:3.0\n' 
-            + 'FN:MiKako\n' 
-            + 'ORG: Pengembang Taufik-Kun;\n' 
-            + 'TEL;type=CELL;type=VOICE;waid=6289675651966:+62 896-7565-1966\n' 
-            + 'END:VCARD' 
+const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
+            + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
+            + 'FN:MiKako\n'  //Ganti jadi namamu
+            + 'ORG: Pengembang Taufik-Kun;\n'  // Ganti jadi namamu/Botmu
+            + 'TEL;type=CELL;type=VOICE;waid=6289675651966:+62 896-7565-1966\n'  // Ganti jadi nomormu, tapi jangan ubah polanya
+            + 'END:VCARD' //jangan di ubah
 prefix = '#'
 blocked = []   
-limitawal = '9996757'
+limitawal = '9996757' //terserah ganti/gk
 cr = '*BOT INI SUDAH TERVERIFIKASI*'
 
 /******** OWNER NUMBER**********/
-const ownerNumber = ["6289675651966@s.whatsapp.net","6281231958474@s.whatsapp.net"] 
+const ownerNumber = ["6289675651966@s.whatsapp.net","6281231958474@s.whatsapp.net"]  //ganti menjadi nomormu
 /************************************/
 
        
@@ -1044,7 +1045,18 @@ client.on('group-participants-update', async (anu) => {
 					tod = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
 					client.sendMessage(from, tod, image, { quoted: mek, caption: '*Dare*\n\n'+ der })
 					await limitAdd(sender)
-					break				
+					break	
+				case 'lirik':
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/lirik?q=akad&apikey=BotWeA`)
+				thum = await getBuffer(anu.result.thumb)
+				teks = `*「 LAGU DI TEMUKAN 」*\n\n*Judul* : ${anu.result.judul}\n*Album* : ${anu.result.album}\n*public in* : ${anu.result.dipublikasi}\n*Lyrics* : ${anu.result.lirik}`
+				client.sendMessage(from, thum, image, { quoted : mek, caption: teks })
+				break
+				case 'ttp':
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/ttp?text=${body.slice(5)}&apikey=BotWeA`)
+				res = await getBase64(anu.base64)
+				client.sendMessage(from, res, sticker, {quoted:mek})
+				break
 				case 'ssweb':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
