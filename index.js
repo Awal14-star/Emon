@@ -1011,10 +1011,11 @@ break
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
 					break
           case 'speed':
-          case 'ping':
-          if (!isRegistered) return reply(ind.noregis())
-            await client.sendMessage(from, `Pong!!!!\nSpeed: ${ProcessTime(time, moment())} _Second_`)
-					break
+                case 'ping':
+                const timestamp = speed();
+                const latensi = speed() - timestamp 
+                client.sendMessage(from, `Speed: ${latensi.toFixed(4)} _Second_`, text, { quoted: mek})
+                    break
                case 'help': 
 				case 'menu':
 				case 'openmenu':
@@ -1155,20 +1156,15 @@ break
 					client.sendMessage(from, tod, image, { quoted: mek, caption: '*Dare*\n\n'+ der })
 					await limitAdd(sender)
 					break	
-				case 'lirik':
-				case 'lyric':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/lirik?q=${body.slice(5)}&apikey=BotWeA`)
-				thum = await getBuffer(anu.result.thumb)
-				teks = `*「 LAGU DI TEMUKAN 」*\n\n*Judul* : ${anu.result.judul}\n*Album* : ${anu.result.album}\n*public in* : ${anu.result.dipublikasi}\n*Lyrics* : ${anu.result.lirik}`
-				client.sendMessage(from, thum, image, { quoted : mek, caption: teks })
-				break
-				case 'ttp':
-				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/ttp?text=${body.slice(5)}&apikey=BotWeA`)
-				res = await getBase64(anu.base64)
-				client.sendMessage(from, res, sticker, {quoted:mek})
-				break
+		case 'lirik':    
+               if (!isRegistered) return reply(ind.noregis())
+                if (isLimit(sender)) return reply(limitend(pushname2))
+                reply(mess.wait)
+					teks = body.slice(7)
+					anu = await fetchJson(`http://scrap.terhambar.com/lirik?word=${teks}`, {method: 'get'})
+					reply('Lirik dari lagu '+teks+' adalah :\n\n'+anu.result.lirik)
+					await limitAdd(sender) 
+					break 
 				case 'ssweb':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
