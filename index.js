@@ -810,7 +810,7 @@ break
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					gatauda = body.slice(15)
 					reply(ind.wait())
-					anu = await fetchJson(`https://api.vhtear.com/randomhentai?apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/randomhentai&apikey=Jsieu8287362jshre82`, {method: 'get'})
 					buffer = await getBuffer(anu.result.url)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
