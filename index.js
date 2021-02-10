@@ -784,15 +784,18 @@ client.on('group-participants-update', async (anu) => {
                    client.sendMessage(from, buff, image, {quoted: mek, caption: hasil})
                    await limitAdd(sender)
 					break 
-                   case 'igstalk':
+                   case 'stalkig':
+                   if (isBanned) return reply(ind.baned())
                    if (!isRegistered) return reply(ind.noregis())
                    if (isLimit(sender)) return reply(ind.limitend(pusname))
-                     hmm = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/igs?u=${body.slice(9)}`)
-                     buffer = await getBuffer(hmm.data.profilehd)
-                     hasil = `Fullname : ${hmm.data.fullname}\npengikut : ${hmm.data.follower}\nMengikuti : ${hmm.data.following}\nPrivate : ${hmm.data.private}\nVerified : ${hmm.data.verified}\nbio : ${hmm.data.bio}`
+                     teks = body.slice(9)
+                     anu = await fetchJson(`https://api.vhtear.com/igprofile?query=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                     reply('「❗」Sabar Lagi Stalking IG nya kak')
+                     buffer = await getBuffer(anu.result.picture)
+                     hasil = `YAHAHA TELAH DI STALK BOS KU UNTUK USERNAME ${teks} \n\n *Username?* : _${anu.result.username}_ \n *Nama??* : _${anu.result.full_name}_ \n *Jumlah Follower??﹦?* : _${anu.result.follower}_ \n *Jumlah Following?* : _${anu.result.follow}_ \n *Jumlah Post?* : _${anu.result.post_count}_ \n *Biografi?? :* _${anu.result.biography}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     await limitAdd(sender)
-					break 
+			       break 
                     case 'kickall':
                     if (!isOwner) return reply(ind.ownerb())
 			        members_id = []
@@ -935,6 +938,16 @@ client.on('group-participants-update', async (anu) => {
 					var uni =  inu[Math.floor(Math.random() * inu.length)];
 					nye = await getBuffer(uni)
 					client.sendMessage(from, nye, image, { caption: 'Inu!!', quoted: mek })
+					break
+	case 'hobby':
+           if (isBanned) return reply(ind.baned())
+           if (!isRegistered) return reply(ind.noregis())
+           if (isLimit(sender)) return reply(ind.limitend(pusname))
+					hobby = body.slice(1)
+					const hob =['Desah Di Game','Ngocokin Doi','Stalking sosmed nya mantan','Kau kan gak punya hobby awokawok','Memasak','Membantu Atok','Mabar','Nobar','Sosmedtan','Membantu Orang lain','Nonton Anime','Nonton Drakor','Naik Motor','Nyanyi','Menari','Bertumbuk','Menggambar','Foto fotoan Ga jelas','Maen Game','Berbicara Sendiri','Nonton Wibu']
+					const by = hob[Math.floor(Math.random() * hob.length)]
+					client.sendMessage(from, 'Pertanyaan : *'+hobby+'*\n\nJawaban : '+ by, text, { quoted: mek })
+					await limitAdd(sender)
 					break
 				case 'meme':
 				if (!isRegistered) return reply(ind.noregis())
