@@ -150,7 +150,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *~${prefix}blood~*
 ╠☞ *~${prefix}firework~*
 ╠☞ *~${prefix}lava~*
-╠☞ *~${prefix}kuncitext*
+╠☞ *${prefix}kuncitext*
 ╠☞ *${prefix}toimg*
 ║     Mengubah stiker menjadi gambar
 ║
@@ -166,6 +166,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Bertanya kepada Bot berapa % tingkat Gay kamu
 ╠☞ *${prefix}rate*
 ║    Bertanya kepada Bot tentang nilai suatu hal
+╠☞ *${prefix}hobby*
 ╠☞ *~${prefix}fitnah~*
 ╠☞ *${prefix}slap*
 ║    Tamaparan dengan Toxic
@@ -182,6 +183,10 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
 ║    Mencari gambar di pinterest dengan keyword yang kamu ketik
+╠☞ *${prefix}loli*
+╠☞ *${prefix}loli2*
+╠☞ *${prefix}nekonime*
+╠☞ *${prefix}hartatahta*
 ╠☞ *~${prefix}meme~*
 ║    Mengirimkan meme cringe bahasa inggris
 ╠☞ *~${prefix}memeindo~*
@@ -189,8 +194,9 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}tts*
 ║    Mengirimkan suara dari yang kamu ketik
 ║    contoh : #tts id MiKako yang tampan
+╠☞ *${prefix}play*
 ╠☞ *~${prefix}resepmasakan~ (error)*
-╠☞ *~${prefix}igstalk~*
+╠☞ *${prefix}stalkig*
 ║    
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
