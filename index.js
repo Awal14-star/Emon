@@ -633,6 +633,16 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, aruga, image, {caption: 'Nih kak', quoted: mek})
 					await limitAdd(sender)
 					break
+case 'hartatahta':
+if (!isRegistered) return reply(ind.noregis())
+if (isLimit(sender)) return reply(ind.limitend(pusname))
+if (args.length < 1) return reply(`「❗」Contoh : ${prefix}hartatahta botwea`)
+har = body.slice(12)
+reply('「❗」Hirti Tihti Tai Anjg :v')
+buffer = await getBuffer(`https://api.vhtear.com/hartatahta?text=${har}&apikey=Jsieu8287362jshre82`)
+client.sendMessage(from, buffer, image, {quoted: mek})
+await limitAdd(sender)
+break
 			case 'kuncitext':   
 			if (!isRegistered) return reply(mess.only.userB)
 			if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -753,9 +763,9 @@ client.on('group-participants-update', async (anu) => {
 						reply('Sukses broadcast group')
 					}
 					break 
-					case 'pinterest':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
+				case 'pinterest':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					client.updatePresence(from, Presence.composing) 
 					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
 					reply(ind.wait())
@@ -768,13 +778,43 @@ client.on('group-participants-update', async (anu) => {
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					reply(mess.wait)
+					reply(ind.wait)
 					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=loli&apikey=Jsieu8287362jshre82`, {method: 'get'})
 					var lol = JSON.parse(JSON.stringify(anu.result));
 					var i2 =  lol[Math.floor(Math.random() * lol.length)];
 					nyeee = await getBuffer(i2)
 					client.sendMessage(from, nyeee, image, { caption: 'Oni chan baka!!', quoted: mek })
 					break
+				case 'loli2':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					gatauda = body.slice(6)
+					reply(ind.wait())
+					anu = await fetchJson(`https://api.vhtear.com/randomloli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					buffer = await getBuffer(anu.result.result)
+					client.sendMessage(from, buffer, image, {quoted: mek})
+					await limitAdd(sender)
+					break		
+				case 'nekonime':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					gatauda = body.slice(10)
+					reply(ind.wait())
+					anu = await fetchJson(`https://api.vhtear.com/randomnekonime&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					buffer = await getBuffer(anu.result.result)
+					client.sendMessage(from, buffer, image, {quoted: mek})
+					await limitAdd(sender)
+					break
+				case 'randomhentong':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					gatauda = body.slice(15)
+					reply(ind.wait())
+					anu = await fetchJson(`https://api.vhtear.com/randomhentai?apikey=Jsieu8287362jshre82`, {method: 'get'})
+					buffer = await getBuffer(anu.result.url)
+					client.sendMessage(from, buffer, image, {quoted: mek})
+					await limitAdd(sender)
+					break	
 					case 'resepmasakan':
 					if (!isRegistered) return reply(ind.noregis())
                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
@@ -785,7 +825,6 @@ client.on('group-participants-update', async (anu) => {
                    await limitAdd(sender)
 					break 
                    case 'stalkig':
-                   if (isBanned) return reply(ind.baned())
                    if (!isRegistered) return reply(ind.noregis())
                    if (isLimit(sender)) return reply(ind.limitend(pusname))
                      teks = body.slice(9)
@@ -860,7 +899,8 @@ client.on('group-participants-update', async (anu) => {
             	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
-			if (!isLevelingOn) return reply(ind.lvlnoon())
+		  if (!isLevelingOn) return reply(ind.lvlnoon())
+		  if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan sama owner`)
                       if (isOwner) {
                       const one = 999999999
                       addLevelingXp(sender, one)
@@ -918,18 +958,18 @@ client.on('group-participants-update', async (anu) => {
 		   reply(hasil)
 		   await limitAdd(sender)
 					break
-				case 'fitnah':	
-				case 'fake':             
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pushname))
-                    if (!isGroup) return reply(ind.groupo())
-                    arg = body.substring(body.indexOf(' ') + 1)
-				    isi = arg.split('/')[0] 
-			        pesan = arg.split('/')[1] 
-				    pesan2 = arg.split('/')[2] 
-                    costum(pesan, isi, pesan2)
-                    await limitAdd(sender) 
-                    break
+		case 'fitnah':
+		if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname))				
+		if (!isGroup) return reply(ind.groupo())                 
+				if (args.length < 1) return reply(`Gini kak : ${prefix}fitnah [@tag&pesan&balasanbot]\n\nContoh : ${prefix}fitnah @tagmember&hai&hai juga`)
+				var gh = body.slice(8)
+				mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					var replace = gh.split("&")[0];
+					var target = gh.split("&")[1];
+					var bot = gh.split("&")[2];
+					client.sendMessage(from, `${bot}`, text, {quoted: { key: { fromMe: false, participant: `${mentioned}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` }}})
+					break
 					case 'ntahlah':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
@@ -940,7 +980,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, nye, image, { caption: 'Inu!!', quoted: mek })
 					break
 	case 'hobby':
-           if (isBanned) return reply(ind.baned())
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
 					hobby = body.slice(1)
@@ -1019,6 +1058,25 @@ client.on('group-participants-update', async (anu) => {
                     await reply(`minimal 10 user untuk bisa mengakses database`)
                 }
 				break
+		case 'delete':
+                if (!isRegistered) return reply(ind.noregis())				
+					if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di jadi admin!')
+					mentions = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (mentions.length > 1) {
+						teks = 'Perintah di terima, hapus pesan :\n'
+						for (let _ of mentions) {
+							teks += `@${_.split('@')[0]}\n`
+						}
+						mentions(teks, mentions, true)
+						client.deleteMessage(from, mentions)
+					} else {
+						mentions(`Perintah di terima, hapus pesan : @${mentions[0].split('@')[0]}`, mentions, true)
+						client.deleteMessage(from, mentions)
+					}
+					break
 				case 'info':
 				case 'ingfo':
 				case 'ingfokan':
@@ -1155,6 +1213,18 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
 					await limitAdd(sender)
 					break
+		case 'play':
+		if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname)) 
+                reply(ind.wait())
+                anu = await fetchJson(`https://api.vhtear.com/ytmp3?query=${body.slice(6)}&apikey=Jsieu8287362jshre82`)
+               if (anu.error) return reply(anu.error)
+                 infomp3 = `*「❗」Lagu Ditemukan*\n➸ Judul : ${anu.result.title}\n➸ Durasi : ${anu.result.duration}\n➸ Size : ${anu.result.size}\n\n*[WAIT] Proses Dumlu Yakan*`
+                buffer = await getBuffer(anu.result.image)
+                lagu = await getBuffer(anu.result.mp3)
+                client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
+                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', quoted: mek})
+                break		
                 case 'text3d':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
