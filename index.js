@@ -20,7 +20,6 @@ const crypto = require('crypto')
 const imageToBase64 = require('image-to-base64')
 const axios = require('axios')
 const { color, bgcolor } = require('./lib/color')
-const kagApi = require('@kagchi/kag-api')
 const { help } = require('./lib/help')
 const { donasi } = require('./lib/donasi')
 const { fetchJson } = require('./lib/fetcher')
@@ -35,10 +34,10 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
-            + 'FN:MiKako\n'  //Ganti jadi namamu
+            + 'FN:MiKako\n'  // Ganti jadi namamu
             + 'ORG: Pengembang Taufik-Kun;\n'  // Ganti jadi namamu/Botmu
             + 'TEL;type=CELL;type=VOICE;waid=6289675651966:+62 896-7565-1966\n'  // Ganti jadi nomormu, tapi jangan ubah polanya
-            + 'END:VCARD' //jangan di ubah
+            + 'END:VCARD' // jangan di ubah
 prefix = '#'
 blocked = []   
 limitawal = '9996757' //terserah ganti/gk
@@ -1230,25 +1229,7 @@ client.on('group-participants-update', async (anu) => {
 							.save(ran)
 							} else {
 						reply(`Kirim gambar dengan caption ${prefix}sticker atau reply/tag gambar`)
-					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
-						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
-						ranw = getRandom('.webp')
-						ranp = getRandom('.png')
-						reply(mess.wait)
-						keyrmbg = 'Your-Apikey'
-						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
-							fs.unlinkSync(media)
-							let buffer = Buffer.from(res.base64img, 'base64')
-							fs.writeFileSync(ranp, buffer, (err) => {
-								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
-							})
-							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
-								fs.unlinkSync(ranp)
-								if (err) return reply(mess.error.stick)
-								client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
-							})
-						})
+					}
 					break
 				case 'tts':
 				if (!isRegistered) return reply(ind.noregis())
