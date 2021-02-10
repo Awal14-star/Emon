@@ -763,17 +763,18 @@ break
 						reply('Sukses broadcast group')
 					}
 					break 
-				case 'pinterest':
+				case 'pinterest': 
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					client.updatePresence(from, Presence.composing) 
-					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
-					reply(ind.wait())
-					n = JSON.parse(JSON.stringify(data));
-					nimek =  n[Math.floor(Math.random() * n.length)];
-					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*NIH KAK GAMBARNYA😘*`})
-					await limitAdd(sender)
+					if (args.length < 1) return reply('Mau Nyari Foto Apa???')
+					pinte = body.slice(11)
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=${pinte}&apikey=${VthearApi}`, {method: 'get'})
+					reply(mess.wait)
+					var pin = JSON.parse(JSON.stringify(anu.result));
+					var trest =  pin[Math.floor(Math.random() * pin.length)];
+					pinehg = await getBuffer(trest)
+					client.sendMessage(from, pinehg, image, { caption: '*Pinterest*\n\n*Hasil Pencarian : '+pinte+'*', quoted: mek })
+					await limitAdd(sender) 
 					break 
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
@@ -805,16 +806,21 @@ break
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
 					break
-				case 'randomhentong':
+				case 'nsfwloli':
+				try {   
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					gatauda = body.slice(15)
-					reply(ind.wait())
-					anu = await fetchJson(`https://api.vhtear.com/randomhentai&apikey=Jsieu8287362jshre82`, {method: 'get'})
-					buffer = await getBuffer(anu.result.url)
-					client.sendMessage(from, buffer, image, {quoted: mek})
+				if (!isNsfw) return reply(ind.nsfwoff())
+				if (!isGroup) return reply(ind.groupo()) 
+				res = await fetchJson(`https://api.vhtear.com/randomloli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+						buffer = await getBuffer(res.result.result)
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
+					} catch (e) {
+						console.log(`Error :`, color(e,'red'))
+						reply(' *ERROR* ')
+					}
 					await limitAdd(sender)
-					break	
+					break 
 				case 'wibu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -823,6 +829,22 @@ break
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
 					await limitAdd(sender)
 					break
+			case 'nekopoi':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			if (!isNsfw) return reply(ind.nsfwoff())
+			if (!isGroup) return reply(ind.groupo()) 
+			   reply(mess.wait)
+              	    if (args.length < 1) return reply('teksnya mana gan?')
+                    teks = body.slice(9)
+                    anu = await fetchJson(`https://api.vhtear.com/nekosearch?query=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                    teks = `===============\n`
+                    for (let neko of anu.result) {
+                    teks += `Title: ${neko.title}\nDeskripsi: ${neko.detail}\n===============\n`
+                    }
+                    reply(teks.trim())
+			     	await limitAdd(sender) 
+			     	break  
 					case 'resepmasakan':
 					if (!isRegistered) return reply(ind.noregis())
                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
@@ -957,6 +979,31 @@ break
 					client.sendMessage(from, 'Pertanyaan : *'+rate+'*\n\nJawaban : '+ te+'%', text, { quoted: mek })
 					await limitAdd(sender)
 					break
+	case 'nulis':
+	case 'tulis':
+	client.updatePresence(from, Presence.composing)
+	if (!isRegistered) return reply(ind.noregis())
+           if (isLimit(sender)) return reply(ind.limitend(pusname))
+			if (args.length < 1) return reply(`${name} Harus Nulis Apa Kak??`)
+			reply(mess.wait)
+					tulis = body.slice(7)
+				  nama = tulis.split("/")[0];
+					kelas = tulis.split("/")[1];
+					isi = tulis.split("/")[2];
+					nulis = await getBuffer(`https://api.zeks.xyz/api/magernulis?nama=${nama}&kelas=${kelas}&text=${isi}&tinta=4`, {method: 'get'})
+					client.sendMessage(from, nulis, image, {quoted: mek})
+					await limitAdd(sender) 
+					break  
+			case 'pasangan':  
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				pa = `${body.slice(10)}`
+				sa = pa.split("/")[0];
+				ngan = pa.split("/")[1];
+				anu = await fetchJson(`https://api.vhtear.com/primbonjodoh?nama=${sa}&pasangan=${ngan}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+				client.sendMessage(from, `${anu.result.hasil}`, {quoted: mek})
+			await limitAdd(sender) 
+			break 
 	  case 'seberapagay':
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1010,6 +1057,52 @@ break
 					buffer = await getBuffer(`https://imgur.com/${memein.hash}.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
 					break
+		case 'caklontong':
+                if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname))
+		if (!isGroup) return reply(ind.groupo())
+					anu = await fetchJson(`https://api.vhtear.com/funkuis&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					caklontong = `*${anu.result.soal}*`
+					setTimeout( () => {
+					client.sendMessage(from, '*➸ Jawaban :* '+anu.result.jawaban+ '\n\n• Penjelasan: *'+ anu.result.desk+'*', text, {quoted: mek}) // ur cods
+					}, 30000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_10 Detik lagi…_', text) // ur cods
+					}, 20000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_20 Detik lagi_…', text) // ur cods
+					}, 10000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_30 Detik lagi_…', text) // ur cods
+					}, 2500) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, caklontong, text, {quoted: mek}) // ur cods
+					}, 0) // 1000 = 1s,
+					await limitAdd(sender) 
+					break 
+			case 'family100':
+                if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname))
+		if (!isGroup) return reply(ind.groupo())
+					anu = await fetchJson(`https://api.vhtear.com/family100&apikey=${VthearApi}`, {method: 'get'})
+					family = `*${anu.result.soal}*`
+					setTimeout( () => {
+					client.sendMessage(from, '*➸ Jawaban :* '+anu.result.jawaban, text, {quoted: mek}) // ur cods
+					}, 30000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_10 Detik lagi…_', text) // ur cods
+					}, 20000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_20 Detik lagi_…', text) // ur cods
+					}, 10000) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, '_30 Detik lagi_…', text) // ur cods
+					}, 2500) // 1000 = 1s,
+					setTimeout( () => {
+					client.sendMessage(from, family, text, {quoted: mek }) // ur cods
+					}, 0) // 1000 = 1s,
+					await limitAdd(sender) 
+					break 
           case 'speed':
                 case 'ping':
                 const timestamp = speed();
@@ -1067,25 +1160,6 @@ break
                     await reply(`minimal 10 user untuk bisa mengakses database`)
                 }
 				break
-		case 'delete':
-                if (!isRegistered) return reply(ind.noregis())				
-					if (!isGroup) return reply(ind.groupo())
-					if (!isGroupAdmins) return reply(ind.admin())
-					if (!isBotGroupAdmins) return reply(ind.badmin())
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di jadi admin!')
-					mentions = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					if (mentions.length > 1) {
-						teks = 'Perintah di terima, hapus pesan :\n'
-						for (let _ of mentions) {
-							teks += `@${_.split('@')[0]}\n`
-						}
-						mentions(teks, mentions, true)
-						client.deleteMessage(from, mentions)
-					} else {
-						mentions(`Perintah di terima, hapus pesan : @${mentions[0].split('@')[0]}`, mentions, true)
-						client.deleteMessage(from, mentions)
-					}
-					break
 				case 'info':
 				case 'ingfo':
 				case 'ingfokan':
@@ -1158,14 +1232,14 @@ break
 					break	
 		case 'lirik':    
                if (!isRegistered) return reply(ind.noregis())
-                if (isLimit(sender)) return reply(limitend(pushname2))
+               if (isLimit(sender)) return reply(ind.limitend(pusname))
                 reply(mess.wait)
 					teks = body.slice(7)
 					anu = await fetchJson(`http://scrap.terhambar.com/lirik?word=${teks}`, {method: 'get'})
 					reply('Lirik dari lagu '+teks+' adalah :\n\n'+anu.result.lirik)
 					await limitAdd(sender) 
 					break 
-				case 'ssweb':
+		case 'ssweb':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
                 
@@ -1204,19 +1278,38 @@ break
 					await limitAdd(sender)
 					break
                 case 'ytmp4':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (args.length < 1) return reply('Urlnya mana um?')
-					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.stikga())
-					anu = await fetchJson(`https://st4rz.herokuapp.com/api/ytv2?url=${args[0]}`, {method: 'get'})
+    		if (!isRegistered) return reply(ind.noregis())
+                if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('Urlnya mana gan?')
+					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(mess.error.Iv)
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=Jsieu8287362jshre82`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
-					teks = `*Title* : ${anu.title}`
-					thumb = await getBuffer(anu.thumb)
-					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
-					buffer = await getBuffer(anu.result)
-					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
-					await limitAdd(sender)
-					break
+					ytt = `「 *YOUTUBE MP4 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}\n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
+					buff = await getBuffer(anu.result.imgUrl)
+					reply(mess.wait)
+					buffer = await getBuffer(anu.result.UrlVideo)
+					client.sendMessage(from, buff, image, {quoted: mek, caption: ytt})
+					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.result.title}.mp4`, quoted: mek, caption: 'Nih Anjim'})
+					await limitAdd(sender) 
+					break 
+
+				case 'ytmp3':
+					if (isBanned) return reply(mess.only.benned)    
+					if (!isPrem) return reply(mess.only.premium)
+					if (!isUser) return reply(mess.only.userB)
+					if (args.length < 1) return reply('Urlnya mana gan?')
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					yta = `「 *YOUTUBE MP3 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
+					buff = await getBuffer(anu.result.imgUrl)
+					reply(mess.wait)
+					buffer = await getBuffer(anu.result.UrlMp3)
+					client.sendMessage(from, buff, image, {quoted: mek, caption: yta})
+					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek, caption: 'Lugumu jelek gayn'})
+					await limitAdd(sender) 
+					break 
+
 		case 'play':
 		if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname)) 
@@ -1232,9 +1325,9 @@ break
                 case 'text3d':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-              	    if (args.length < 1) return reply('teksnya mana kak?')
+              	    if (args.length < 1) return reply('teksnya mana Tod?')
                     teks = `${body.slice(8)}`
-                    if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan, Maksimal 10 kalimat', text, {quoted: mek})
+                    if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
                     buff = await getBuffer(`https://docs-jojo.herokuapp.com/api/text3d?text=${teks}`, {method: 'get'})
                     client.sendMessage(from, buff, image, {quoted: mek, caption: `${teks}`})
 			     	await limitAdd(sender)
@@ -1444,6 +1537,14 @@ break
 				if (!isGroup) return reply(ind.groupo())
 					if (!isOwner) return reply(ind.ownerb())
 				await reply(from, 'bye').then(() => client.leaveGroup(groupId))
+					break
+			case 'delete':
+			case 'del':
+			case 'd':
+			if (!isGroup) return reply(ind.groupo())
+                       if (!isGroupAdmins) return reply(ind.admin())
+                        if (!isBotGroupAdmins) return reply(ind.badmin())
+					client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 					break
 				case 'bc': 
 					if (!isOwner) return reply(ind.ownerb()) 
