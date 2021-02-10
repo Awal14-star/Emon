@@ -633,6 +633,15 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, aruga, image, {caption: 'Nih kak', quoted: mek})
 					await limitAdd(sender)
 					break
+			case 'kuncitext':   
+			if (!isRegistered) return reply(mess.only.userB)
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+              	    if (args.length < 1) return reply('teksnya mana kak?')
+                    teks = `${body.slice(8)}`
+                    if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan, Maksimal 10 kalimat', text, {quoted: mek})
+                    buffer6 = await getBuffer(`https://api.vhtear.com/padlock?text1=${teks}&text2=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                    client.sendMessage(from, buffer6, image, {quoted: mek, caption: `${teks}`})
+			     	break
                 case '1cak':
 				    try {
 					    if (!isRegistered) return reply(ind.noregis())
@@ -756,6 +765,16 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*NIH KAK GAMBARNYA😘*`})
 					await limitAdd(sender)
 					break 
+				case 'loli':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					reply(mess.wait)
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=loli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					var lol = JSON.parse(JSON.stringify(anu.result));
+					var i2 =  lol[Math.floor(Math.random() * lol.length)];
+					nyeee = await getBuffer(i2)
+					client.sendMessage(from, nyeee, image, { caption: 'Oni chan baka!!', quoted: mek })
+					break
 					case 'resepmasakan':
 					if (!isRegistered) return reply(ind.noregis())
                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
@@ -814,7 +833,7 @@ client.on('group-participants-update', async (anu) => {
 					teks += `Total : ${blocked.length}`
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": blocked}})
 					break
-				case 'daftar':
+		case 'daftar':
                 if (isRegistered) return  reply(ind.rediregis())
                 if (!q.includes('|')) return  reply(ind.wrongf())
                 const namaUser = q.substring(0, q.indexOf('|') - 0)
@@ -838,6 +857,7 @@ client.on('group-participants-update', async (anu) => {
             	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
+			if (!isLevelingOn) return reply(ind.lvlnoon())
                       if (isOwner) {
                       const one = 999999999
                       addLevelingXp(sender, one)
@@ -907,6 +927,15 @@ client.on('group-participants-update', async (anu) => {
                     costum(pesan, isi, pesan2)
                     await limitAdd(sender) 
                     break
+					case 'ntahlah':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pushname))
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query={body.slice(11)}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					var inu = JSON.parse(JSON.stringify(anu.result));
+					var uni =  inu[Math.floor(Math.random() * inu.length)];
+					nye = await getBuffer(uni)
+					client.sendMessage(from, nye, image, { caption: 'Inu!!', quoted: mek })
+					break
 				case 'meme':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -957,6 +986,8 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'leaderboard':
 				case 'lb':
+				if (!isRegistered) return reply(ind.noregis())
+				if (!isGroup) return reply(ind.groupo())
 				_level.sort((a, b) => (a.xp < b.xp) ? 1 : -1)
 				uang.sort((a, b) => (a.uang < b.uang) ? 1 : -1)
                 let leaderboardlvl = '-----[ *LEADERBOARD LEVEL* ]----\n\n'
@@ -1046,7 +1077,10 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break	
 				case 'lirik':
-				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/lirik?q=akad&apikey=BotWeA`)
+				case 'lyric':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/lirik?q=${body.slice(5)}&apikey=BotWeA`)
 				thum = await getBuffer(anu.result.thumb)
 				teks = `*「 LAGU DI TEMUKAN 」*\n\n*Judul* : ${anu.result.judul}\n*Album* : ${anu.result.album}\n*public in* : ${anu.result.dipublikasi}\n*Lyrics* : ${anu.result.lirik}`
 				client.sendMessage(from, thum, image, { quoted : mek, caption: teks })
