@@ -815,6 +815,14 @@ break
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
 					break	
+				case 'wibu':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					data = await fetchJson(`https://api.vhtear.com/randomwibu&apikey=Jsieu8287362jshre82`)
+					buffer = await getBuffer(data.result.foto)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
+					await limitAdd(sender)
+					break
 					case 'resepmasakan':
 					if (!isRegistered) return reply(ind.noregis())
                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
