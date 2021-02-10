@@ -138,23 +138,24 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker (jika video max. 9det)*
 ║     Mengubah gambar/video yang kamu kirimkan menjadi sticker.
-╠☞ *_${prefix}vinta_*
-╠☞ *_${prefix}avengers_*
-╠☞ *_${prefix}summer_*
-╠☞ *_${prefix}sandwrite_*
-╠☞ *_${prefix}metaldark_*
-╠☞ *_${prefix}dropwater_*
-╠☞ *_${prefix}greenneon_*
-╠☞ *_${prefix}neontext_*
-╠☞ *_${prefix}sumery_*
-╠☞ *_${prefix}blood_*
-╠☞ *_${prefix}firework_*
-╠☞ *_${prefix}lava_*
+╠☞ *~${prefix}vinta~*
+╠☞ *~${prefix}avengers~*
+╠☞ *~${prefix}summer~*
+╠☞ *~${prefix}sandwrite~*
+╠☞ *~${prefix}metaldark~*
+╠☞ *~${prefix}dropwater~*
+╠☞ *~${prefix}greenneon~*
+╠☞ *~${prefix}neontext~*
+╠☞ *~${prefix}sumery~*
+╠☞ *~${prefix}blood~*
+╠☞ *~${prefix}firework~*
+╠☞ *~${prefix}lava~*
+╠☞ *~${prefix}kuncitext*
 ╠☞ *${prefix}toimg*
 ║     Mengubah stiker menjadi gambar
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
-╠☞ *_${prefix}mining_ (error)*
+╠☞ *~${prefix}mining~ (error)*
 ╠☞ *${prefix}bisakah*
 ║    Bertanya kepada Bot apakah kamu bisa melakukan suatu hal
 ╠☞ *${prefix}kapankah*
@@ -165,15 +166,15 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Bertanya kepada Bot berapa % tingkat Gay kamu
 ╠☞ *${prefix}rate*
 ║    Bertanya kepada Bot tentang nilai suatu hal
-╠☞ *_${prefix}fitnah_*
+╠☞ *~${prefix}fitnah~*
 ╠☞ *${prefix}slap*
 ║    Tamaparan dengan Toxic
-╠☞ *_${prefix}tampar_ (Error)*
-╠☞ *_${prefix}speed_ (error)*
+╠☞ *~${prefix}tampar~ (Error)*
+╠☞ *~${prefix}speed~ (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
-╠☞ *_${prefix}toxic_ (error)*
-╠☞ *_${prefix}quotes_ (error)*
+╠☞ *~${prefix}toxic~ (error)*
+╠☞ *~${prefix}quotes~ (error)*
 ╠☞ *${prefix}makequote*
 ╠☞ *${prefix}beritahoax*
 ║    Mencari berita Hoax
@@ -181,15 +182,15 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Mencari jawaban di Brainly, makanya pintar, *gblk*
 ╠☞ *${prefix}pinterest*
 ║    Mencari gambar di pinterest dengan keyword yang kamu ketik
-╠☞ *_${prefix}meme_*
+╠☞ *~${prefix}meme~*
 ║    Mengirimkan meme cringe bahasa inggris
-╠☞ *_${prefix}memeindo_*
+╠☞ *~${prefix}memeindo~*
 ║    Mengirimkan meme cringe
 ╠☞ *${prefix}tts*
 ║    Mengirimkan suara dari yang kamu ketik
 ║    contoh : #tts id MiKako yang tampan
-╠☞ *_${prefix}resepmasakan_ (error)*
-╠☞ *_${prefix}igstalk_*
+╠☞ *~${prefix}resepmasakan~ (error)*
+╠☞ *~${prefix}igstalk~*
 ║    
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
@@ -204,7 +205,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ║    Bot akan mengirimkan gambar pokemon
 ╠☞ *${prefix}anjing*
 ║    Bot akan mengirimkan gambar anjing
-╠☞ *_${prefix}1cak_ (error)*
+╠☞ *~${prefix}1cak~ (error)*
 ║
 ╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}hidetag*
