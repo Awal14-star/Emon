@@ -58,6 +58,8 @@ const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
 const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
+const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
+const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
 /*********** END LOAD ***********/
 
 /********** FUNCTION ***************/
@@ -343,6 +345,8 @@ client.on('group-participants-update', async (anu) => {
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
+			const isAntiLink = isGroup ? antilink.includes(from) : false
+                        const isAntiFirtex= isGroup ? antifirtex.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isImage = type === 'imageMessage'
 			const isUrl = (url) => {
