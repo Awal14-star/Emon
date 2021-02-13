@@ -450,6 +450,193 @@ client.on('group-participants-update', async (anu) => {
                 console.error(err)
             }
         }
+			
+
+	
+if (messagesC.includes("://chat.whatsapp.com/")) {
+		if (!isAntiLink) return
+
+		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+
+		client.updatePresence(from, Presence.composing)
+
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+
+		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
+
+		setTimeout( () => {
+
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+
+		}, 10000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 9000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 8000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 7000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 6000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 5000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 4000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		
+
+		}, 3000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		
+
+		}, 2000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 1000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 0)
+
+	}
+
+	
+
+                if (messagesC.includes('৭৭৭৭৭৭৭৭'|'๒๒๒๒๒๒๒๒'|'๑๑๑๑๑๑๑๑'|'ดุท้่เึางืผิดุท้่เึางื')){
+
+		if (!isGroup) return
+
+		if (!isAntiFirtex) return
+
+		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+
+		client.updatePresence(from, Presence.composing)
+
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+
+		reply(`Firtex Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
+
+		setTimeout( () => {
+
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+
+		}, 10000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 9000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+			
+
+		}, 8000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 7000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 6000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 5000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 4000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 3000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 2000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 1000)
+
+		setTimeout( () => {
+
+			client.updatePresence(from, Presence.composing)
+
+		}, 0)
+
+	}
             
              //kolor
 			colors = ['red','white','black','blue','yellow','green']
@@ -1798,6 +1985,91 @@ break
 					} else {
 						reply(ind.satukos())
 					}
+					break
+			
+
+	
+
+					if (!isGroupAdmins) return reply(ind.admin())
+
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+
+					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
+
+					if (Number(args[0]) === 1) {
+
+						if (isAntiLink) return reply('anti link group sudah aktif')
+
+						antilink.push(from)
+
+						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
+
+						reply('Sukses mengaktifkan anti link group di group ini ✔️')
+
+						client.sendMessage(from,`Perhatian kepada seluruh member anti link group aktif apabila anda mengirim link group anda akan di kick dari group`, text)
+
+					} else if (Number(args[0]) === 0) {
+
+						if (!isantilink) return reply('Mode anti link group sudah disable')
+
+						var ini = anti.indexOf(from)
+
+						antilink.splice(ini, 1)
+
+						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
+
+						reply('Sukes menonaktifkan anti link group di group ini ✔️')
+
+					} else {
+
+						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+
+					}
+
+					break
+
+					
+
+					case 'antifirtex':
+
+                                	if (!isGroup) return reply(ind.groupo())
+
+					if (!isGroupAdmins) return reply(ind.admin())
+
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+
+					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
+
+					if (Number(args[0]) === 1) {
+
+						if (isAntiFirtex) return reply('anti firtex group sudah aktif')
+
+						antifirtex.push(from)
+
+						fs.writeFileSync('./database/group/antifirtex.json', JSON.stringify(antifirtex))
+
+						reply('Sukses mengaktifkan anti firtex di group ini ✔️')
+
+						client.sendMessage(from,`Perhatian kepada seluruh member anti firtex aktif apabila anda mengirim firtex anda akan di kick dari group`, text)
+
+					} else if (Number(args[0]) === 0) {
+
+						if (!isantifirtex) return reply('Mode anti firtex sudah disable')
+
+						var ini = anti.indexOf(from)
+
+						antifirtex.splice(ini, 1)
+
+						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antifirtex))
+
+						reply('Sukes menonaktifkan anti firtex di group ini ✔️')
+
+					} else {
+
+						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+
+					}
+
 					break
 				case 'clone':
 					if (!isGroup) return reply(ind.groupo())
