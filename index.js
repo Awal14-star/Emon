@@ -32,6 +32,7 @@ const ffmpeg = require('fluent-ffmpeg')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
+const apivhtear = 'PUNYARAMLAN'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
             + 'FN:MiKako\n'  // Ganti jadi namamu
@@ -643,7 +644,7 @@ if (isLimit(sender)) return reply(ind.limitend(pusname))
 if (args.length < 1) return reply(`「❗」Contoh : ${prefix}hartatahta botwea`)
 har = body.slice(12)
 reply('「❗」Hirti Tihti Tai Anjg :v')
-buffer = await getBuffer(`https://api.vhtear.com/hartatahta?text=${har}&apikey=Jsieu8287362jshre82`)
+buffer = await getBuffer(`https://api.vhtear.com/hartatahta?text=${har}&apikey=${apivhtear}' )
 client.sendMessage(from, buffer, image, {quoted: mek})
 await limitAdd(sender)
 break
@@ -653,7 +654,7 @@ break
               	    if (args.length < 1) return reply('teksnya mana kak?')
                     teks = `${body.slice(8)}`
                     if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan, Maksimal 10 kalimat', text, {quoted: mek})
-                    buffer6 = await getBuffer(`https://api.vhtear.com/padlock?text1=${teks}&text2=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                    buffer6 = await getBuffer(`https://api.vhtear.com/padlock?text1=${teks}&text2=${teks}&apikey=${apivhtear}`, {method: 'get'})
                     client.sendMessage(from, buffer6, image, {quoted: mek, caption: `${teks}`})
 			     	break
                 case '1cak':
@@ -772,7 +773,7 @@ break
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Mau Nyari Foto Apa???')
 					pinte = body.slice(11)
-					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=${pinte}&apikey=${VthearApi}`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=${pinte}&apikey=${apivhtear}`, {method: 'get'})
 					reply(mess.wait)
 					var pin = JSON.parse(JSON.stringify(anu.result));
 					var trest =  pin[Math.floor(Math.random() * pin.length)];
@@ -784,7 +785,7 @@ break
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					reply(ind.wait)
-					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=loli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=loli&apikey=${apivhtear}`, {method: 'get'})
 					var lol = JSON.parse(JSON.stringify(anu.result));
 					var i2 =  lol[Math.floor(Math.random() * lol.length)];
 					nyeee = await getBuffer(i2)
@@ -795,7 +796,7 @@ break
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					gatauda = body.slice(6)
 					reply(ind.wait())
-					anu = await fetchJson(`https://api.vhtear.com/randomloli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/randomloli&apikey=${apivhtear}`, {method: 'get'})
 					buffer = await getBuffer(anu.result.result)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
@@ -805,7 +806,7 @@ break
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					gatauda = body.slice(10)
 					reply(ind.wait())
-					anu = await fetchJson(`https://api.vhtear.com/randomnekonime&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/randomnekonime&apikey=${apivhtear}`, {method: 'get'})
 					buffer = await getBuffer(anu.result.result)
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
@@ -816,7 +817,7 @@ break
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 				if (!isNsfw) return reply(ind.nsfwoff())
 				if (!isGroup) return reply(ind.groupo()) 
-				res = await fetchJson(`https://api.vhtear.com/randomloli&apikey=Jsieu8287362jshre82`, {method: 'get'})
+				res = await fetchJson(`https://api.vhtear.com/randomloli&apikey=${apivhtear}`, {method: 'get'})
 						buffer = await getBuffer(res.result.result)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
 					} catch (e) {
@@ -828,9 +829,9 @@ break
 				case 'wibu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					data = await fetchJson(`https://api.vhtear.com/randomwibu&apikey=Jsieu8287362jshre82`)
+					data = await fetchJson(`https://api.vhtear.com/randomwibu&apikey=${apivhtear}`)
 					buffer = await getBuffer(data.result.foto)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '^W^'})
 					await limitAdd(sender)
 					break
 			case 'nekopoi':
@@ -841,7 +842,7 @@ break
 			   reply(mess.wait)
               	    if (args.length < 1) return reply('teksnya mana gan?')
                     teks = body.slice(9)
-                    anu = await fetchJson(`https://api.vhtear.com/nekosearch?query=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                    anu = await fetchJson(`https://api.vhtear.com/nekosearch?query=${teks}&apikey=${apivhtear}`, {method: 'get'})
                     teks = `===============\n`
                     for (let neko of anu.result) {
                     teks += `Title: ${neko.title}\nDeskripsi: ${neko.detail}\n===============\n`
@@ -862,7 +863,7 @@ break
                    if (!isRegistered) return reply(ind.noregis())
                    if (isLimit(sender)) return reply(ind.limitend(pusname))
                      teks = body.slice(9)
-                     anu = await fetchJson(`https://api.vhtear.com/igprofile?query=${teks}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+                     anu = await fetchJson(`https://api.vhtear.com/igprofile?query=${teks}&apikey=${apivhtear}`, {method: 'get'})
                      reply('「❗」Sabar Lagi Stalking IG nya kak')
                      buffer = await getBuffer(anu.result.picture)
                      hasil = `YAHAHA TELAH DI STALK BOS KU UNTUK USERNAME ${teks} \n\n *Username?* : _${anu.result.username}_ \n *Nama??* : _${anu.result.full_name}_ \n *Jumlah Follower??﹦?* : _${anu.result.follower}_ \n *Jumlah Following?* : _${anu.result.follow}_ \n *Jumlah Post?* : _${anu.result.post_count}_ \n *Biografi?? :* _${anu.result.biography}`
@@ -1004,7 +1005,7 @@ break
 				pa = `${body.slice(10)}`
 				sa = pa.split("/")[0];
 				ngan = pa.split("/")[1];
-				anu = await fetchJson(`https://api.vhtear.com/primbonjodoh?nama=${sa}&pasangan=${ngan}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+				anu = await fetchJson(`https://api.vhtear.com/primbonjodoh?nama=${sa}&pasangan=${ngan}&apikey=${apivhtear}' , {method: 'get'})
 				client.sendMessage(from, `${anu.result.hasil}`, {quoted: mek})
 			await limitAdd(sender) 
 			break 
@@ -1065,7 +1066,7 @@ break
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname))
 		if (!isGroup) return reply(ind.groupo())
-					anu = await fetchJson(`https://api.vhtear.com/funkuis&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/funkuis&apikey=${apivhtear}`, {method: 'get'})
 					caklontong = `*${anu.result.soal}*`
 					setTimeout( () => {
 					client.sendMessage(from, '*➸ Jawaban :* '+anu.result.jawaban+ '\n\n• Penjelasan: *'+ anu.result.desk+'*', text, {quoted: mek}) // ur cods
@@ -1088,7 +1089,7 @@ break
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname))
 		if (!isGroup) return reply(ind.groupo())
-					anu = await fetchJson(`https://api.vhtear.com/family100&apikey=${VthearApi}`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/family100&apikey=${apivhtear}`, {method: 'get'})
 					family = `*${anu.result.soal}*`
 					setTimeout( () => {
 					client.sendMessage(from, '*➸ Jawaban :* '+anu.result.jawaban, text, {quoted: mek}) // ur cods
@@ -1286,7 +1287,7 @@ break
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(mess.error.Iv)
-					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					ytt = `「 *YOUTUBE MP4 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}\n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
 					buff = await getBuffer(anu.result.imgUrl)
@@ -1303,7 +1304,7 @@ break
 					if (!isUser) return reply(mess.only.userB)
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
-					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					yta = `「 *YOUTUBE MP3 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
 					buff = await getBuffer(anu.result.imgUrl)
@@ -1318,7 +1319,7 @@ break
 		if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname)) 
                 reply(ind.wait())
-                anu = await fetchJson(`https://api.vhtear.com/ytmp3?query=${body.slice(6)}&apikey=Jsieu8287362jshre82`)
+                anu = await fetchJson(`https://api.vhtear.com/ytmp3?query=${body.slice(6)}&apikey=${apivhtear}`)
                if (anu.error) return reply(anu.error)
                  infomp3 = `*「❗」Lagu Ditemukan*\n➸ Judul : ${anu.result.title}\n➸ Durasi : ${anu.result.duration}\n➸ Size : ${anu.result.size}\n\n*[WAIT] Proses Dumlu Yakan*`
                 buffer = await getBuffer(anu.result.image)
