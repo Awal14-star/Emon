@@ -831,7 +831,7 @@ if (isLimit(sender)) return reply(ind.limitend(pusname))
 if (args.length < 1) return reply(`「❗」Contoh : ${prefix}hartatahta botwea`)
 har = body.slice(12)
 reply('「❗」Hirti Tihti Tai Anjg :v')
-buffer = await getBuffer(`https://api.vhtear.com/hartatahta?text=${har}&apikey=${apivhtear}' )
+buffer = await getBuffer(`https://api.vhtear.com/hartatahta?text=${har}&apikey=${apivhtear}` )
 client.sendMessage(from, buffer, image, {quoted: mek})
 await limitAdd(sender)
 break
@@ -1192,7 +1192,7 @@ break
 				pa = `${body.slice(10)}`
 				sa = pa.split("/")[0];
 				ngan = pa.split("/")[1];
-				anu = await fetchJson(`https://api.vhtear.com/primbonjodoh?nama=${sa}&pasangan=${ngan}&apikey=${apivhtear}' , {method: 'get'})
+				anu = await fetchJson(`https://api.vhtear.com/primbonjodoh?nama=${sa}&pasangan=${ngan}&apikey=${apivhtear}` , {method: 'get'})
 				client.sendMessage(from, `${anu.result.hasil}`, {quoted: mek})
 			await limitAdd(sender) 
 			break 
@@ -1220,7 +1220,7 @@ break
 					case 'ntahlah':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
-					anu = await fetchJson(`https://api.vhtear.com/pinterest?query={body.slice(11)}&apikey=Jsieu8287362jshre82`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/pinterest?query={body.slice(11)}&apikey=${apivhtear}`, {method: 'get'})
 					var inu = JSON.parse(JSON.stringify(anu.result));
 					var uni =  inu[Math.floor(Math.random() * inu.length)];
 					nye = await getBuffer(uni)
