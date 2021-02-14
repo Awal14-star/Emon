@@ -33,6 +33,7 @@ const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
 const apivhtear = 'PUNYARAMLAN'
+const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
             + 'FN:MiKako\n'  // Ganti jadi namamu
@@ -1557,6 +1558,23 @@ break
 						})
 					})
 					await limitAdd(sender)
+					break
+				case 'ttp':
+				if (!isRegistered) return reply(ind.noregis())
+			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
+				if (args.length < 1) return reply('yang mau dijadiin text sticker apaan, titit kah?')
+					ranp = getRandom('.png')
+					rano = getRandom('.webp')
+					teks = body.slice(4).trim()
+					anu = await fetchJson(`https://mhankbarbar.tech/api/text2image?text=${teks}&apiKey=${BarBarKey}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					if (err) return reply(ind.stikga())
+					baby.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+					})
+                        		await limitAdd(sender)
 					break
 				case 'setprefix':
 					if (args.length < 1) return
