@@ -34,6 +34,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
 const apivhtear = 'PUNYARAMLAN'
 const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
+const TobzKey = 'BotWeA'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
             + 'FN:MiKako\n'  // Ganti jadi namamu
@@ -726,6 +727,17 @@ if (q.includes("://chat.whatsapp.com/")) {
 					client.sendMessage(from, aruga, image, {caption: 'Nih kak', quoted: mek})
 					await limitAdd(sender)
 					break
+					case 'silktext':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))				
+					if (args.length < 1) return reply(ind.wrongf())
+					silk = body.slice(10)
+					if (silk.length > 7) return reply('Teksnya kepanjangan Tod, maksimal 6 karakter')
+					reply(ind.wait())
+					buffer = await getBuffer(`https://api.vhtear.com/silktext?text=${silk}&apikey=${apivhtear}`)
+		    			baby.sendMessage(from, buffer, image, {quoted: mek})
+		    			await limitAdd(sender)	
+		    			break
 case 'hartatahta':
 if (!isRegistered) return reply(ind.noregis())
 if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -869,6 +881,16 @@ break
 					client.sendMessage(from, pinehg, image, { caption: '*Pinterest*\n\n*Hasil Pencarian : '+pinte+'*', quoted: mek })
 					await limitAdd(sender) 
 					break 
+				case 'husbu':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+			   	if (!isGroup) return reply(ind.groupo())
+                   		if (!isNsfw) return reply(ind.nsfwoff())
+					res = await fetchJson(`https://tobz-api.herokuapp.com/api/husbu?apikey=${TobzKey}`)
+					buffer = await getBuffer(res.image)
+					baby.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
+					await limitAdd(sender)
+					break
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -897,6 +919,14 @@ break
 					anu = await fetchJson(`https://api.vhtear.com/randomnekonime&apikey=${apivhtear}`, {method: 'get'})
 					buffer = await getBuffer(anu.result.result)
 					client.sendMessage(from, buffer, image, {quoted: mek})
+					await limitAdd(sender)
+					break
+				case 'neko':
+                		if (!isRegistered) return reply(ind.noregis())
+               			if (isLimit(sender)) return reply(ind.limitend(pusname))
+					res = await fetchJson(`https://tobz-api.herokuapp.com/api/nekonime?apikey=${TobzKey}`, {method: 'get'})
+					buffer = await getBuffer(res.result)
+					baby.sendMessage(from, buffer, image, {quoted: mek, caption: 'Nih nekonime mu >_<'})
 					await limitAdd(sender)
 					break
 				case 'nsfwloli':
@@ -938,6 +968,48 @@ break
                     reply(teks.trim())
 			     	await limitAdd(sender) 
 			     	break  
+			case 'randomhentong':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			if (!isNsfw) return reply(ind.nsfwoff())
+					gatauda = body.slice(15)
+					reply(ind.wait())
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzKey}`)
+					buffer = await getBuffer(anu.result)
+					baby.sendMessage(from, buffer, image, {quoted: mek})
+					break			
+			case 'blowjob':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			if (!isNsfw) return reply(ind.nsfwoff())
+				ranp = getRandom('.gif')
+				rano = getRandom('.webp')
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=BotWeA`, {method: 'get'})
+				if (anu.error) return reply(anu.error)
+				exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+				fs.unlinkSync(ranp)
+				if (err) return reply(ind.stikga())
+				buffer = fs.readFileSync(rano)
+				baby.sendMessage(from, buffer, sticker, {quoted: mek})
+				fs.unlinkSync(rano)
+				})
+				break
+			case 'nangis':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/cry?apikey=$BotWeA`, {method: 'get'})
+					reply('「❗」KASIH JEDA 1 MENIT HABIS INI YA KAK')
+					if (anu.error) return reply(anu.error)
+					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					if (err) return reply(ind.stikga())
+					buffer = fs.readFileSync(rano)
+					baby.sendMessage(from, buffer, sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+					})
+					break
 					case 'resepmasakan':
 					if (!isRegistered) return reply(ind.noregis())
                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
@@ -1195,6 +1267,29 @@ break
 					}, 0) // 1000 = 1s,
 					await limitAdd(sender) 
 					break 
+				case 'tebakin':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					anu = await fetchJson(`https://api.vhtear.com/tebakgambar&apikey=${apivhtear}`, {method: 'get'})
+					ngebuff = await getBuffer(anu.result.soalImg)
+					tebak = `➸ Jawaban : *${anu.result.jawaban}*`
+					setTimeout( () => {
+					baby.sendMessage(from, tebak, text, {quoted: mek})
+					}, 30000) // 1000 = 1s,
+					setTimeout( () => {
+					baby.sendMessage(from, '_10 Detik lagi..._', text) // ur cods
+					}, 20000) // 1000 = 1s,
+					setTimeout( () => {
+					baby.sendMessage(from, '_20 Detik lagi..._', text) // ur cods
+					}, 10000) // 1000 = 1s,
+					setTimeout( () => {
+					baby.sendMessage(from, '_30 Detik lagi..._', text) // ur cods
+					}, 2500) // 1000 = 1s,
+					setTimeout( () => {
+					baby.sendMessage(from, ngebuff, image, { caption: '_Tebak bro!!! gak bisa jawab donasi ya:v_', quoted: mek }) // ur cods
+					}, 0) // 1000 = 1s,
+					await limitAdd(sender) 
+					break
          	 case 'speed':
                 case 'ping':
                 const timestamp = speed();
@@ -1373,12 +1468,12 @@ break
     		if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Urlnya mana gan?')
-					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(mess.error.Iv)
+					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					ytt = `「 *YOUTUBE MP4 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}\n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
 					buff = await getBuffer(anu.result.imgUrl)
-					reply(mess.wait)
+					reply(ind.wait)
 					buffer = await getBuffer(anu.result.UrlVideo)
 					client.sendMessage(from, buff, image, {quoted: mek, caption: ytt})
 					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.result.title}.mp4`, quoted: mek, caption: 'Nih Anjim'})
@@ -1386,21 +1481,32 @@ break
 					break 
 
 				case 'ytmp3':
-					if (isBanned) return reply(mess.only.benned)    
-					if (!isPrem) return reply(mess.only.premium)
-					if (!isUser) return reply(mess.only.userB)
+					if (!isRegistered) return reply(ind.noregis())
+                			if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Urlnya mana gan?')
-					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					yta = `「 *YOUTUBE MP3 DOWNLOADER* 」\n\n• Title : *${anu.result.title}*\n• *Size:* ${anu.result.size}\n• *Link:* https://www.youtu.be/${anu.result.id}n\n Tunggu Sebentar 1 menit Mungkin Agak Lama Karna Mendownload Video`
 					buff = await getBuffer(anu.result.imgUrl)
-					reply(mess.wait)
+					reply(ind.wait)
 					buffer = await getBuffer(anu.result.UrlMp3)
 					client.sendMessage(from, buff, image, {quoted: mek, caption: yta})
 					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek, caption: 'Lugumu jelek gayn'})
 					await limitAdd(sender) 
 					break 
+				case 'yutubdl':
+					if (args.length < 1) return reply('Urlnya mana um?')
+					if (!isRegistered) return reply(ind.noregis())
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply('URL NYA TIDAK VALID KAK')				
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${VhtearKey}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					teks = `*➸ JUDUL* : ${anu.result.title}\n\n*[WAIT] Proses Dumlu Yakan*`
+					thumb = await getBuffer(anu.result.imgUrl)
+					baby.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					buffer = await getBuffer(anu.result.UrlVideo)
+					baby.sendMessage(from, buffer, video, {mimetype: 'video/mp4', quoted: mek})
+					break
 
 		case 'play':
 		if (!isRegistered) return reply(ind.noregis())
@@ -1885,7 +1991,7 @@ break
 						reply(ind.satukos())
 					}
 					break
-                 case 'event':
+                			case 'event':
 					if (!isGroup) return reply(ind.groupo())
 					if (!isOwner) return reply(ind.ownerb())
 					if (args.length < 1) return reply('Boo :𝘃')
