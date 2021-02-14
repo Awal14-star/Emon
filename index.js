@@ -453,192 +453,92 @@ client.on('group-participants-update', async (anu) => {
 			
 
 	
-if (messagesC.includes("://chat.whatsapp.com/")) {
-		if (!isAntiLink) return
-
-		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
-
-		client.updatePresence(from, Presence.composing)
-
-		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
-
-		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-
-		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
-
-		setTimeout( () => {
-
-			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-
-		}, 10000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 9000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 8000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 7000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 6000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 5000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-			
-
-		}, 4000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-		
-
-		}, 3000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-		
-
-		}, 2000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-		}, 1000)
-
-		setTimeout( () => {
-
-			client.updatePresence(from, Presence.composing)
-
-		}, 0)
-
-	}
-
-	
-
-                if (messagesC.includes('৭৭৭৭৭৭৭৭'|'๒๒๒๒๒๒๒๒'|'๑๑๑๑๑๑๑๑'|'ดุท้่เึางืผิดุท้่เึางื')){
-
+if (q.includes("://chat.whatsapp.com/")) {
 		if (!isGroup) return
-
-		if (!isAntiFirtex) return
-
+		if (!isAntiLink) return
 		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
-
 		client.updatePresence(from, Presence.composing)
-
+		if (q.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-
-		reply(`Firtex Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
-
+		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
 		setTimeout( () => {
-
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-
 		}, 10000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
-			
-
 		}, 9000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
-			
-
 		}, 8000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 7000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 6000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 5000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 4000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 3000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 2000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 1000)
-
 		setTimeout( () => {
-
 			client.updatePresence(from, Presence.composing)
-
 		}, 0)
-
 	}
-            
-             //kolor
+
+                if (q.includes('৭৭৭৭৭৭৭৭'|'๒๒๒๒๒๒๒๒'|'๑๑๑๑๑๑๑๑'|'ดุท้่เึางืผิดุท้่เึางื')){
+		if (!isGroup) return
+		if (!isAntiFirtex) return
+		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+		client.updatePresence(from, Presence.composing)
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`Firtex Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 10detik lagi`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 10000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 9000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 8000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 7000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 6000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 5000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 4000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 3000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 2000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 1000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+		}, 0)
+	}
+          
+           		  //kolor
 			colors = ['red','white','black','blue','yellow','green']
 			
 			//detector media
@@ -1121,8 +1021,7 @@ break
             	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
-		  if (!isLevelingOn) return reply(ind.lvlnoon())
-		  if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan sama owner`)
+                      if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan oleh owner`)
                       if (isOwner) {
                       const one = 999999999
                       addLevelingXp(sender, one)
@@ -1153,9 +1052,9 @@ break
 					client.sendMessage(from, 'Pertanyaan : *'+kapankah+'*\n\nJawaban : '+ koh, text, { quoted: mek })
 					await limitAdd(sender)
 					break
-           case 'apakah':
-           if (!isRegistered) return reply(ind.noregis())
-           if (isLimit(sender)) return reply(ind.limitend(pusname))
+         			  case 'apakah':
+         			  if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					apakah = body.slice(1)
 					const apa =['Iya','Tidak','Bisa Jadi','Coba Ulangi','Tanyakan Ayam']
 					const kah = apa[Math.floor(Math.random() * apa.length)]
@@ -1295,7 +1194,7 @@ break
 					}, 0) // 1000 = 1s,
 					await limitAdd(sender) 
 					break 
-          case 'speed':
+         	 case 'speed':
                 case 'ping':
                 const timestamp = speed();
                 const latensi = speed() - timestamp 
@@ -1351,10 +1250,10 @@ break
                     console.error(err)
                     await reply(`minimal 10 user untuk bisa mengakses database`)
                 }
-				break
-				case 'info':
-				case 'ingfo':
-				case 'ingfokan':
+					break
+					case 'info':
+					case 'ingfo':
+					case 'ingfokan':
 					me = client.user
 					uptime = process.uptime()
 					teks = `*Nama bot* : ${me.name}\n*OWNER* : *MiKako*\n*AUTHOR* : Taufik-Kun\n*Nomor Bot* : @${me.jid.split('@')[0]}\n*Prefix* : ${prefix}\n*Total Block Contact* : ${blocked.length}\n*The bot is active on* : ${kyun(uptime)}`
@@ -1727,9 +1626,9 @@ break
 					break
 				case 'leave': 
 				if (!isGroup) return reply(ind.groupo())
-					if (!isOwner) return reply(ind.ownerb())
-				await reply(from, 'bye').then(() => client.leaveGroup(groupId))
-					break
+				if (!isOwner) return reply(ind.ownerb())
+				await reply(from, 'bye').then(() => client.groupLeave(from))
+					break 
 			case 'delete':
 			case 'del':
 			case 'd':
@@ -1894,26 +1793,25 @@ break
 					})
 					await limitAdd(sender)
 					break
-                 case 'simi':
+                			 case 'simi':
 					if (args.length < 1) return reply('Textnya mana um?')
 					teks = body.slice(5)
-					anu = await simih(teks) //fetchJson(`https://mhankbarbars.herokuapp.com/api/samisami?text=${teks}`, {method: 'get'})
-					//if (anu.error) return reply('Simi ga tau kak')
+					anu = await simih(teks) 
 					reply(anu)
-					break
+				break 
 				case 'simih':
 					if (!isGroup) return reply(ind.groupo())
 					if (!isGroupAdmins) return reply(ind.admin())
 					if (args.length < 1) return reply('Boo :𝘃')
 					if (Number(args[0]) === 1) {
-						if (isSimi) return reply('𝘀𝘂𝗱𝗮𝗵 𝗮𝗸𝘁𝗶𝗳 !!!')
+						if (isSimi) return reply('SUDAH AKTIF !!!')
 						samih.push(from)
 						fs.writeFileSync('./database/bot/simi.json', JSON.stringify(samih))
-						reply('❬ SUKSES ❭ Mengaktifkan simi di grub ini')
+						reply('❬ SUKSES ❭ MENGAKTIFKAN FITUR SIMI DI GRUB INI')
 					} else if (Number(args[0]) === 0) {
 						samih.splice(from, 1)
 						fs.writeFileSync('./database/bot/simi.json', JSON.stringify(samih))
-						reply('❬ SUKSES ❭ Menonaktifkan simi di grub ini')
+						reply('❬ SUKSES ❭ MENONAKTIFKAN FITUR SIMI DI GRUB INI')
 					} else {
 						reply(ind.satukos())
 					}
@@ -1974,14 +1872,14 @@ break
 					if (!isOwner) return reply(ind.ownerb())
 					if (args.length < 1) return reply('Boo :𝘃')
 					if (Number(args[0]) === 1) {
-						if (isWelkom) return reply('*SUDAH AKTIF* !!!')
-						welkom.push(from)
+						if (isEventon) return reply('*SUDAH AKTIF* !!!')
+						event.push(from)
 						fs.writeFileSync('./database/bot/event.json', JSON.stringify(event))
-						reply('*❬ SUKSES ❭ Mengaktifkan EVENT Di grup ini*')
+						reply('*❬ SUKSES ❭ MENGAKTIFKAN EVENT DI GRUB INI*')
 					} else if (Number(args[0]) === 0) {
-						welkom.splice(from, 1)
+						event.splice(from, 1)
 						fs.writeFileSync('./database/bot/event.json', JSON.stringify(event))
-						reply('*❬ SUKSES ❭ Menonaktifkan EVENT di grub ini*')
+						reply('*❬ SUKSES ❭ MENONAKTIFKAN EVENT DI GRUB INI*')
 					} else {
 						reply(ind.satukos())
 					}
@@ -1989,88 +1887,52 @@ break
 			
 
 	
-
+				case 'antilinkgroup':
+				case 'antilinkgrup':
+					if (!isGroup) return reply(ind.groupo())
 					if (!isGroupAdmins) return reply(ind.admin())
-
 					if (!isBotGroupAdmins) return reply(ind.badmin())
-
 					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
-
 					if (Number(args[0]) === 1) {
-
 						if (isAntiLink) return reply('anti link group sudah aktif')
-
 						antilink.push(from)
-
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
-
 						reply('Sukses mengaktifkan anti link group di group ini ✔️')
-
 						client.sendMessage(from,`Perhatian kepada seluruh member anti link group aktif apabila anda mengirim link group anda akan di kick dari group`, text)
-
 					} else if (Number(args[0]) === 0) {
-
 						if (!isantilink) return reply('Mode anti link group sudah disable')
-
 						var ini = anti.indexOf(from)
-
 						antilink.splice(ini, 1)
-
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
-
 						reply('Sukes menonaktifkan anti link group di group ini ✔️')
-
 					} else {
-
 						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
-
 					}
-
 					break
-
-					
 
 					case 'antifirtex':
-
+					case 'antivirtex':
                                 	if (!isGroup) return reply(ind.groupo())
-
 					if (!isGroupAdmins) return reply(ind.admin())
-
 					if (!isBotGroupAdmins) return reply(ind.badmin())
-
 					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
-
 					if (Number(args[0]) === 1) {
-
 						if (isAntiFirtex) return reply('anti firtex group sudah aktif')
-
 						antifirtex.push(from)
-
 						fs.writeFileSync('./database/group/antifirtex.json', JSON.stringify(antifirtex))
-
 						reply('Sukses mengaktifkan anti firtex di group ini ✔️')
-
 						client.sendMessage(from,`Perhatian kepada seluruh member anti firtex aktif apabila anda mengirim firtex anda akan di kick dari group`, text)
-
 					} else if (Number(args[0]) === 0) {
-
 						if (!isantifirtex) return reply('Mode anti firtex sudah disable')
-
 						var ini = anti.indexOf(from)
-
 						antifirtex.splice(ini, 1)
-
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antifirtex))
-
 						reply('Sukes menonaktifkan anti firtex di group ini ✔️')
-
 					} else {
-
 						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
-
 					}
-
 					break
+					
 				case 'clone':
 					if (!isGroup) return reply(ind.groupo())
 					if (!isOwner) return reply(ind.ownerg()) 
@@ -2088,6 +1950,7 @@ break
 					}
 					await limitAdd(sender)
 					break
+					
 				case 'wait':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						reply(ind.wait())
