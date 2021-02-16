@@ -44,7 +44,7 @@ const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
 prefix = '#'
 blocked = []   
 limitawal = '9996757' //terserah ganti/gk
-cr = '*BOT INI SUDAH TERVERIFIKASI*'
+cr = '*Jangan digunakan Via PC co*'
 
 /******** OWNER NUMBER**********/
 const ownerNumber = ["6289675651966@s.whatsapp.net","6281231958474@s.whatsapp.net"]  //ganti menjadi nomormu
