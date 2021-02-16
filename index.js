@@ -991,7 +991,7 @@ break
 					res = await fetchJson(`https://tobz-api.herokuapp.com/api/husbu?apikey=${TobzKey}`)
 					reply(ind.wait())
 					buffer = await getBuffer(res.image)
-					baby.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
 					await limitAdd(sender)
 					break
 				case 'loli':
@@ -1031,7 +1031,7 @@ break
 					res = await fetchJson(`https://tobz-api.herokuapp.com/api/nekonime?apikey=${TobzKey}`, {method: 'get'})
 					reply(ind.wait())
 					buffer = await getBuffer(res.result)
-					baby.sendMessage(from, buffer, image, {quoted: mek, caption: 'Nih nekonime mu >_<'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Nih nekonime mu >_<'})
 					await limitAdd(sender)
 					break
 				case 'ranime':
@@ -1108,7 +1108,7 @@ break
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzKey}`)
 					reply(ind.wait())
 					buffer = await getBuffer(anu.result)
-					baby.sendMessage(from, buffer, image, { caption: 'Comli teross', quoted: mek})
+					client.sendMessage(from, buffer, image, { caption: 'Comli teross', quoted: mek})
 					await limitAdd(sender)
 					break			
 			case 'blowjob':
@@ -1117,13 +1117,13 @@ break
 			if (!isNsfw) return reply(ind.nsfwoff())
 				ranp = getRandom('.gif')
 				rano = getRandom('.webp')
-				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=${TozKey}`, {method: 'get'})
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=${TobzKey}`, {method: 'get'})
 				if (anu.error) return reply(anu.error)
 				exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 				fs.unlinkSync(ranp)
 				if (err) return reply(ind.stikga())
 				buffer = fs.readFileSync(rano)
-				baby.sendMessage(from, buffer, sticker, {quoted: mek})
+				client.sendMessage(from, buffer, sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 				await limitAdd(sender)
 				})
@@ -1140,7 +1140,7 @@ break
 					fs.unlinkSync(ranp)
 					if (err) return reply(ind.stikga())
 					buffer = fs.readFileSync(rano)
-					baby.sendMessage(from, buffer, sticker, {quoted: mek})
+					client.sendMessage(from, buffer, sticker, {quoted: mek})
 					fs.unlinkSync(rano)
 					await limitAdd(sender)
 					})
@@ -1829,11 +1829,13 @@ break
 				case 'stiker': 
 				case 'sticker':
 				case 's':
+				if (isBanned) return reply(ind.baned())
+				    if (!isRegistered) return reply(ind.noregis())
 				    if (isLimit(sender)) return reply(ind.limitend(pusname))
                     await limitAdd(sender)
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
+						const media = await baby.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						await ffmpeg(`./${media}`)
 							.input(media)
@@ -1847,8 +1849,8 @@ break
 							})
 							.on('end', function () {
 								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
+								buffer = fs.readFileSync(ran)
+								baby.sendMessage(from, buffer, sticker, {quoted: mek})
 								fs.unlinkSync(media)
 								fs.unlinkSync(ran)
 							})
@@ -1857,7 +1859,7 @@ break
 							.save(ran)
 					} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
 						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						const media = await client.downloadAndSaveMediaMessage(encmedia)
+						const media = await baby.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						reply(ind.wait())
 						await ffmpeg(`./${media}`)
@@ -1873,8 +1875,8 @@ break
 							})
 							.on('end', function () {
 								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
+								buffer = fs.readFileSync(ran)
+								baby.sendMessage(from, buffer, sticker, {quoted: mek})
 								fs.unlinkSync(media)
 								fs.unlinkSync(ran)
 							})
@@ -1882,7 +1884,7 @@ break
 							.toFormat('webp')
 							.save(ran)
 							} else {
-						reply(`Kirim gambar dengan caption ${prefix}sticker atau reply/tag gambar`)
+						reply(`Kirim gambar/video/gif dengan caption \n${prefix}sticker (durasi sticker video 1-9 detik)`)
 					}
 					break
 				case 'tts':
