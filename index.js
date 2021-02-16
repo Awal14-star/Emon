@@ -1125,7 +1125,7 @@ break
 				buffer = fs.readFileSync(rano)
 				client.sendMessage(from, buffer, sticker, {quoted: mek})
 				fs.unlinkSync(rano)
-				await limitAdd(sender)
+				
 				})
 				break
 			case 'nangis':
@@ -1142,7 +1142,7 @@ break
 					buffer = fs.readFileSync(rano)
 					client.sendMessage(from, buffer, sticker, {quoted: mek})
 					fs.unlinkSync(rano)
-					await limitAdd(sender)
+					
 					})
 					break
 		case 'resepmasakan':  
