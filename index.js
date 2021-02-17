@@ -561,8 +561,10 @@ client.on('group-participants-update', async (anu) => {
 			
 			switch(command) {
 				case 'bot':
-				case 'Bot':
 				client.sendMessage('Yo👋😈', {quoted: mek})
+				break
+				case 'Bot':
+				client.sendMessage('Hai, Nani desu ka?', {quoted: mek})
 				break
 				case 'dompet':
 				if (!isRegistered) return reply(ind.noregis())
