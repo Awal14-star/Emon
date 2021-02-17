@@ -134,17 +134,26 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ●⧐ *Harap Sabar Dengan Bug²nya!*
 ●⧐ *Gunakan Bot Sebaik-baiknya!*
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
+⚠️*_Donasi lah ngentod_*⚠️
+*${prefix}donasi*
+*${prefix}owner*
+*${prefix}ingfo*
+Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 
-╭══─⊱ ❰ *MAKER MENU (Sedang Error)* ❱ ⊰─══➤
+╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker* (jika video max. 9det)
 ╠☞ *${prefix}kuncitext*
 ╠☞ *${prefix}silktext*
 ╠☞ *${prefix}makequote*
+╠☞ *${prefix}hartatahta*
 ╠☞ *${prefix}toimg*
 ╠☞ *${prefix}ocr*
+╠☞ *${prefix}ttp*
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
-╠☞ *${prefix}mining
+╠☞ *${prefix}mutual*
+╠☞ *${prefix}next*
+╠☞ *${prefix}mining*
 ╠☞ *${prefix}bisakah*
 ╠☞ *${prefix}kapankah*
 ╠☞ *${prefix}apakah*
@@ -154,9 +163,9 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}dare*
 ╠☞ *${prefix}hobby*
 ╠☞ *${prefix}fitnah*
-╠☞ *${prefix}pasangan*
 ╠☞ *${prefix}ntahlah*
 ╠☞ *${prefix}slap*
+╠☞ *${prefix}katailham* (testing)
 ╠☞ *${prefix}caklontong*
 ╠☞ *${prefix}family100*
 ╠☞ *${prefix}tebakin*
@@ -166,26 +175,37 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *~${prefix}speed~ (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
-╠☞ *~${prefix}toxic~ (error)*
-╠☞ *~${prefix}quotes~ (error)*
 ╠☞ *${prefix}beritahoax*
 ╠☞ *${prefix}brainly*
+╠☞ *${prefix}nulis*
+╠☞ *${prefix}quran*
+╠☞ *${prefix}pantun*
 ╠☞ *${prefix}pinterest*
-╠☞ *${prefix}husbu*
-╠☞ *${prefix}loli*
-╠☞ *${prefix}loli2*
-╠☞ *${prefix}neko*
-╠☞ *${prefix}nekonime*
-╠☞ *${prefix}hartatahta*
-╠☞ *~${prefix}meme~*
-╠☞ *~${prefix}memeindo~*
 ╠☞ *${prefix}tts*
 ║    contoh : #tts id MiKako yang tampan
 ╠☞ *${prefix}play*
 ╠☞ *${prefix}lirik*
+╠☞ *${prefix}chord*
+╠☞ *${prefix}tomp3*
+╠☞ *${prefix}yutubdl*
 ╠☞ *${prefix}ssweb*
 ╠☞ *${prefix}map*
 ╠☞ *${prefix}stalkig*
+╠☞ *${prefix}qrcode*
+╠☞ *${prefix}wait*
+║    
+╠══─⊱ ❰ *DUNIA WIBU* ❱ ⊰─═══➤
+╠☞ *${prefix}husbu*
+╠☞ *${prefix}loli*
+╠☞ *${prefix}loli2*
+╠☞ *${prefix}neko*
+╠☞ *${prefix}nekopoi*
+╠☞ *${prefix}nekonime*
+╠☞ *${prefix}ranime*
+╠☞ *${prefix}randomhentong*
+╠☞ *${prefix}blowjob*
+╠☞ *${prefix}nsfwloli*
+╠☞ *${prefix}nsfwneko*
 ║    
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
@@ -195,7 +215,6 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠══─⊱ ❰ *NSFW MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}pokemon*
 ╠☞ *${prefix}anjing*
-╠☞ *~${prefix}nsfwloli*
 ║
 ╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}hidetag*
@@ -204,6 +223,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}leaderboard*
 ╠☞ *${prefix}linkgc*
 ╠☞ *${prefix}tagall*
+╠☞ *${prefix}delete*
 ╠☞ *${prefix}setpp*
 ╠☞ *${prefix}add*
 ╠☞ *${prefix}kick*
@@ -212,10 +232,10 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}demote*
 ╠☞ *${prefix}promote*
 ╠☞ *${prefix}listadmin*
+╠☞ *${prefix}antilink* [1/0]
 ╠☞ *${prefix}group* [buka/tutup]
 ╠☞ *${prefix}leveling* [enable/disable]
 ╠☞ *${prefix}nsfw* [1/0]
-╠☞ *${prefix}simih* [1/0]
 ╠☞ *${prefix}welcome* [1/0]
 ║
 ╠══─⊱ ❰ *OWNER MENU* ❱ ⊰─══➤
