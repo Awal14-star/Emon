@@ -275,7 +275,6 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *Reyna*
 ╠☞ *Damar*
 ╠☞ *FEBRI*
-╠☞ *Mutia*
 ╠☞ *Taufik - Kun*
 ╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
 `
