@@ -1224,11 +1224,9 @@ client.on('group-participants-update', async (anu) => {
 				    break  
 				    
 				case 'instastory':
-				if (isBanned) return reply(mess.only.benned)
-				if (!isUser) return reply(mess.only.userB)
-
+				if (!isRegistered) return reply(ind.noregis())
+                   		if (isLimit(sender)) return reply(ind.limitend(pusname))
 				if (args.length < 1) return reply('username??')
-				if (isLimit(sender)) return reply(limitend(pushname2))
 				instor = `${body.slice(12)}`
 				anu = await fetchJson(`https://api.vhtear.com/igstory?query=${instor}&apikey=${apivhtear}`, {method: 'get'})
 				insta = '=========================\n'
