@@ -6,6 +6,14 @@ exports.succes = () => {
 	return`*「 SUCCES 」*`
 }
 
+exports.error = () => {
+	return`* 「 EMROR 」*`
+}
+
+exports.error.Iv = () => {
+ 	return` 「 EMROR 」*`
+}
+
 exports.lvlon = () => {
 	return`*「 ENABLE 」 LEVELING*`
 }
@@ -147,6 +155,7 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}makequote*
 ╠☞ *${prefix}hartatahta*
 ╠☞ *${prefix}toimg*
+╠☞ *${prefix}trigger* (testing)
 ╠☞ *${prefix}ocr*
 ╠☞ *${prefix}ttp*
 ║
@@ -162,21 +171,24 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}truth*
 ╠☞ *${prefix}dare*
 ╠☞ *${prefix}hobby*
+╠☞ *${prefix}watak*
 ╠☞ *${prefix}fitnah*
 ╠☞ *${prefix}ntahlah*
 ╠☞ *${prefix}slap*
-╠☞ *${prefix}katailham* (testing)
+╠☞ *${prefix}katailham*
 ╠☞ *${prefix}caklontong*
 ╠☞ *${prefix}family100*
 ╠☞ *${prefix}tebakin*
 ╠☞ *${prefix}kbbi*
 ╠☞ *${prefix}artinama*
+╠☞ *${prefix}memeindo*
 ╠☞ *~${prefix}tampar~ (Error)*
 ╠☞ *~${prefix}speed~ (error)*
 ║
 ╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}beritahoax*
 ╠☞ *${prefix}brainly*
+╠☞ *${prefix}wiki*
 ╠☞ *${prefix}nulis*
 ╠☞ *${prefix}quran*
 ╠☞ *${prefix}pantun*
@@ -192,6 +204,7 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}map*
 ╠☞ *${prefix}stalkig*
 ╠☞ *${prefix}qrcode*
+╠☞ *${prefix}imgurl*
 ╠☞ *${prefix}wait*
 ║    
 ╠══─⊱ ❰ *DUNIA WIBU* ❱ ⊰─═══➤
@@ -206,6 +219,8 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}blowjob*
 ╠☞ *${prefix}nsfwloli*
 ╠☞ *${prefix}nsfwneko*
+╠☞ *${prefix}hentai*
+╠☞ *${prefix}animekiss*
 ║    
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
@@ -248,6 +263,7 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}block*
 ╠☞ *${prefix}unblock*
 ╠☞ *${prefix}listblock*
+╠☞ *${prefix}totaluser*
 ╠☞ *${prefix}leave*
 ╠☞ *${prefix}event* [1/0]
 ╠☞ *${prefix}clone*
