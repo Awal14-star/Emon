@@ -615,6 +615,15 @@ client.on('group-participants-update', async (anu) => {
 		    			baby.sendMessage(from, buffer, image, {quoted: mek})
 		    			await limitAdd(sender)	
 		    			break
+					case 'cslogo':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pushname))
+          				cslogoo = body.slice(7)
+					clogo = await fetchJson(`https://api.zeks.xyz/api/cslogo?text=${cslogoo}&apikey=apivinz`)
+					buffer = await getBuffer(clogo.result)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Dah nih'})
+					await limitAdd(sender)
+					break
 					case 'slide':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -659,10 +668,11 @@ client.on('group-participants-update', async (anu) => {
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
-                    			glitch = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${text1}&text2=${text2}&apikey=${VthearApi}`, {method: 'get'})
+                    			glitch = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${text1}&text2=${text2}&apikey=${apivhtear}`, {method: 'get'})
                     			client.sendMessage(from, glitch, image, {quoted: mek, caption: 'nih gan'})
 			     		await limitAdd(sender) 
 			     		break 
+
 case 'hartatahta':
 if (!isRegistered) return reply(ind.noregis())
 if (isLimit(sender)) return reply(ind.limitend(pusname))
