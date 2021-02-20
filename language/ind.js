@@ -204,7 +204,6 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}map*
 ╠☞ *${prefix}stalkig*
 ╠☞ *${prefix}qrcode*
-╠☞ *${prefix}imgurl*
 ╠☞ *${prefix}wait*
 ║    
 ╠══─⊱ ❰ *DUNIA WIBU* ❱ ⊰─═══➤
@@ -222,6 +221,16 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}hentai*
 ╠☞ *${prefix}animekiss*
 ║    
+║───────⟪  cHARACTER ANIME ⟫───────
+╠☞ *${prefix}naruto*
+╠☞ *${prefix}boruto*
+╠☞ *${prefix}sasuke*
+╠☞ *${prefix}hinata*
+╠☞ *${prefix}sakura*
+╠☞ *${prefix}minato*
+╠☞ *${prefix}kurumi*
+╠☞ *${prefix}miku*
+║ 
 ╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
 ╠☞ *${prefix}limit*
 ╠☞ *${prefix}buylimit*
