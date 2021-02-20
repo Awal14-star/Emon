@@ -17,8 +17,6 @@
   >Bot ini sedang dalam masa pengembangan 
   
   >Banyak fitur yang masih error
-  
-  >Belum ada APIkey
   </details>
   
   ##THANKS YANG UDAH LIHAT PROJECT INI
@@ -33,5 +31,5 @@
   
   > WhatsApp    : https://wa.wizard.id/2fd29f
   
-  > grub BOT    : https://chat.whatsapp.com/ESmqd9FPBu4Hu9VEF7De2p
+  > grub BOT    : https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
   
