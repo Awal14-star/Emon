@@ -56,7 +56,7 @@ limitawal = '100' //terserah ganti/gk
 cr = '*Jangan digunakan Via PC co*'
 
 /******** OWNER NUMBER**********/
-const ownerNumber = ["6289675651966@s.whatsapp.net","6281231958474@s.whatsapp.net"]  //ganti menjadi nomormu
+const ownerNumber = ["6289675651966@s.whatsapp.net","6285807479634@s.whatsapp.net"]  //ganti menjadi nomormu
 /************************************/
 
        
@@ -466,7 +466,7 @@ client.on('group-participants-update', async (anu) => {
 			
 
 		//function antilink
-		if (messagesC.includes("://chat.whatsapp.com/")){
+		if (messagesC.includes("://chat.whatsapp.com/"|"http://belajarkuota.online/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
 		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
@@ -2504,11 +2504,11 @@ client.on('group-participants-update', async (anu) => {
 						if (isEventon) return reply('*SUDAH AKTIF* !!!')
 						antilink.push(from)
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
-						reply('*❬ 𝗦𝗨𝗞𝗦𝗘𝗦 ❭ ACTIVATED ANTILINK*')
+						reply('*❬ SUCCESS ❭ ACTIVATED ANTILINK*')
 					} else if (Number(args[0]) === 0) {
 						antilink.splice(from, 1)
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
-						reply('*❬ 𝗦𝗨𝗞𝗦𝗘𝗦 ❭ DEACTIVATED ANTILINK*')
+						reply('*❬ SUCCESS❭ DEACTIVATED ANTILINK*')
 					} else {
 						reply(ind.satukos())
 					}
