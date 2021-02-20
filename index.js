@@ -41,6 +41,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
 const apivhtear = 'alpinbotwa'
 const zeksapi = 'apivinz'
+const ItsApi = 'itsmeiky633'
 const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
 const TobzKey = 'BotWeA'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
@@ -1240,7 +1241,7 @@ client.on('group-participants-update', async (anu) => {
 		case 'randomkpop':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-                   anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomkpop?apikey=${TobzApi}`, {method: 'get'})
+                   anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomkpop?apikey=${TobzKey}`, {method: 'get'})
                    buff = await getBuffer(anu.result)
                    client.sendMessage(from, buff, image, {quoted: mek})
                    break 
@@ -1290,6 +1291,7 @@ client.on('group-participants-update', async (anu) => {
                 if (!q.includes('|')) return  reply(ind.wrongf())
                 const namaUser = q.substring(0, q.indexOf('|') - 0)
                 const umurUser = q.substring(q.lastIndexOf('|') + 1)
+		if (umurUser <= 8) return reply('bocil pake bot mana paham😈👎')
 		if (umurUser >= 70) return reply('Umurmu dh bau tanah Tod')
                 const serialUser = createSerial(20)
                 veri = sender
@@ -1489,7 +1491,7 @@ client.on('group-participants-update', async (anu) => {
 				reply(ind.wait)
 					memein = await fetchJson(`https://api.zeks.xyz/api/memeindo?apikey=${zeksapi}`)
 					buffer = await getBuffer(memein.result)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'hargai meski cringe :v'})
 					await limitAdd(sender)
 					break 
 
@@ -1810,7 +1812,7 @@ client.on('group-participants-update', async (anu) => {
                 			if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.error.Iv)
-					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${VthearApi}`, {method: 'get'})
+					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					yta = `╭─「 *YOUTUBE MP3 DOWNLOADER* 」\n│\n│• *Title:* ${anu.result.title}\n│• *Size:* ${anu.result.size}\n│• *Link:* https://www.youtu.be/${anu.result.id}\n│\n│ Tunggu Sebentar 1 menit Mungkin Agak Lama │ Karna Mendownload Video\n╰─────────────────────`
 					buff = await getBuffer(anu.result.imgUrl)
