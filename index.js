@@ -36,6 +36,7 @@ const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRando
 const tiktod = require('tiktok-scraper')
 const brainly = require('brainly-scraper')
 const ffmpeg = require('fluent-ffmpeg')
+const imgbb = require('imgbb-uploader')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
@@ -1434,6 +1435,13 @@ client.on('group-participants-update', async (anu) => {
 					
 				case 'say':
 					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					teks = body.slice(5)
+					if (args.length < 1) return reply('teksnya mana kak?')
+                                        saying = teks
+                                        client.sendMessage(from, saying, text)
+                                        break
+					
 	  case 'seberapagay':
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
