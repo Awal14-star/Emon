@@ -4,6 +4,7 @@ apt-get update -y
 apt-get upgrade -y
 apt-get install nodejs -y
 apt-get install libwebp -y
+npm i imgbb-uploader -y
 apt-get install mc -y
 apt-get install ffmpeg -y
 apt-get install wget -y
