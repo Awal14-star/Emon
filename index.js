@@ -681,7 +681,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'glitch':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
-              	   			 if (args.length < 1) return reply('teksnya mana gan?')
+              	   			if (args.length < 1) return reply('teksnya mana gan?')
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
@@ -834,17 +834,14 @@ client.on('group-participants-update', async (anu) => {
 					break 
 					
 					case 'wiki':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-                    			if (args.length < 1) return reply('teks nya mana om?')
-                    			reply(ind.wait)
-                   			wiki = `${body.slice(6)}`
-                    			anu = await fetchJson(`http://itsmeikygans.my.id/wiki?apikey=${ItsApi}&q=${wiki}`, {method: 'get'})
-                    			if (anu.error) return reply(anu.error)
-                   			wikii = `${anu.result}`
-                    			client.sendMessage(from, wikii, text, {quoted: mek})
-                   			await limitAdd(sender) 
-                   			break  
+					if (!isRegistered) return reply(ind.noregis())				
+                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('masukan kata kunci')
+					tels = body.slice(6)	
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/wiki?q=${tels}&apikey=${TobzKey}`, {method: 'get'})
+					reply(anu.result)
+                                        await limitAdd(sender)
+					break	
 					
 					case 'bcgc':
 				   	if (!isOwner) return reply(ind.ownerb())
@@ -1390,6 +1387,17 @@ client.on('group-participants-update', async (anu) => {
 					const tak = wa[Math.floor(Math.random() * wa.length)]
 					client.sendMessage(from, 'Pertanyaan : *'+watak+'*\n\nJawaban : '+ tak, text, { quoted: mek })
 					break 
+					
+				case 'terbalik':
+				case 'tebalik':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					ngebuff = `${body.slice(9)}`
+					anu = await fetchJson(`https://videfikri.com/api/teksterbalik/?query=${ngebuff}`, {method: 'get'})
+					ngebuff = `${anu.result.kata}`
+					client.sendMessage(from, ngebuff, text, {quoted: mek}
+					await limitAdd(sender)
+					break
 	case 'nulis':
 	case 'tulis':
 	client.updatePresence(from, Presence.composing)
@@ -1423,6 +1431,9 @@ client.on('group-participants-update', async (anu) => {
 				client.sendMessage(from, `${anu.result.hasil}`, {quoted: mek})
 				await limitAdd(sender) 
 				break 
+					
+				case 'say':
+					if (!isRegistered) return reply(ind.noregis())
 	  case 'seberapagay':
            if (!isRegistered) return reply(ind.noregis())
            if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1479,11 +1490,12 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 				case 'meme':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
+                                        if (!isRegistered) return reply(ind.noregis())
+                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
 					meme = await kagApi.memes()
 					buffer = await getBuffer(`https://imgur.com/${meme.hash}.jpg`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+					anker.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+                                        await limitAdd(sender)
 					break
 				case 'memeindo':    
 				if (!isRegistered) return reply(ind.noregis())
@@ -2513,6 +2525,18 @@ client.on('group-participants-update', async (anu) => {
 						reply(ind.satukos())
 					}
 					break
+					
+					case 'afk':
+					if (!isRegistered) return reply(ind.noregis())
+                                        tels = body.slice(4)
+                                        if (args.length < 1) return reply('kakak afk karena apa?')
+                                        var nom = mek.participant
+                                        const tag = {
+                                                text: `@${nom.split("@s.whatsapp.net")[0]} *SEDANG AFK ${tels} JANGAN GANGGU YA*`,
+                                                contextInfo: { mentionedJid: [nom] }
+                                        }
+                                        client.sendMessage(from, tag, text, {quoted: mek})
+                                        break
 
 					case 'antifirtex':
 					case 'antivirtex':
