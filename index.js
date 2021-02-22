@@ -693,6 +693,16 @@ client.on('group-participants-update', async (anu) => {
 			     		await limitAdd(sender) 
 			     		break 
 					
+					case 'narutobanner':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana tod?')
+					nar = `${body.slice(7)}`
+					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/narutobanner/?text=${nar}`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: 'ckp tw ngebabunya'})
+					await limitAdd(sender)
+					break
+					
 					case 'trigger':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1455,6 +1465,14 @@ client.on('group-participants-update', async (anu) => {
 					reply(anu.quotes)
 					await limitAdd(sender)
 					break
+					case 'quoteanime':
+				if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname)
+			data = await fetchJson(`https://videfikri.com/api/anime/randomquoteanime`, {method: 'get'}) 
+			nim = data.result 
+			teks = `➸ Anime: ${nim.anime}\n*➸ Karakter*: ${nim.karakter}\n*➸ quote:* ${nim.quote}`
+			baby.sendMessage(from, teks, text, {quoted: mek})
+			break
 			case 'pantun':
 			if (!isRegistered) return reply(ind.noregis())
            		if (isLimit(sender)) return reply(ind.limitend(pusname))
