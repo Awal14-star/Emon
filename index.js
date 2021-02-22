@@ -1389,7 +1389,7 @@ client.on('group-participants-update', async (anu) => {
 					ngebuff = `${body.slice(9)}`
 					anu = await fetchJson(`https://videfikri.com/api/teksterbalik/?query=${ngebuff}`, {method: 'get'})
 					ngebuff = `${anu.result.kata}`
-					client.sendMessage(from, ngebuff, text, {quoted: mek}
+					client.sendMessage(from, ngebuff, text, {quoted: mek})
 					await limitAdd(sender)
 					break
 					
@@ -1467,7 +1467,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'quoteanime':
 				if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname)
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
 			data = await fetchJson(`https://videfikri.com/api/anime/randomquoteanime`, {method: 'get'}) 
 			nim = data.result 
 			teks = `➸ Anime: ${nim.anime}\n*➸ Karakter*: ${nim.karakter}\n*➸ quote:* ${nim.quote}`
@@ -2601,10 +2601,10 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
                                         tels = body.slice(4)
                                         if (args.length < 1) return reply('kakak afk karena apa?')
-                                        var nom = mek.participant
+                                        var wong = mek.participant
                                         const tag = {
-                                                text: `@${nom.split("@s.whatsapp.net")[0]} *SEDANG AFK ${tels} JANGAN GANGGU YA*`,
-                                                contextInfo: { mentionedJid: [nom] }
+                                                text: `@${wong.split("@s.whatsapp.net")[0]} *SEDANG AFK ${tels} JANGAN GANGGU YA*`,
+                                                contextInfo: { mentionedJid: [wong] }
                                         }
                                         client.sendMessage(from, tag, text, {quoted: mek})
                                         break
