@@ -53,7 +53,7 @@ const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'END:VCARD' // jangan di ubah
 prefix = '#'
 blocked = []   
-limitawal = '100' //terserah ganti/gk
+limitawal = '30' //terserah ganti/gk
 cr = '*Jangan digunakan Via PC co*'
 
 /******** OWNER NUMBER**********/
