@@ -467,7 +467,7 @@ client.on('group-participants-update', async (anu) => {
 			
 
 		//function antilink
-		if (messagesC.includes("://chat.whatsapp.com/"|"http://belajarkuota.online/")){
+		if (messagesC.includes("://chat.whatsapp.com/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
 		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
@@ -685,6 +685,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
               	   			if (args.length < 1) return reply('teksnya mana gan?')
+					reply("Wait Gans!")
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
@@ -697,6 +698,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana tod?')
+					if (args.length < 2) return reply('harus 2 kata kaak')
 					nar = `${body.slice(7)}`
 					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/narutobanner/?text=${nar}`, {method: 'get'})
 					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: 'ckp tw ngebabunya'})
@@ -1017,6 +1019,22 @@ client.on('group-participants-update', async (anu) => {
                     reply(teks.trim())
 			     	await limitAdd(sender) 
 			     	break  
+					
+				case 'nhentai':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (!isNsfw) return reply(ind.nsfwoff())
+					if (!isGroup) return reply(ind.groupo())
+					if (args.length < 1) return reply('I need nuclear code!')
+					code = body.slice(6)
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/nhentai?code=${code}`, {method, 'get'})
+					if (anu.error) return reply('terjadi kesalahan')
+					reply(ind.wait())
+					ngebuff = await getBuffer(anu.result)
+					client.sendMessage(from, ngebuff, image, {quoted: mek})
+					await limitAdd(sender)
+				  	Jangan Lupa Subreak
+					
 			case 'randomhentong':
 			if (!isRegistered) return reply(ind.noregis())
 			if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1865,7 +1883,7 @@ client.on('group-participants-update', async (anu) => {
 					if (anu.error) return reply(anu.error)
 					yta = `╭─「 *YOUTUBE MP3 DOWNLOADER* 」\n│\n│• *Title:* ${anu.result.title}\n│• *Size:* ${anu.result.size}\n│• *Link:* https://www.youtu.be/${anu.result.id}\n│\n│ Tunggu Sebentar 1 menit Mungkin Agak Lama │ Karna Mendownload Video\n╰─────────────────────`
 					buff = await getBuffer(anu.result.imgUrl)
-					reply(mess.wait)
+					reply(ind.wait)
 					buffer = await getBuffer(anu.result.UrlMp3)
 					client.sendMessage(from, buff, image, {quoted: mek, caption: yta})
 					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.result.title}.mp3`, quoted: mek, caption: 'Nih Gan'})
