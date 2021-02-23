@@ -975,6 +975,7 @@ client.on('group-participants-update', async (anu) => {
 					for (let anime of anu.result) {
 						teks += `Tittle= ${anime.title}\nLink: ${anime.url}===================\n`
 					}
+					reply(teks.trim())
 					await limitAdd(sender)
 					break
 				
@@ -1039,10 +1040,9 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (!isNsfw) return reply(ind.nsfwoff())
 					if (!isGroup) return reply(ind.groupo())
-					if (args.length < 1) return reply('I need nuclear code!')
+					if (args.length < 1) return reply('I need nuclear code!🤤')
 					code = body.slice(6)
-					anu = await fetchJson(`https://mnazria.herokuapp.com/api/nhentai?code=${code}`, {method, 'get'})
-					if (anu.error) return reply('terjadi kesalahan')
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/nhentai?code=${code}`, {method: 'get'})
 					reply(ind.wait())
 					ngebuff = await getBuffer(anu.result)
 					client.sendMessage(from, ngebuff, image, {quoted: mek})
