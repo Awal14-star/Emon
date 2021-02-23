@@ -142,11 +142,11 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ●⧐ *Harap Sabar Dengan Bug²nya!*
 ●⧐ *Gunakan Bot Sebaik-baiknya!*
 ▬▭▬▭▬▭▬▭▬▭▬▭▬
-⚠️*_Donasi lah ngentod_*⚠️
+⚠️ *_Donasi lah_* ⚠️
 *${prefix}donasi*
 *${prefix}owner*
 *${prefix}ingfo*
-Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
+Link Group bot: https://chat.whatsapp.com/JaKddAz7bIvIQyIBwAPpCb
 
 ╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker* (jika video max. 9det)
@@ -199,6 +199,7 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}lirik*
 ╠☞ *${prefix}chord*
 ╠☞ *${prefix}tomp3*
+╠☞ *${prefix}ytmp3*
 ╠☞ *${prefix}yutubdl*
 ╠☞ *${prefix}ssweb*
 ╠☞ *${prefix}map*
@@ -221,7 +222,8 @@ Link Group bot: https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
 ╠☞ *${prefix}hentai*
 ╠☞ *${prefix}animekiss*
 ║    
-║───────⟪  cHARACTER ANIME ⟫───────
+║───────⟪  CHARACTER ANIME ⟫───────
+║     *[ERROR KABEH]*
 ╠☞ *${prefix}naruto*
 ╠☞ *${prefix}boruto*
 ╠☞ *${prefix}sasuke*
