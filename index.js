@@ -973,7 +973,7 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/anime?query=${teks}`)
 					teks = `=====================\n`
 					for (let anime of anu.result) {
-						teks += `Tittle= ${anime.tittle}\nLink: ${anime.link}===================\n`
+						teks += `Tittle= ${anime.title}\nLink: ${anime.url}===================\n`
 					}
 					await limitAdd(sender)
 					break
