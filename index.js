@@ -964,6 +964,20 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
 					break
+					
+				case 'anime':
+					if(!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					teks = body.slice(9)
+					reply(ind.wait)
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/anime?query=${teks}`)
+					teks = `=====================\n`
+					for (let anime of anu.result) {
+						teks += `Tittle= ${anime.tittle}\nLink: ${anime.link}===================\n`
+					}
+					await limitAdd(sender)
+					break
+				
 				case 'nsfwloli':
 				try {   
 				if (!isRegistered) return reply(ind.noregis())
@@ -1014,7 +1028,7 @@ client.on('group-participants-update', async (anu) => {
 			reply(ind.wait())
                     teks = `===============\n`
                     for (let neko of anu.result) {
-                    teks += `Title: ${neko.title}\nDeskripsi: ${neko.detail}\n===============\n`
+                    teks += `Title: ${neko.title}\nImage: ${neko.image}\nDeskripsi: ${neko.detail}\n===============\n`
                     }
                     reply(teks.trim())
 			     	await limitAdd(sender) 
@@ -1033,7 +1047,7 @@ client.on('group-participants-update', async (anu) => {
 					ngebuff = await getBuffer(anu.result)
 					client.sendMessage(from, ngebuff, image, {quoted: mek})
 					await limitAdd(sender)
-				  	Jangan Lupa Subreak
+				  	break
 					
 			case 'randomhentong':
 			if (!isRegistered) return reply(ind.noregis())
@@ -1124,7 +1138,7 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender) 
 					break 
 					
-					case 'kurumi':
+					/*case 'kurumi':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pushname))
 					reply(ind.wait)
@@ -1489,7 +1503,7 @@ client.on('group-participants-update', async (anu) => {
 			data = await fetchJson(`https://videfikri.com/api/anime/randomquoteanime`, {method: 'get'}) 
 			nim = data.result 
 			teks = `➸ Anime: ${nim.anime}\n*➸ Karakter*: ${nim.karakter}\n*➸ quote:* ${nim.quote}`
-			baby.sendMessage(from, teks, text, {quoted: mek})
+			client.sendMessage(from, teks, text, {quoted: mek})
 			break
 			case 'pantun':
 			if (!isRegistered) return reply(ind.noregis())
