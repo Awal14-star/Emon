@@ -2649,6 +2649,35 @@ client.on('group-participants-update', async (anu) => {
 						client.groupRemove(from, mentioned)
 					}
 					break
+			
+					case 'kicktime':
+					case 'hedshot':
+					case 'headshoot':
+					if (!isRegistered) return reply(ind.noregis())
+					if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di headshoot palanya!')
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					setTimeout( () => {
+					client.sendMessage(from, 'Sector clear!!!', text)
+					}, 8000)
+					setTimeout( () => {
+					reply('Boom, Headshoot!')
+					}, 7000)
+					setTimeout( () => {
+					client.groupRemove(from, mentioned)
+					}, 6000)
+					setTimeout( () => {
+					client.sendMessage(from, `OTW Menembakmu @${mentioned[0].split('@')[0]}`, text) // ur cods
+					}, 5000)
+					setTimeout( () => {
+					client.sendMessage(from, 'Finish Him!', text)
+					}, 2500)
+					setTimeout( () => {
+					reply('Storm the front!!')
+					}, 0)
+					break
 				case 'listadmin':
 					if (!isGroup) return reply(ind.groupo())
 					teks = `List admin of group *${groupMetadata.subject}*\n𝗧𝗼𝘁𝗮𝗹 : ${groupAdmins.length}\n\n`
