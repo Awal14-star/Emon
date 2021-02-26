@@ -37,6 +37,7 @@ const tiktod = require('tiktok-scraper')
 const brainly = require('brainly-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const imgbb = require('imgbb-uploader')
+const speed = require('performance-now')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
@@ -45,6 +46,7 @@ const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
 const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
 const TobzKey = 'BotWeA'
+const ShizukaApi = 'itsmeiky633'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
             + 'FN:MiKako\n'  // Ganti jadi namamu
@@ -464,6 +466,12 @@ client.on('group-participants-update', async (anu) => {
                 console.error(err)
             }
         }
+		//AUTO RESPONDER
+		if (messagesC.includes('Bot')){
+			const on =['Yoo👋','Hai, nani desuka? :)','What?','Bot on, ketik #menu untuk melihat menu Botol-LoL','apa Tod?']
+			const Bot = on[Math.floor(Math.random() * on.length)]
+			client.sendMessage(from, Bot, text, {quoted: mek})
+		}
 			
 
 		//function antilink
@@ -585,6 +593,11 @@ client.on('group-participants-update', async (anu) => {
 					reply(ind.uangkau(pushname, sender, kantong))
 					break
 					
+					case 'limit':
+				if (!isRegistered) return reply(ind.noregis())
+				checkLimit(sender)
+				break
+					
 				case 'buylimit':
 				if (!isRegistered) return reply(ind.noregis())
 					payout = body.slice(10)
@@ -597,6 +610,14 @@ client.on('group-participants-update', async (anu) => {
 					await reply(`*「 PEMBAYARAN BERHASIL 」*\n\n*pengirim* : Admin\n*penerima* : ${pushname}\n*nominal pembelian* : ${payout} \n *harga limit* : ${koinPerlimit}/limit\n *sisa uang mu* : ${checkATMuser(sender)}\n\nproses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
 				} 
 				break
+					
+				case 'resetlimit':
+				if (!isOwner) return reply(ind.ownerb())
+				  var obj = []
+				   fs.writeFileSync('./database/json/limit.json', JSON.stringify(obj))
+				  await reply(`LIMIT BERHASIL DI RESET`)
+				break
+					
 				case 'transfer':
 				if (!isRegistered) return reply(ind.noregis())
 				if (!q.includes('|')) return  reply(ind.wrongf())
@@ -613,10 +634,21 @@ client.on('group-participants-update', async (anu) => {
                 			addKoinUser('62895710073737@s.whatsapp.net', fee)
                 			reply(`*「 SUKSES 」*\n\npengiriman uang telah sukses\ndari : +${sender.split("@")[0]}\nke : +${tujuan}\njumblah transfer : ${jumblah}\npajak : ${fee}`)
                 			break
-				case 'limit':
-				if (!isRegistered) return reply(ind.noregis())
-				checkLimit(sender)
-				break
+					
+				case 'profile':
+    				client.updatePresence(from, Presence.composing)
+    								
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+    				try {
+					profil = await client.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
+					} catch {
+					profil = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+					}
+					 profile = `╭─「 *_ᴘʀᴏғɪʟᴇ ᴀɴᴅᴀ_* 」\n│• *ɴᴀᴍᴇ:* ${pushname}\n│• *ᴜꜱᴇʀ ᴛᴇʀᴅᴀғᴛᴀʀ:* √\n│• *ʟɪɴᴋ:* wa.me/${sender.split("@")[0]}\n╰────────────────────`
+					ngebuff = await getBuffer(profil)
+					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: profile})
+					break
 					
 					//MAKER MENU
 					case 'silktext':
@@ -705,9 +737,40 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-					case 'trigger':
+					case 'ngopi':
+					case 'coffe':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana gayn?')
+					ngo = `${body.slice(7)}`
+					ngebuff = await getBuffer(`https://api.shizukaa.xyz/api/coffie?apikey=${ShizukaApi}&text=${ngo}`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: '1 gelas 5K gayn'})
+					await limitAdd(sender)
+					break
+					
+					case 'lovemsg':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana gayn?')
+					love = `${body.slice(6)}`
+					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/lovemsg/?text=${love}`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'Love You😘'})
+					await limitAdd(sender)
+					break
+					
+					case 'memecreate':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pushname))
+					text1 = hm.split("/")[0];
+                    			text2 = hm.split("/")[1];  
+					ngebuff = await getBuffer(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=https://avatars2.githubusercontent.com/u/34557386?s=460&u=cc19c578d9339ecd39684d7f52a6cae6cfa54119&v=4`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'njir, cringe bet dh :v'})
+					await limitAdd(sender)
+					break
+					
+					case 'trigger':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pushname))
 					var imgbb = require('imgbb-uploader')
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
@@ -720,7 +783,7 @@ client.on('group-participants-update', async (anu) => {
 					anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
 					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
 					fs.unlinkSync(ranp)
-					if (err) return reply(ind.error.stick)
+					if (err) return reply(ind.error)
 					nobg = fs.readFileSync(rano)
 					client.sendMessage(from, nobg, sticker, {quoted: mek})
 					fs.unlinkSync(rano)
@@ -859,6 +922,15 @@ client.on('group-participants-update', async (anu) => {
                                         await limitAdd(sender)
 					break	
 					
+					case 'faktaunik':
+					case 'fakta':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limiten(pusname))
+						anu = await fetchJson(`https://videfikri.com/api/fakta`, {method: 'get'})
+						reply(anu.result)
+						await limitAdd(sender)
+						break
+
 					case 'map':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -906,13 +978,18 @@ client.on('group-participants-update', async (anu) => {
 				case 'husbu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-			   	if (!isGroup) return reply(ind.groupo())
 					res = await fetchJson(`https://tobz-api.herokuapp.com/api/husbu?apikey=${TobzKey}`)
 					reply(ind.wait())
 					buffer = await getBuffer(res.image)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
 					await limitAdd(sender)
 					break
+					
+				case 'waifu':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				anu = await fetchJson(`https://alfians-api.herokuapp.com/api/waifu`, {method: 'get'})
+					
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -971,11 +1048,7 @@ client.on('group-participants-update', async (anu) => {
 					teks = body.slice(9)
 					reply(ind.wait)
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/anime?query=${teks}`)
-					teks = `=====================\n`
-					for (let anime of anu.result) {
-						teks += `Tittle= ${anime.title}\nLink: ${anime.url}===================\n`
-					}
-					reply(teks.trim())
+					reply(anu.result)
 					await limitAdd(sender)
 					break
 				
@@ -1034,6 +1107,21 @@ client.on('group-participants-update', async (anu) => {
                     reply(teks.trim())
 			     	await limitAdd(sender) 
 			     	break  
+					
+				case 'kusonime':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				if (args.length < 1) return reply('teksnya mana gan?')
+                    		kuso = body.slice(9)
+					anu = await fetchJson(`https://api.shizukaa.xyz/api/kusonime?apikey=${ShizukaApi}&q=${kuso}`, {method: 'get'})
+					reply(ind.wait)
+					teks = `===============\n`
+					for (let kuso of anu.result) {
+					teks += `${kuso.info}\nSinopsis: ${kuso.sinopsis}\nLink: ${kuso.link_dl}\n===============\n`
+					}
+					reply(teks.trim())
+					await limitAdd(sender)
+					break
 					
 				case 'nhentai':
 					if (!isRegistered) return reply(ind.noregis())
@@ -1138,7 +1226,7 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender) 
 					break 
 					
-					/*case 'kurumi':
+					case 'kurumi':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pushname))
 					reply(ind.wait)
@@ -1235,16 +1323,19 @@ client.on('group-participants-update', async (anu) => {
 					
 					/*<============================[EDUKASI MENU]=============================>*/
 					
-		case 'resepmasakan':  
+		case 'resepmasakan':
                 if (!isRegistered) return reply(ind.noregis())
-                if (isLimit(sender)) return reply(ind.limitend(pushname))
+                if (isLimit(sender)) return reply(ind.limitend(pusname))
                 reply(ind.wait)
-                   anu = await fetchJson(`https://api.vhtear.com/resepmasakan?query=${body.slice(12)}&apikey=${apivhtear}`, {method: 'get'})
-                   buff = await getBuffer(anu.result.image)
-                   resep = `*${anu.result.title}*\n${anu.result.desc}\n\n*BAHAN² YG DIPERLUKAN*\n${anu.result.bahan}\n\n*CARA MASAKNYA*\n${anu.result.cara}`
-                   client.sendMessage(from, buff, image, {quoted: mek, caption: resep})
+                   anu = await fetchJson(`https://masak-apa.tomorisakura.vercel.app/api/search?q=${body.slice(14)}`, {method: 'get'})
+                   masak = '==============================\n'
+                   for (let msk of anu.results){
+                   masak += `• *Title:* ${msk.title}\n• *• *Durasi Masak Sekitar:* ${msk.times}\n• *Porsi:* ${msk.serving}\n• *Tingkat Kesulitan:* ${msk.difficulty}\n• *Link:* https://www.masakapahariini.com/?s=${msk.key}\n==============================\n`
+                    }
+                   reply(masak.trim())
                    await limitAdd(sender) 
                    break 
+					
 		case 'quran':
 		if (!isRegistered) return reply(ind.noregis())
            	if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1396,14 +1487,17 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 				case 'babi':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				if (!isGroup) return reply(ind.groupo())
-                    		const gmek = await client.getGroupMembers(groupId)
-                    		let gmik = gmek[Math.floor(Math.random() * gmek.length)]
-                    		const mmkk = `YANG PALING BABI DISINI ADALAH @${gmik.replace(/@c.us/g, '')}`
-                    		client.sendTextWithMentions(dari, mmkk, id)
-                    		break
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					membr = []
+					const mes = groupMembers
+					const msk = groupMembers
+					const siaps = mes[Math.floor(Math.random() * mes.length)]
+					const sips = pushname[Math.floor(Math.random() * msk.length)]
+					teks = `*Yang Paling Babi Disini Adalah :* @${siaps.jid.split('@')[0]}`
+					membr.push(siaps.jid)
+					mentions(teks, membr, true)
+					break
 					
 				case 'watak':
 				if (!isRegistered) return reply(ind.noregis())
@@ -1414,12 +1508,34 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, 'Pertanyaan : *'+watak+'*\n\nJawaban : '+ tak, text, { quoted: mek })
 					break 
 					
+					case 'gantengcek':
+				case 'cekganteng':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					ganteng = body.slice(12)
+					const gan =['10%','30%','20%','40%','50%','60%','70%','62%','74%','83%','97%','100%','29%','94%','75%','82%','41%','39%']
+					const teng = gan[Math.floor(Math.random() * gan.length)]
+					client.sendMessage(from, 'Pertanyaan : Cek Ganteng Bang *'+ganteng+'*\n\nJawaban : '+ teng +'', text, { quoted: mek })
+					break
+					
+				case 'cantikcek':
+				case 'cekcantik':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+								
+					cantik = body.slice(11)
+					if (args.length < 1) return reply('Yg Mau dicek Siapa Kak??')
+					const can =['10% banyak" perawatan ya kak:v\nCanda Perawatan:v','30% Semangat Kaka Merawat Dirinya><','20% Semangat Ya KakaðŸ‘','40% Wahh Kaka><','50% kaka cantik deh><','60% Hai CantikðŸŠ','70% Hai UkhtyðŸŠ','62% Kakak Cantik><','74% Kakak ni cantik deh><','83% Love You Kakak><','97% Assalamualaikum UkhtyðŸŠ','100% Kakak Pake Susuk ya??:v','29% Semangat Kakak:)','94% Hai Cantik><','75% Hai Kakak Cantik','82% wihh Kakak Pasti Sering Perawatan kan??','41% Semangat:)','39% Lebih SemangatðŸŠ']
+					const tik = can[Math.floor(Math.random() * can.length)]
+					client.sendMessage(from, 'Pertanyaan : Cantik Cek Kakak *'+cantik+'*\n\nPersen Kecantikan : '+ tik +'', text, { quoted: mek })
+					break
+					
 				case 'terbalik':
 				case 'tebalik':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					ngebuff = `${body.slice(9)}`
-					anu = await fetchJson(`https://videfikri.com/api/teksterbalik/?query=${ngebuff}`, {method: 'get'})
+					anu = await fetchJson(`https://videfikri.com/api/hurufterbalik/?query=${ngebuff}`, {method: 'get'})
 					ngebuff = `${anu.result.kata}`
 					client.sendMessage(from, ngebuff, text, {quoted: mek})
 					await limitAdd(sender)
