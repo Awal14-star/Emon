@@ -47,6 +47,7 @@ const ItsApi = 'itsmeiky633'
 const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
 const TobzKey = 'BotWeA'
 const ShizukaApi = 'itsmeiky633'
+const TechApi = 'B8r68c-6gwmq1-af4vtS-if1zgD-jni01B'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
             + 'FN:MiKako\n'  // Ganti jadi namamu
@@ -75,6 +76,8 @@ const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
+const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
+const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
 /*********** END LOAD ***********/
 
 /********** FUNCTION ***************/
@@ -363,6 +366,7 @@ client.on('group-participants-update', async (anu) => {
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
+			const isBadWord = isGroup ? badword.includes(from) : false
                         const isAntiFirtex= isGroup ? antifirtex.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isImage = type === 'imageMessage'
@@ -559,6 +563,23 @@ client.on('group-participants-update', async (anu) => {
 			client.updatePresence(from, Presence.composing)
 		}, 0)
 	}
+		//FUNCTION ANTIBADWORD
+		if (bad.includes(messagesLink)) {
+		if (!isGroup) return
+		if (!isAntiLink) return
+		if (isGroupAdmins) return reply(`*${pushname}* ᴀᴅᴀʟᴀʜ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴋᴀɴ ᴅɪ ᴋɪᴄᴋ`)
+		client.updatePresence(from, Presence.composing)
+		var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
+		setTimeout( () => {
+		reply(`*ʙᴇʙᴀɴ ʟᴇᴀᴠᴇ ᴛʜᴇ ɢʀᴏᴜᴘ....*`)
+		}, 11000)
+		setTimeout( () => {
+		client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
+					}, 10000)
+		setTimeout( () => {
+		reply(`*_「 ʙᴀᴅᴡᴏʀᴅ ᴅᴇᴛᴇᴄᴛᴇᴅ 」_*\nᴍᴀᴀғ *${pushname}* ᴀɴᴅᴀ ʙᴇʀʙɪᴄᴀʀᴀ ᴋᴏᴛᴏʀ!, ᴀɴᴅᴀ ꜱᴇɢᴇʀᴀ ᴅɪᴋɪᴄᴋ ᴅᴀʀɪ ɢʀᴜᴘ *${groupMetadata.subject}*`)
+		}, 0)
+		}
           
            		  //kolor
 			colors = ['red','white','black','blue','yellow','green']
@@ -922,6 +943,17 @@ client.on('group-participants-update', async (anu) => {
                                         await limitAdd(sender)
 					break	
 					
+					case 'jamdunia':
+			if (isLimit(sender)) return reply(ind.limitend(pushname))
+			if (!isRegistered) return reply(ind.noregis())	
+			reply(mind.wait)
+		 	jamdunia = `${body.slice(10)}`
+			anu = await fetchJson(`https://api.i-tech.id/tools/jam?key=${TechApi}&kota=${jamdunia}`, {method: 'get'})
+			wtime = `*${anu.timezone}*\n*${anu.date}*\n*${anu.time}*`
+			client.sendMessage(from, wtime, text, {quoted: mek})
+			await limitAdd(sender) 
+			break  
+					
 					case 'faktaunik':
 					case 'fakta':
 					if (!isRegistered) return reply(ind.noregis())
@@ -1082,6 +1114,21 @@ client.on('group-participants-update', async (anu) => {
 					}
 					await limitAdd(sender) 
 					break 
+					
+				case 'yuri':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pushname))
+				if (!isNsfw) return reply(ind.nsfwoff())
+					res = await fetchJson(`https://api.i-tech.id/anim/yuri?key={TechApi}`, {method: 'get'})
+						buffer = await getBuffer(res.result)
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Yurification🤤'})
+					} catch (e) {
+						console.log(`Error :`, color(e,'red'))
+						reply(' *ERROR* ')
+					}
+					await limitAdd(sender) 
+					break 
+			
 				case 'wibu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -2042,16 +2089,17 @@ client.on('group-participants-update', async (anu) => {
 					break
 
 		case 'play':
-		if (!isRegistered) return reply(ind.noregis())
-		if (isLimit(sender)) return reply(ind.limitend(pusname)) 
-                reply(ind.wait())
-                anu = await fetchJson(`https://api.vhtear.com/ytmp3?query=${body.slice(6)}&apikey=${apivhtear}`)
-                if (anu.error) return reply(anu.error)
-                infomp3 = `*「❗」Lagu Ditemukan*\n➸ Judul : ${anu.result.title}\n➸ Durasi : ${anu.result.duration}\n➸ Size : ${anu.result.size}\n\n*[WAIT] Proses Dumlu Yakan*`
-                buffer = await getBuffer(anu.result.image)
-                lagu = await getBuffer(anu.result.mp3)
-                client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
-                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', quoted: mek})
+		case 'playmp3':
+                if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname))
+                data = await fetchJson(`https://api.itsmeikyxsec404.xyz/playmp3?apikey=${ShizukaApi}&query=${body.slice(6)}`, {method: 'get'})
+               	if (anu.error) return reply(anu.error)
+                infomp3 = ` *PLAY* \n*Judul* : ${data.result.title}\n*Duration* : ${data.result.duration}\n*Filesize* : ${data.result.size}\n\n*[ WAIT ] Di PROSES DUMLU YEKAN....*`
+                bufferddd = await getBuffer(data.result.image)
+                lagu = await getBuffer(data.result.mp3)
+                client.sendMessage(from, bufferddd, image, {quoted: mek, caption: infomp3})
+                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${data.result.title}.mp3`, quoted: mek})
+		await limitAdd(sender)
                 break
 					
 		case 'film':
@@ -2744,6 +2792,52 @@ client.on('group-participants-update', async (anu) => {
 						reply(ind.satukos())
 					}
 					break
+					
+					case 'antibadword':
+					if (!isRegistered) return reply(ind.noregis())
+                    			if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+                			if (args.length < 1) return reply('on untuk mengaktifkan, off untuk menonaktifkan')
+                		if (args[0] === 'on') {
+                			if (isBadWord) return reply('anti badword sudah on')
+                 	   		badword.push(from)
+                 	   		fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
+                  	   		reply(`\`\`\`✓“Sukses mengaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`)
+              	  		} else if (args[0] === 'off') {
+                    			if (!isBadWord) return reply('anti badword sudah off')
+                  	  		badword.splice(from, 1)
+                 	   		fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
+                 	    		reply(`\`\`\`✓“Sukses menonaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`)
+             	   		} else {
+                 	   		reply(ind.satukos())
+                		}
+                    			break
+					
+                    case 'addbadword':
+                    if (!isOwner) return reply(ind.ownerg())
+                    if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
+                    const bw = body.slice(12)
+                    bad.push(bw)
+                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
+                    reply('Success Menambahkan Bad Word!')
+                    break
+					
+                	case 'delbadword':
+                    if (!isOwner) return reply(ind.ownerg())
+                    if (args.length < 1) return reply( `Kirim perintah ${prefix}delbadword [kata kasar]. contoh ${prefix}delbadword ngontol`)
+                    let dbw = body.slice(12)
+                    bad.splice(dbw)
+                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
+                    reply('Success Menghapus BAD WORD!')
+                    break 
+					
+                	case 'listbadword':
+                    let lbw = `Ini adalah list BAD WORD\nTotal : ${bad.length}\n`
+                    for (let i of bad) {
+                        lbw += `➸ ${i.replace(bad)}\n`
+                    }
+                    await reply(lbw)
+                    break 
 					
 					case 'afk':
 					if (!isRegistered) return reply(ind.noregis())
