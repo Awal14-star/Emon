@@ -843,8 +843,21 @@ client.on('group-participants-update', async (anu) => {
               	    			if (args.length < 1) return reply('teksnya mana Tod?')
                     			teks = `${body.slice(8)}`
                     			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
-                    			buff = await getBuffer(`https://docs-jojo.herokuapp.com/api/text3d?text=${teks}`, {method: 'get'})
-                    			client.sendMessage(from, buff, image, {quoted: mek, caption: `${teks}`})
+                    			buffer = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
+					reply(ind.wait)
+                    			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
+			     		await limitAdd(sender)
+					break
+					
+					case 'text3d2':
+                			if (!isRegistered) return reply(ind.noregis())
+                			if (isLimit(sender)) return reply(ind.limitend(pusname))
+              	    			if (args.length < 1) return reply('teksnya mana Tod?')
+                    			teks = `${body.slice(8)}`
+                    			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
+                    			buffer = await getBuffer(`https://api.zeks.xyz/api/text3d?text=${teks}&apikey=${zeksapi}`, {method: 'get'})
+					reply(ind.wait)
+                    			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			     		await limitAdd(sender)
 					break
 					/*<=========================[AKHIR MAKER MENU]=========================>*/
