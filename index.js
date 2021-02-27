@@ -2422,6 +2422,7 @@ client.on('group-participants-update', async (anu) => {
 					})
 					await limitAdd(sender)
 					break
+					
 				case 'ttp':
 				if (!isRegistered) return reply(ind.noregis())
 			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
