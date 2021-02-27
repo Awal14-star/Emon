@@ -2031,6 +2031,7 @@ client.on('group-participants-update', async (anu) => {
 		case 'tomp3':
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pushname))
+		if (isMedia) return reply(ind.nomed)
                 	client.updatePresence(from, Presence.composing) 
 					if (!isQuotedVideo) return reply('_*Reply Video nya Gan!*_')
 					reply(ind.wait)
@@ -2048,7 +2049,8 @@ client.on('group-participants-update', async (anu) => {
 					break 
 
 		case 'fb':
-		client.updatePresence(from, Presence.composing)    
+		client.updatePresence(from, Presence.composing)
+		if (isMedia) return reply(ind.nomed)
 		if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pushname))
 		reply(ind.wait)
@@ -2068,6 +2070,7 @@ client.on('group-participants-update', async (anu) => {
                 case 'ytmp4':
     		if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
+		if (isMedia) return reply(ind.nomed)
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
@@ -2084,6 +2087,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'ytmp3':
 					if (!isRegistered) return reply(ind.noregis())
                 			if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (isMedia) return reply(ind.nomed)
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
@@ -2105,7 +2109,11 @@ client.on('group-participants-update', async (anu) => {
 					reply('Lirik dari lagu '+teks+' adalah :\n\n'+anu.result.lirik)
 					await limitAdd(sender) 
 					break 
-				case 'yutubdl':
+					
+					case 'yutubdl':
+					if (!isRegistered) return reply(ind.noregis())
+              				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (isMedia) return reply(ind.nomed)
 					if (args.length < 1) return reply('Urlnya mana um?')
 					if (!isRegistered) return reply(ind.noregis())
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply('URL NYA TIDAK VALID KAK')				
@@ -2121,6 +2129,7 @@ client.on('group-participants-update', async (anu) => {
 		case 'play':
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname))
+		if (isMedia) return reply(ind.nomed)
                 data = await fetchJson(`https://videfikri.com/api/ytplay/?query=${body.slice(6)}`, {method: 'get'})
                	if (anu.error) return reply(anu.error)
                 infomp3 = ` *PLAY* \n*Judul* : ${data.result.title}\n*Duration* : ${data.result.duration}\n*Filesize* : ${data.result.size}\n\n*[ WAIT ] Di PROSES DUMLU YEKAN....*`
@@ -2828,8 +2837,6 @@ client.on('group-participants-update', async (anu) => {
 						reply(ind.satukos())
 					}
 					break
-			
-
 	
 				case 'antilinkgroup':
 				case 'antilinkgrup':
@@ -2849,6 +2856,25 @@ client.on('group-participants-update', async (anu) => {
 					} else {
 						reply(ind.satukos())
 					}
+					break
+					
+					case 'nomedia':
+					if (!isOwner) return reply(ind.ownerg())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (args.length < 1) return reply('parameternya apa ngonsol')
+				if (args[0] === 'on') {
+					if (isMedia) return reply('Fitur Tanpa Media sudah ON sebelumnya')
+					media.push(from)
+					fs.writeFileSync('./database/bot/media.json', JSON.stringify(media))
+					reply(`* 「 _SUKSES_ 」 * _Mengaktifkan Fitur Tanpa Media_`)
+				} else if (args[0] ==='off') {
+					if(!isMedia) return reply('Fitur Tanpa Media sudah OFF sebelumnya')
+					media.splice(from, 1)
+					fs.writeFileSync('./database/bot/media.json', JSON.strigify(media))
+					reply(`* 「 _SUKSES_ 」 * _Menonaktifkan Fitur Tanpa Media_`)
+				} else {
+					reply(ind.satukos())
+				}
 					break
 					
 					case 'antibadword':
@@ -2898,7 +2924,7 @@ client.on('group-participants-update', async (anu) => {
                     }
                     await reply(lbw)
                     break 
-					
+
 					case 'afk':
 					if (!isRegistered) return reply(ind.noregis())
                                         tels = body.slice(4)
