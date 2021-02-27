@@ -39,7 +39,7 @@ exports.rediregis = () => {
 }
 
 exports.nomed = () => {
-	return`* 「 _MAAF_ 」 *\n\n Owner sedang menghemat kuota. fitur media dengan ukuran besar sedang dinonaktifkan`
+	return`* 「 _MAAF_ 」 *\n${pushname}\n Owner sedang menghemat kuota. fitur media dengan ukuran besar sedang dinonaktifkan`
 }
 
 exports.stikga = () => {
