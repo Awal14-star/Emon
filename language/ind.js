@@ -38,6 +38,10 @@ exports.rediregis = () => {
 	return`*「 SUDAH DAFTAR 」*\n\n*kamu sudah terdaftar di database bot*`
 }
 
+exports.nomed = () => {
+	return`* 「 _MAAF_ 」 *\n\n Owner sedang menghemat kuota. fitur media dengan ukuran besar sedang dinonaktifkan`
+}
+
 exports.stikga = () => {
 	return`*yah gagal coba ulangi beberapa saat lagi*`
 }
