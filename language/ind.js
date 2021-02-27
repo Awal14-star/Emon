@@ -150,7 +150,6 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 *${prefix}donasi*
 *${prefix}owner*
 *${prefix}ingfo*
-Link Group bot: https://chat.whatsapp.com/JaKddAz7bIvIQyIBwAPpCb
 
 ╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker* (jika video max. 9det)
