@@ -301,11 +301,12 @@ exports.levelup = (pushname, sender, getLevelingXp,  getLevel, getLevelingLevel)
 ┏⊱ *Nama* : ${pushname}
 ┣⊱ *Nomer* : wa.me/${sender.split("@")[0]}
 ┣⊱ *Xp* : ${getLevelingXp(sender)}
-┗⊱ *Level* : ${getLevel} ⊱ ${getLevelingLevel(sender)}
+┣⊱ *Level* : ${getLevel} ⊱ ${getLevelingLevel(sender)}
+┗⊱ ketik ${prefix}leaderboard untuk melihat ranking
 `}
  
 exports.limitend = (pushname) => {
-	return`*maaf ${pushname} limit hari ini habis*\n*limit di reset setiap jam 24:00*`
+	return`*maaf ${pushname} limit hari ini habis*\n*limit di reset setiap jam 24:00\n hubungi owner untuk mereset limit✌️*`
 }
 
 exports.limitcount = (limitCounts) => {
@@ -313,7 +314,7 @@ exports.limitcount = (limitCounts) => {
 *「 LIMIT COUNT 」*
 sisa limit anda : ${limitCounts}
 
-NOTE : untuk mendapatkan limit. bisa lewat naik level atau buylimit`
+NOTE : untuk mendapatkan limit. bisa lewat naik level atau buylimit atau menghubungi owner untuk mereset limit`
 }
 
 exports.satukos = () => {
