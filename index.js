@@ -564,7 +564,7 @@ client.on('group-participants-update', async (anu) => {
 		}, 0)
 	}
 		//FUNCTION ANTIBADWORD
-		if (bad.includes(messagesLink)) {
+		if (bad.includes(messagesC)) {
 		if (!isGroup) return
 		if (!isAntiLink) return
 		if (isGroupAdmins) return reply(`*${pushname}* ᴀᴅᴀʟᴀʜ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴋᴀɴ ᴅɪ ᴋɪᴄᴋ`)
@@ -635,7 +635,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'resetlimit':
 				if (!isOwner) return reply(ind.ownerb())
 				  var obj = []
-				   fs.writeFileSync('./database/json/limit.json', JSON.stringify(obj))
+				   fs.writeFileSync('./database/user/limit.json', JSON.stringify(obj))
 				  await reply(`LIMIT BERHASIL DI RESET`)
 				break
 					
@@ -657,8 +657,8 @@ client.on('group-participants-update', async (anu) => {
                 			break
 					
 				case 'profile':
+				if (!isRegistered) return reply(ind.noregis())
     				client.updatePresence(from, Presence.composing)
-    								
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
     				try {
@@ -712,11 +712,11 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply('Teksnya mana gan??')
 				 	if (args.length > 10) return reply('karakter minimal 10')
 					cpubg = `${body.slice(7)}`
-					cpubg1 = cpubg.split("/")[0];
-					cpubg2 = cpubg.split("/")[1];
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/photooxy?theme=pubg&text1=${cpubg1}&text2=${cpubg2}&apikey=${TobzKey}`, {method: 'get'})
-					cpubg = await getBuffer(anu.result)
-					client.sendMessage(from, cpubg, image, {quoted: mek})
+					pubg1 = cpubg.split("/")[0];
+					pubg2 = cpubg.split("/")[1];
+					anu = await fetchJson(`https://api.shizukaa.xyz/api/pubg?apikey=${ItsApi}&text=${pubg1}&text2=${pubg2}`, {method: 'get'})
+					pubg = await getBuffer(anu.result)
+					client.sendMessage(from, pubg, image, {quoted: mek})
 					await limitAdd(sender) 
 					break  
 					
@@ -742,7 +742,7 @@ client.on('group-participants-update', async (anu) => {
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
-                    			glitch = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${text1}&text2=${text2}&apikey=${apivhtear}`, {method: 'get'})
+                    			glitch = await getBuffer(`https://api.shizukaa.xyz/api/glitch?apikey=${ItsApi}&text=${text1}&text2=${text2}`, {method: 'get'})
                     			client.sendMessage(from, glitch, image, {quoted: mek, caption: 'nih gan'})
 			     		await limitAdd(sender) 
 			     		break 
@@ -764,7 +764,7 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
 					ngo = `${body.slice(7)}`
-					ngebuff = await getBuffer(`https://api.shizukaa.xyz/api/coffie?apikey=${ShizukaApi}&text=${ngo}`, {method: 'get'})
+					ngebuff = await getBuffer(`https://api.shizukaa.xyz/api/coffie?apikey=${ItsApi}&text=${ngo}`, {method: 'get'})
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: '1 gelas 5K gayn'})
 					await limitAdd(sender)
 					break
@@ -773,7 +773,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
-					love = `${body.slice(6)}`
+					love = `${body.slice(9)}`
 					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/lovemsg/?text=${love}`, {method: 'get'})
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'Love You😘'})
 					await limitAdd(sender)
@@ -782,6 +782,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'memecreate':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
+					hm = `${body.slice(12)}`
 					text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];  
 					ngebuff = await getBuffer(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=https://avatars2.githubusercontent.com/u/34557386?s=460&u=cc19c578d9339ecd39684d7f52a6cae6cfa54119&v=4`, {method: 'get'})
@@ -797,7 +798,7 @@ client.on('group-participants-update', async (anu) => {
 					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
 					reply(ind.wait)
 					owgi = await  client.downloadAndSaveMediaMessage(ger)
-					anu = await imgbb("727e7e43f6cda1dfb85d888522fd4ce1", owgi)
+					anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
 					teks = `${anu.display_url}`
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -959,7 +960,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'jamdunia':
 			if (isLimit(sender)) return reply(ind.limitend(pushname))
 			if (!isRegistered) return reply(ind.noregis())	
-			reply(mind.wait)
+			reply(ind.wait)
 		 	jamdunia = `${body.slice(10)}`
 			anu = await fetchJson(`https://api.i-tech.id/tools/jam?key=${TechApi}&kota=${jamdunia}`, {method: 'get'})
 			wtime = `*${anu.timezone}*\n*${anu.date}*\n*${anu.time}*`
@@ -972,7 +973,8 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limiten(pusname))
 						anu = await fetchJson(`https://videfikri.com/api/fakta`, {method: 'get'})
-						reply(anu.result)
+						buffer = `${anu.result.fakta}`
+						client.sendMessage(from, buffer, text, {quoted: mek})
 						await limitAdd(sender)
 						break
 
@@ -1033,7 +1035,12 @@ client.on('group-participants-update', async (anu) => {
 				case 'waifu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				anu = await fetchJson(`https://alfians-api.herokuapp.com/api/waifu`, {method: 'get'})
+				anu = await fetchJson(`https://api.shizukaa.xyz/api/waifu?apikey=${ShizukaApi}`, {method: 'get'})
+					reply(ind.wait)
+					buffer = await getBuffer(anu.result)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
+					await limitAdd(sender)
+					break
 					
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
@@ -1135,10 +1142,6 @@ client.on('group-participants-update', async (anu) => {
 					res = await fetchJson(`https://api.i-tech.id/anim/yuri?key={TechApi}`, {method: 'get'})
 						buffer = await getBuffer(res.result)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Yurification🤤'})
-					} catch (e) {
-						console.log(`Error :`, color(e,'red'))
-						reply(' *ERROR* ')
-					}
 					await limitAdd(sender) 
 					break 
 			
@@ -1172,7 +1175,7 @@ client.on('group-participants-update', async (anu) => {
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 				if (args.length < 1) return reply('teksnya mana gan?')
-                    		kuso = body.slice(9)
+                    		kuso = body.slice(10)
 					anu = await fetchJson(`https://api.shizukaa.xyz/api/kusonime?apikey=${ShizukaApi}&q=${kuso}`, {method: 'get'})
 					reply(ind.wait)
 					teks = `===============\n`
@@ -2359,7 +2362,7 @@ client.on('group-participants-update', async (anu) => {
                                          if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                                          ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
                                          owgi = await client.downloadAndSaveMediaMessage(ger)
-                                         anu = await imgbb("727e7e43f6cda1dfb85d888522fd4ce1", owgi)
+                                         anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
                                         teks = `${anu.display_url}`
                                         ranpp = getRandom('.png')
                                         ranop = getRandom('.webp')
@@ -2660,7 +2663,7 @@ client.on('group-participants-update', async (anu) => {
 					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag target yang ingin di headshoot palanya!')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					setTimeout( () => {
-					client.sendMessage(from, 'Sector clear!!!', text)
+					client.sendMessage(from, 'Malah PBan ajg!!!', text)
 					}, 8000)
 					setTimeout( () => {
 					reply('Boom, Headshoot!')
@@ -2672,10 +2675,10 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, `OTW Menembakmu @${mentioned[0].split('@')[0]}`, text) // ur cods
 					}, 5000)
 					setTimeout( () => {
-					client.sendMessage(from, 'Finish Him!', text)
+					client.sendMessage(from, 'Enemy Spotted!!', text)
 					}, 2500)
 					setTimeout( () => {
-					reply('Storm the front!!')
+					reply('Sector Clear!!')
 					}, 0)
 					break
 				case 'listadmin':
@@ -2843,12 +2846,12 @@ client.on('group-participants-update', async (anu) => {
                 		if (args[0] === 'on') {
                 			if (isBadWord) return reply('anti badword sudah on')
                  	   		badword.push(from)
-                 	   		fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
+                 	   		fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
                   	   		reply(`\`\`\`✓“Sukses mengaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`)
               	  		} else if (args[0] === 'off') {
                     			if (!isBadWord) return reply('anti badword sudah off')
                   	  		badword.splice(from, 1)
-                 	   		fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
+                 	   		fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
                  	    		reply(`\`\`\`✓“Sukses menonaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`)
              	   		} else {
                  	   		reply(ind.satukos())
@@ -2857,19 +2860,21 @@ client.on('group-participants-update', async (anu) => {
 					
                     case 'addbadword':
                     if (!isOwner) return reply(ind.ownerg())
+			if (!isGroupAdmins) return reply(ind.admin())
                     if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
                     const bw = body.slice(12)
                     bad.push(bw)
-                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
+                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
                     reply('Success Menambahkan Bad Word!')
                     break
 					
                 	case 'delbadword':
                     if (!isOwner) return reply(ind.ownerg())
+			if (!isGroupAdmins) return reply(ind.admin())
                     if (args.length < 1) return reply( `Kirim perintah ${prefix}delbadword [kata kasar]. contoh ${prefix}delbadword ngontol`)
                     let dbw = body.slice(12)
                     bad.splice(dbw)
-                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
+                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
                     reply('Success Menghapus BAD WORD!')
                     break 
 					
