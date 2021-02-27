@@ -2423,6 +2423,13 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
+				case 'bahasa':
+				if (!isRegistered) return reply(ind.noregis())
+			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
+					client.sendMessage(from, bahasa(), text)
+					await limitAdd(sender)
+					break
+					
 				case 'ttp':
 				if (!isRegistered) return reply(ind.noregis())
 			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
