@@ -769,7 +769,7 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-					case 'lovemsg':
+					case 'lovem':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
@@ -1012,7 +1012,7 @@ client.on('group-participants-update', async (anu) => {
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Mau Nyari Foto Apa???')
 					pinte = body.slice(11)
-					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=${pinte}&apikey=${apivhtear}`, {method: 'get'})
+					anu = await fetchJson(`https://rapidapi.com/Karayel/api/pinterest/`, {method: 'get'})
 					reply(ind.wait())
 					var pin = JSON.parse(JSON.stringify(anu.result));
 					var trest =  pin[Math.floor(Math.random() * pin.length)];
@@ -1035,7 +1035,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'waifu':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				anu = await fetchJson(`https://api.shizukaa.xyz/api/waifu?apikey=${ShizukaApi}`, {method: 'get'})
+				anu = await fetchJson(`https://api.shizukaa.xyz/api/waifu?apikey=${ItsApi}`, {method: 'get'})
 					reply(ind.wait)
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '>_<'})
@@ -1604,6 +1604,17 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
+				case 'terbalik':
+				case 'tebalik':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+					ngebuff = `${body.slice(9)}`
+					anu = await fetchJson(`https://videfikri.com/api/hurufterbalik/?query=${ngebuff}`, {method: 'get'})
+					ngebuff = `${anu.result.kata}`
+					client.sendMessage(from, ngebuff, text, {quoted: mek})
+					await limitAdd(sender)
+					break
+					
 				case 'slap':
 				if (!isRegistered) return reply(ind.noregis())
                     		if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -2105,10 +2116,9 @@ client.on('group-participants-update', async (anu) => {
 					break
 
 		case 'play':
-		case 'playmp3':
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname))
-                data = await fetchJson(`https://api.itsmeikyxsec404.xyz/playmp3?apikey=${ShizukaApi}&query=${body.slice(6)}`, {method: 'get'})
+                data = await fetchJson(`https://videfikri.com/api/ytplay/?query=${body.slice(6)}`, {method: 'get'})
                	if (anu.error) return reply(anu.error)
                 infomp3 = ` *PLAY* \n*Judul* : ${data.result.title}\n*Duration* : ${data.result.duration}\n*Filesize* : ${data.result.size}\n\n*[ WAIT ] Di PROSES DUMLU YEKAN....*`
                 bufferddd = await getBuffer(data.result.image)
@@ -2215,7 +2225,7 @@ client.on('group-participants-update', async (anu) => {
             var encmedia  = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
             var media = await  client.downloadAndSaveMediaMessage(encmedia)
             var imgbb = require('imgbb-uploader')
-            imgbb('727e7e43f6cda1dfb85d888522fd4ce1', media)
+            imgbb('718078e929dfa75e7612e23d70d8dad7', media)
                 .then(data => {
                     var caps = `「 *IMAGE TO URL* 」\n\n*╠➥  ID :* ${data.id}\n*╠➥  MimeType :* ${data.image.mime}\n*╠➥  Extension :* ${data.image.extension}\n\n*╠➥  URL :* ${data.display_url}`
                     ibb = fs.readFileSync(media)
