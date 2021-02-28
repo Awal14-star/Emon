@@ -38,6 +38,8 @@ const tiktod = require('tiktok-scraper')
 const brainly = require('brainly-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const imgbb = require('imgbb-uploader')
+const lolis = require('lolis.life')
+const loli = new lolis()
 const speed = require('performance-now')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
@@ -638,9 +640,11 @@ client.on('group-participants-update', async (anu) => {
 					
 				case 'resetlimit':
 				if (!isOwner) return reply(ind.ownerb())
-				  var obj = []
-				   fs.writeFileSync('./database/user/limit.json', JSON.stringify(obj))
-				  await reply(`LIMIT BERHASIL DI RESET`)
+				var ngonsol = []
+				rest = _limit.indexOf([0])
+				_limit.splice(rest)
+				fs.writeFileSync('./database/user/limit.json', JSON.stringify(ngonsol))
+				reply(`LIMIT BERHASIL DI RESET BOS`)
 				break
 					
 				case 'transfer':
@@ -2403,21 +2407,23 @@ client.on('group-participants-update', async (anu) => {
                                         if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					await limitAdd(sender)
-                                        var imgbb = require('imgbb-uploader')
-                                         if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
-                                         ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-                                         owgi = await client.downloadAndSaveMediaMessage(ger)
-                                         anu = await imgbb("bfe53fe15a978cf1938d96123f065206", owgi)
-                                        teks = `${anu.display_url}`
-                                        ranpp = getRandom('.png')
-                                        ranop = getRandom('.webp')
-                                        anu1 = await fetchJson(`https://api.vhtear.com/removebgwithurl?link=${teks}&apikey=${apivhtear}`, {method: 'get'})
-                                         exec(`wget ${anu1.result.image} -O ${ranpp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranop}`, (err) => {
-                                                fs.unlinkSync(ranp)
-                                                if (err) return reply(ind.error.stick)
-                                                nobg = fs.readFileSync(ranop)
-                                                client.sendMessage(from, nobg, sticker, {quoted: mek})
-                                                fs.unlinkSync(ranop)
+                                        const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+						const media = await client.downloadAndSaveMediaMessage(encmedia)
+						ranw = getRandom('.webp')
+						ranp = getRandom('.png')
+						reply(mess.wait)
+						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
+						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
+							fs.unlinkSync(media)
+							let buffer = Buffer.from(res.base64img, 'base64')
+							fs.writeFileSync(ranp, buffer, (err) => {
+								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
+							})
+							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
+								fs.unlinkSync(ranp)
+								if (err) return reply(mess.error.stick)
+								buff = fs.readFileSync(ranw)
+								client.sendMessage(from, buff, sticker, {quoted: mek})
 })
                                           } else {
                                                  reply('Gunakan foto!')
