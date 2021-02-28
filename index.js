@@ -29,6 +29,7 @@ const axios = require('axios')
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./lib/help')
 const { donasi } = require('./lib/donasi')
+const { bahasa } = require('./lib/listbahasa')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 const { exec } = require("child_process")
@@ -56,7 +57,7 @@ const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'END:VCARD' // jangan di ubah
 prefix = '#'
 blocked = []   
-limitawal = '30' //terserah ganti/gk
+limitawal = '50' //terserah ganti/gk
 cr = '*Jangan digunakan Via PC co*'
 
 /******** OWNER NUMBER**********/
@@ -72,7 +73,6 @@ const welkom = JSON.parse(fs.readFileSync('./database/bot/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./database/bot/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
 const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
-const media = JSON.parse(fs.readFileSync('./database/bot/media.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
@@ -355,12 +355,11 @@ client.on('group-participants-update', async (anu) => {
 			const groupId = isGroup ? groupMetadata.jid : ''
 			const groupMembers = isGroup ? groupMetadata.participants : ''
 			const groupDesc = isGroup ? groupMetadata.desc : ''
-            const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
+            		const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
             
             /************** SCURITY FEATURE ************/
             const isEventon = isGroup ? event.includes(from) : false
             const isRegistered = checkRegisteredUser(sender)
-	    const isMedia = media.includes(from) : false
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
             const isLevelingOn = isGroup ? _leveling.includes(from) : false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
@@ -568,7 +567,7 @@ client.on('group-participants-update', async (anu) => {
 		//FUNCTION ANTIBADWORD
 		if (bad.includes(messagesC)) {
 		if (!isGroup) return
-		if (!isAntiLink) return
+		if (!isBadWord) return
 		if (isGroupAdmins) return reply(`*${pushname}* ᴀᴅᴀʟᴀʜ ᴀᴅᴍɪɴ ɢʀᴏᴜᴘ ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴋᴀɴ ᴅɪ ᴋɪᴄᴋ`)
 		client.updatePresence(from, Presence.composing)
 		var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -801,7 +800,7 @@ client.on('group-participants-update', async (anu) => {
 					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
 					reply(ind.wait)
 					owgi = await  client.downloadAndSaveMediaMessage(ger)
-					anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
+					anu = await imgbb("bfe53fe15a978cf1938d96123f065206", owgi)
 					teks = `${anu.display_url}`
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -869,7 +868,7 @@ client.on('group-participants-update', async (anu) => {
 					/*<============================[TOOLS MENU]==========================>*/
 					
 					case 'wait':
-					if (isRegistered) return reply(ind.noregis())
+					if (!isRegistered) return reply(ind.noregis())
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						reply(ind.wait())
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
@@ -2384,7 +2383,7 @@ client.on('group-participants-update', async (anu) => {
                                          if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                                          ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
                                          owgi = await client.downloadAndSaveMediaMessage(ger)
-                                         anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
+                                         anu = await imgbb("bfe53fe15a978cf1938d96123f065206", owgi)
                                         teks = `${anu.display_url}`
                                         ranpp = getRandom('.png')
                                         ranop = getRandom('.webp')
