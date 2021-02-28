@@ -153,6 +153,9 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 
 ╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
 ╠☞ *${prefix}sticker* (jika video max. 9det)
+╠☞ *${prefix}glitch*
+╠☞ *${prefix}coffe*
+╠☞ *${prefix}coffe2*
 ╠☞ *${prefix}kuncitext*
 ╠☞ *${prefix}silktext*
 ╠☞ *${prefix}makequote*
@@ -161,6 +164,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}trigger* (testing)
 ╠☞ *${prefix}ocr*
 ╠☞ *${prefix}ttp*
+╠☞ *${prefix}ttp3d*
 ║
 ╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
 ╠☞ *${prefix}mutual*
@@ -214,6 +218,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}husbu*
 ╠☞ *${prefix}loli*
 ╠☞ *${prefix}loli2*
+╠☞ *${prefix}shota*
 ╠☞ *${prefix}neko*
 ╠☞ *${prefix}nekopoi*
 ╠☞ *${prefix}nekonime*
@@ -274,6 +279,7 @@ exports.menu = (pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp
 ╠☞ *${prefix}setreply*
 ╠☞ *${prefix}setprefix*
 ╠☞ *${prefix}clearall*
+╠☞ *${prefix}resetlimit*
 ╠☞ *${prefix}block*
 ╠☞ *${prefix}unblock*
 ╠☞ *${prefix}listblock*
