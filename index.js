@@ -976,8 +976,9 @@ client.on('group-participants-update', async (anu) => {
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('masukan kata kunci')
 					tels = body.slice(6)	
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/wiki?q=${tels}&apikey=${TobzKey}`, {method: 'get'})
-					reply(anu.result)
+					anu = await fetchJson(`https://videfikri.com/api/wiki/?query=${tels}`, {method: 'get'})
+					iskon = `*{anu.result.judul}*\n\n${anu.result.isi_konten}`
+					client.sendMessage(from, iskon, text, {quoted: mek}
                                         await limitAdd(sender)
 					break	
 					
@@ -2119,9 +2120,8 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`https://mhankbarbar.tech/api/epbe?url=${args[0]}&apiKey=${BarBarKey}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
 					client.sendMessage(from, '[ WAIT ] Sedang Diproses\n\nLinknya Only Google Gan Biar Bisa Didownload', text, {quoted: mek})
-					efbe = `Title: *${anu.title}*\nSize: *${anu.filesize}\nDipublikasikan Pada: *${anu.published}*`
-					tefbe = await getBuffer(anu.thumb)
-					client.sendMessage(from, tefbe, image, {quoted: mek, caption: efbe})
+					efbe = `Title: *${anu.title}*\nSize: *${anu.filesize}\nDipublikasikan Pada: *${anu.published}*\n*[ ❗ WAIT ❗ ]* DIPROSES DUMLU YAKAN...`
+					client.sendMessage(from, efbe, text, {quoted: mek}
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', quoted: mek, caption: 'Nih Gan'})
 					await limitAdd(sender) 
@@ -2176,9 +2176,9 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply('Urlnya mana um?')
 					if (!isRegistered) return reply(ind.noregis())
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply('URL NYA TIDAK VALID KAK')				
-					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
+					anu = await fetchJson(`https://videfikri.com/api/ytmp4/?url=${body.slice(9)}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
-					teks = `*➸ JUDUL* : ${anu.result.title}\n\n*[WAIT] Proses Dumlu Yakan*`
+					teks = `*➸ JUDUL* : ${anu.result.judul}\n\n*[WAIT] Proses Dumlu Yakan*`
 					thumb = await getBuffer(anu.result.imgUrl)
 					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
 					buffer = await getBuffer(anu.result.UrlVideo)
@@ -2192,8 +2192,8 @@ client.on('group-participants-update', async (anu) => {
                 data = await fetchJson(`https://videfikri.com/api/ytplay/?query=${body.slice(6)}`, {method: 'get'})
                	if (anu.error) return reply(anu.error)
                 infomp3 = ` *PLAY* \n*Judul* : ${data.result.title}\n*Duration* : ${data.result.duration}\n*Filesize* : ${data.result.size}\n\n*[ WAIT ] Di PROSES DUMLU YEKAN....*`
-                bufferddd = await getBuffer(data.result.image)
-                lagu = await getBuffer(data.result.mp3)
+                bufferddd = await getBuffer(data.result.thumbnail)
+                lagu = await getBuffer(data.result.url)
                 client.sendMessage(from, bufferddd, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${data.result.title}.mp3`, quoted: mek})
 		await limitAdd(sender)
@@ -2392,14 +2392,19 @@ client.on('group-participants-update', async (anu) => {
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
-								reply(ind.stikga())
+								reply(ind.stickga())
 							})
 							.on('end', function () {
 								console.log('Finish')
-								buffer = fs.readFileSync(ran)
-								client.sendMessage(from, buffer, sticker, {quoted: mek})
+								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ran} -o ${ran}`, async (error) => {
+									if (error) return reply(mess.error.stick)
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									fs.unlinkSync(media)	
+									fs.unlinkSync(ran)	
+								})
+								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
+								fs.unlinkSync(ran)*/
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
@@ -2408,7 +2413,7 @@ client.on('group-participants-update', async (anu) => {
 						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
-						reply(ind.wait())
+						reply(ind.wait)
 						await ffmpeg(`./${media}`)
 							.inputFormat(media.split('.')[1])
 							.on('start', function (cmd) {
@@ -2418,14 +2423,19 @@ client.on('group-participants-update', async (anu) => {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
 								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(ind.stikga())
+								reply(`❌ Gagal, pada saat mengkonversi ${tipe} ke stiker`)
 							})
 							.on('end', function () {
 								console.log('Finish')
-								buffer = fs.readFileSync(ran)
-								client.sendMessage(from, buffer, sticker, {quoted: mek})
+								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ran} -o ${ran}`, async (error) => {
+									if (error) return reply(mess.error.stick)
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									fs.unlinkSync(media)
+									fs.unlinkSync(ran)
+								})
+								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
+								fs.unlinkSync(ran)*/
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
