@@ -38,6 +38,7 @@ const tiktod = require('tiktok-scraper')
 const brainly = require('brainly-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const imgbb = require('imgbb-uploader')
+const kagApi = require('@kagchi/kag-api')
 const lolis = require('lolis.life')
 const loli = new lolis()
 const speed = require('performance-now')
@@ -47,7 +48,7 @@ const { ind } = require('./language')
 const apivhtear = 'alpinbotwa'
 const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
-const BarBarKey = 'IDxO1TFYnKADlX4pxcHa'
+const BarBarKey = 'Xs8AoHAm0g9lFHCLzsEW'
 const TobzKey = 'BotWeA'
 const ShizukaApi = 'itsmeiky633'
 const TechApi = 'B8r68c-6gwmq1-af4vtS-if1zgD-jni01B'
@@ -807,7 +808,8 @@ client.on('group-participants-update', async (anu) => {
 					hm = `${body.slice(12)}`
 					text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];  
-					ngebuff = await getBuffer(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=https://avatars2.githubusercontent.com/u/34557386?s=460&u=cc19c578d9339ecd39684d7f52a6cae6cfa54119&v=4`, {method: 'get'})
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=${isMedia}`, {method: 'get'})
+					ngebuff = await getBuffer(anu.result)
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'njir, cringe bet dh :v'})
 					await limitAdd(sender)
 					break
@@ -1040,18 +1042,17 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break 
 					
-				case 'pinterest': 
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (args.length < 1) return reply('Mau Nyari Foto Apa???')
-					pinte = body.slice(11)
-					anu = await fetchJson(`https://rapidapi.com/Karayel/api/pinterest/`, {method: 'get'})
+					case 'pinterest':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					client.updatePresence(from, Presence.composing) 
+					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
 					reply(ind.wait())
-					var pin = JSON.parse(JSON.stringify(anu.result));
-					var trest =  pin[Math.floor(Math.random() * pin.length)];
-					pinehg = await getBuffer(trest)
-					client.sendMessage(from, pinehg, image, { caption: '*Pinterest*\n\n*Hasil Pencarian : '+pinte+'*', quoted: mek })
-					await limitAdd(sender) 
+					n = JSON.parse(JSON.stringify(data));
+					nimek =  n[Math.floor(Math.random() * n.length)];
+					pok = await getBuffer(nimek)
+					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\n_KeyWord:_ ${body.slice(11)}`})
+					await limitAdd(sender)
 					break 
 					
 	/*<==========================================[ANIME MENU]==============================================>*/
@@ -1087,15 +1088,20 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 				case 'loli2':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					gatauda = body.slice(6)
-					anu = await fetchJson(`https://api.vhtear.com/randomloli&apikey=${apivhtear}`, {method: 'get'})
-					reply(ind.wait())
-					buffer = await getBuffer(anu.result.result)
-					client.sendMessage(from, buffer, image, { caption: 'kyaa >_< o... onii - chan >///<', quoted: mek})
-					await limitAdd(sender)
-					break	
+					loli.getSFWLoli(async (err, res) => {
+						if (err) return reply('❌ *ERROR* ❌')
+						buffer = await getBuffer(res.url)
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'O...oni - Chan, bakaaa >///<'})
+					})
+					break
+				case 'nsfwloli2':
+					if (!isNsfw) return reply('❌ *FALSE* ❌')
+					loli.getNSFWLoli(async (err, res) => {
+						if (err) return reply('❌ *ERROR* ❌')
+						buffer = await getBuffer(res.url)
+						client.sendMessage(from, buffer, image, {quoted: mek, caption: 'Jangan jadiin bahan buat comli om'})
+					})
+					break
 				case 'shota':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1793,6 +1799,18 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: 'hargai meski cringe :v'})
 					await limitAdd(sender)
 					break 
+					
+					case 'memen':
+					meme = await kagApi.memes()
+					buffer = await getBuffer(`https://imgur.com/${meme.hash}.jpg`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+					break
+					
+					case 'memein':
+					memein = await kagApi.memeindo()
+					buffer = await getBuffer(`https://imgur.com/${memein.hash}.jpg`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
+					break
 
 		case 'caklontong':
                 if (!isRegistered) return reply(ind.noregis())
@@ -1843,8 +1861,8 @@ client.on('group-participants-update', async (anu) => {
 				case 'tebakin':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					anu = await fetchJson(`https://api.vhtear.com/tebakgambar&apikey=${apivhtear}`, {method: 'get'})
-					ngebuff = await getBuffer(anu.result.soalImg)
+					anu = await fetchJson(`https://videfikri.com/api/tebakgambar/`, {method: 'get'})
+					ngebuff = await getBuffer(anu.result.soal_gbr)
 					tebak = `➸ Jawaban : *${anu.result.jawaban}*`
 					setTimeout( () => {
 					client.sendMessage(from, tebak, text, {quoted: mek})
