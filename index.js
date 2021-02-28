@@ -76,7 +76,7 @@ const welkom = JSON.parse(fs.readFileSync('./database/bot/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./database/bot/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
 const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
-const nomedia = JSON.parse(fs.readFileSync('./database/bot/bigfile.json))
+const nomedia = JSON.parse(fs.readFileSync('./database/bot/bigfile.json'))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
@@ -1254,6 +1254,7 @@ client.on('group-participants-update', async (anu) => {
 			case 'randomhentong':
 			if (!isRegistered) return reply(ind.noregis())
 			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			if (isNoMedia) return reply(ind.nomed())
 			if (!isNsfw) return reply(ind.nsfwoff())
 					gatauda = body.slice(15)
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzKey}`)
@@ -2091,7 +2092,7 @@ client.on('group-participants-update', async (anu) => {
 		case 'tomp3':
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pushname))
-		if (isMedia) return reply(ind.nomed)
+		if (isNoMedia) return reply(ind.nomed)
                 	client.updatePresence(from, Presence.composing) 
 					if (!isQuotedVideo) return reply('_*Reply Video nya Gan!*_')
 					reply(ind.wait)
@@ -2110,7 +2111,7 @@ client.on('group-participants-update', async (anu) => {
 
 		case 'fb':
 		client.updatePresence(from, Presence.composing)
-		if (isMedia) return reply(ind.nomed)
+		if (isNoMedia) return reply(ind.nomed)
 		if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pushname))
 		reply(ind.wait)
@@ -2129,7 +2130,7 @@ client.on('group-participants-update', async (anu) => {
                 case 'ytmp4':
     		if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-		if (isMedia) return reply(ind.nomed)
+		if (isNoMedia) return reply(ind.nomed)
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if (!isUrl(args[0]) && !args[0].includes('youtu.be')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
@@ -2146,7 +2147,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'ytmp3':
 					if (!isRegistered) return reply(ind.noregis())
                 			if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (isMedia) return reply(ind.nomed)
+					if (isNoMedia) return reply(ind.nomed)
 					if (args.length < 1) return reply('Urlnya mana gan?')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.error.Iv)
 					anu = await fetchJson(`https://api.vhtear.com/ytdl?link=${args[0]}&apikey=${apivhtear}`, {method: 'get'})
@@ -2188,7 +2189,7 @@ client.on('group-participants-update', async (anu) => {
 		case 'play':
                 if (!isRegistered) return reply(ind.noregis())
 		if (isLimit(sender)) return reply(ind.limitend(pusname))
-		if (isMedia) return reply(ind.nomed)
+		if (isNoMedia) return reply(ind.nomed)
                 data = await fetchJson(`https://videfikri.com/api/ytplay/?query=${body.slice(6)}`, {method: 'get'})
                	if (anu.error) return reply(anu.error)
                 infomp3 = ` *PLAY* \n*Judul* : ${data.result.title}\n*Duration* : ${data.result.duration}\n*Filesize* : ${data.result.size}\n\n*[ WAIT ] Di PROSES DUMLU YEKAN....*`
@@ -2296,7 +2297,7 @@ client.on('group-participants-update', async (anu) => {
             var encmedia  = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
             var media = await  client.downloadAndSaveMediaMessage(encmedia)
             var imgbb = require('imgbb-uploader')
-            imgbb('718078e929dfa75e7612e23d70d8dad7', media)
+            imgbb('bfe53fe15a978cf1938d96123f065206', media)
                 .then(data => {
                     var caps = `「 *IMAGE TO URL* 」\n\n*╠➥  ID :* ${data.id}\n*╠➥  MimeType :* ${data.image.mime}\n*╠➥  Extension :* ${data.image.extension}\n\n*╠➥  URL :* ${data.display_url}`
                     ibb = fs.readFileSync(media)
@@ -2809,6 +2810,7 @@ client.on('group-participants-update', async (anu) => {
 					reply('Sector Clear!!')
 					}, 0)
 					break
+								
 				case 'listadmin':
 					if (!isGroup) return reply(ind.groupo())
 					teks = `List admin of group *${groupMetadata.subject}*\n𝗧𝗼𝘁𝗮𝗹 : ${groupAdmins.length}\n\n`
