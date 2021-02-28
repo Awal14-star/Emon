@@ -73,6 +73,7 @@ const welkom = JSON.parse(fs.readFileSync('./database/bot/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./database/bot/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./database/bot/simi.json'))
 const event = JSON.parse(fs.readFileSync('./database/bot/event.json'))
+const nomedia = JSON.parse(fs.readFileSync('./database/bot/bigfile.json))
 const _limit = JSON.parse(fs.readFileSync('./database/user/limit.json'))
 const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
@@ -337,7 +338,7 @@ client.on('group-participants-update', async (anu) => {
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 			const timi = moment.tz('Asia/Jakarta').add(30, 'days').calendar();
 			const timu = moment.tz('Asia/Jakarta').add(20, 'days').calendar();
-            body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
+            		body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
 			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
@@ -360,6 +361,7 @@ client.on('group-participants-update', async (anu) => {
             /************** SCURITY FEATURE ************/
             const isEventon = isGroup ? event.includes(from) : false
             const isRegistered = checkRegisteredUser(sender)
+	    const isNoMedia = nomedia.includes(from) || false
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
             const isLevelingOn = isGroup ? _leveling.includes(from) : false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
@@ -397,7 +399,7 @@ client.on('group-participants-update', async (anu) => {
 			
 			
 	        //function leveling
-            if (isGroup && isRegistered && isLevelingOn) {
+            if (isGroup && isLevelingOn) {
             const currentLevel = getLevelingLevel(sender)
             const checkId = getLevelingId(sender)
             try {
@@ -720,7 +722,7 @@ client.on('group-participants-update', async (anu) => {
 					pubg = await getBuffer(anu.result)
 					client.sendMessage(from, pubg, image, {quoted: mek})
 					await limitAdd(sender) 
-					break  
+					break
 					
 					case 'cml':
 					case 'ml':
@@ -964,11 +966,22 @@ client.on('group-participants-update', async (anu) => {
 			if (!isRegistered) return reply(ind.noregis())	
 			reply(ind.wait)
 		 	jamdunia = `${body.slice(10)}`
-			anu = await fetchJson(`https://api.i-tech.id/tools/jam?key=${TechApi}&kota=${jamdunia}`, {method: 'get'})
-			wtime = `*${anu.timezone}*\n*${anu.date}*\n*${anu.time}*`
+			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/jamdunia?lokasi=${jamdunia}&apikey=${TobzKey}`, {method: 'get'})
+			wtime = `*${anu.result.tittle}*\n*${anu.result.date}*\n*${anu.result.time}*\n*${anu.result.sun}*`
 			client.sendMessage(from, wtime, text, {quoted: mek})
 			await limitAdd(sender) 
 			break  
+					
+					case 'jadwalsholat':
+					if (isLimit(sender)) return reply(ind.limitend(pushname))
+					if (!isRegistered) return reply(ind.noregis())	
+					reply(ind.wait)
+		 			jadwal = `${body.slice(14)}`
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/jadwalshalat?q=${jadwal}&apikey=${TobzKey}`, {method: 'get'})
+					js = `*${anu.result.imsak}*\n*${anu.result.subuh}*\n*${anu.result.sunrise}*\n*${anu.result.dzuhur}*\n*${anu.result.ashar}*\n*${anu.result.sunset}*\n*${anu.result.maghrib}*\n*${anu.result.isha}*\n*${anu.result.midnight}*\n*${anu.result.}*`
+					client.sendMessage(from, js, text, {quoted: mek})
+					await limitAdd(sender)
+					break
 					
 					case 'faktaunik':
 					case 'fakta':
@@ -1064,7 +1077,18 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(anu.result.result)
 					client.sendMessage(from, buffer, image, { caption: 'kyaa >_< o... onii - chan >///<', quoted: mek})
 					await limitAdd(sender)
-					break		
+					break	
+				case 'shota':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					ntah = body.slice(7)
+					img = await fetchJson(`https://tobz-api.herokuapp.com/api/randomshota?apikey=${TobzKey}`, {method: 'get'})
+					reply(ind.wait)
+					buffer = await getBuffer(img.result)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '😒'})
+					
+					
+					
 				case 'nekonime':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -2753,12 +2777,17 @@ client.on('group-participants-update', async (anu) => {
 					})
 					await limitAdd(sender)
 					break
-                			 case 'simi':
-					if (args.length < 1) return reply('Textnya mana um?')
-					teks = body.slice(5)
-					anu = await simih(teks) 
-					reply(anu)
-				break 
+                			
+				case 'simi':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					teks = body.slice(6)
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/simsimi?text=${teks}&apikey=${tobzapi}`)
+					simii = ${anu.result}
+					client.sendMessage(from, simii, text, {quoted: mek}
+					await limitAdd(sender)
+					break
+					
 				case 'simih':
 					if (!isGroup) return reply(ind.groupo())
 					if (!isGroupAdmins) return reply(ind.admin())
@@ -2776,6 +2805,7 @@ client.on('group-participants-update', async (anu) => {
 						reply(ind.satukos())
 					}
 					break
+					
 				case 'nsfw':
 					if (!isGroup) return reply(ind.groupo())
 					if (!isGroupAdmins) return reply(ind.admin())
@@ -2793,6 +2823,7 @@ client.on('group-participants-update', async (anu) => {
 						reply(ind.satukos())
 					}
 					break
+					
                 case 'leveling':
                 if (!isGroup) return reply(ind.groupo())
                 if (!isGroupAdmins) return reply(ind.admin())
@@ -2867,17 +2898,16 @@ client.on('group-participants-update', async (anu) => {
 					
 					case 'nomedia':
 					if (!isOwner) return reply(ind.ownerg())
-					if (!isGroupAdmins) return reply(ind.admin())
 					if (args.length < 1) return reply('parameternya apa ngonsol')
 				if (args[0] === 'on') {
-					if (isMedia) return reply('Fitur Tanpa Media sudah ON sebelumnya')
-					media.push(from)
-					fs.writeFileSync('./database/bot/media.json', JSON.stringify(media))
+					if (isNoMedia) return reply('Fitur Tanpa Media sudah ON sebelumnya')
+					nomedia.push(from)
+					fs.writeFileSync('./database/bot/bigfile.json', JSON.stringify(bigfile))
 					reply(`* 「 _SUKSES_ 」 * _Mengaktifkan Fitur Tanpa Media_`)
 				} else if (args[0] ==='off') {
 					if(!isMedia) return reply('Fitur Tanpa Media sudah OFF sebelumnya')
-					media.splice(from, 1)
-					fs.writeFileSync('./database/bot/media.json', JSON.strigify(media))
+					nomedia.splice(from, 1)
+					fs.writeFileSync('./database/bot/bigfile.json', JSON.strigify(bigfile))
 					reply(`* 「 _SUKSES_ 」 * _Menonaktifkan Fitur Tanpa Media_`)
 				} else {
 					reply(ind.satukos())
