@@ -685,10 +685,12 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))				
 					if (args.length < 1) return reply(ind.wrongf())
 					silk = body.slice(10)
+					slik1 = silk.split("/")[0];
+					slik2 = silk.split("/")[1];
 					if (silk.length > 7) return reply('Teksnya kepanjangan Tod, maksimal 6 karakter')
-					buffer = await getBuffer(`https://api.vhtear.com/silktext?text=${silk}&apikey=${apivhtear}`)
+					buffer = await getBuffer(`https://videfikri.com/api/textmaker/silk/?text1=${slik1}&text2=${slik2}`, {method: 'get'})
 					reply(ind.wait())
-		    			baby.sendMessage(from, buffer, image, {quoted: mek})
+		    			client.sendMessage(from, buffer, image, {quoted: mek})
 		    			await limitAdd(sender)	
 		    			break
 					
@@ -750,7 +752,8 @@ client.on('group-participants-update', async (anu) => {
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
-                    			glitch = await getBuffer(`https://api.shizukaa.xyz/api/glitch?apikey=${ItsApi}&text=${text1}&text2=${text2}`, {method: 'get'})
+                    			anu = await fetchJson(`https://api.shizukaa.xyz/api/glitch?apikey=${ItsApi}&text=${text1}&text2=${text2}`, {method: 'get'})
+					glitch = await getBuffer(anu.result)
                     			client.sendMessage(from, glitch, image, {quoted: mek, caption: 'nih gan'})
 			     		await limitAdd(sender) 
 			     		break 
@@ -772,8 +775,19 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
 					ngo = `${body.slice(7)}`
-					ngebuff = await getBuffer(`https://api.shizukaa.xyz/api/coffie?apikey=${ItsApi}&text=${ngo}`, {method: 'get'})
+					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/coffeecup/?text=${ngo}`, {method: 'get'})
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: '1 gelas 5K gayn'})
+					await limitAdd(sender)
+					break
+					
+					case 'ngopi2':
+					case 'coffe2':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana gayn?')
+					ffe = `${body.slice(7)}`
+					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/coffeecup2/?text=${ffe}`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: '1 gelas 5K gayn, jangan lupa bayar!'})
 					await limitAdd(sender)
 					break
 					
@@ -2411,7 +2425,7 @@ client.on('group-participants-update', async (anu) => {
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
-						reply(mess.wait)
+						reply(ind.wait)
 						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
 						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
 							fs.unlinkSync(media)
@@ -2421,9 +2435,9 @@ client.on('group-participants-update', async (anu) => {
 							})
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
-								if (err) return reply(mess.error.stick)
-								buff = fs.readFileSync(ranw)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
+								if (err) return reply(ind.stickga())
+								ngebuff = fs.readFileSync(ranw)
+								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
 })
                                           } else {
                                                  reply('Gunakan foto!')
@@ -2476,6 +2490,33 @@ client.on('group-participants-update', async (anu) => {
 					})
                         		await limitAdd(sender)
 					break
+			
+				case 'ttp3d':
+				if (!isRegistered) return reply(ind.noregis())
+			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
+				if (args.length < 1) return reply('yang mau dijadiin text sticker apaan, titit kah?')
+                    			teks = `${body.slice(7)}`
+                    			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
+                    			buffing = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
+						const media = await client.downloadAndSaveMediaMessage(buffing)
+						ranw = getRandom('.webp')
+						ranp = getRandom('.png')
+						reply(ind.wait)
+						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
+						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
+							fs.unlinkSync(media)
+							let buffer = Buffer.from(res.base64img, 'base64')
+							fs.writeFileSync(ranp, buffer, (err) => {
+								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
+							})
+							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
+								fs.unlinkSync(ranp)
+								if (err) return reply(ind.stickga())
+								ngebuff = fs.readFileSync(ranw)
+								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
+								await limitAdd(sender)
+								break
+			
 				case 'setprefix':
 					if (args.length < 1) return
 					if (!isOwner) return reply(ind.ownerb())
