@@ -6,6 +6,7 @@ apt-get install nodejs -y
 apt-get install libwebp -y
 npm i imgbb-uploader -y
 npm i lolis.life -y
+npm i lolis.life
 apt-get install mc -y
 apt-get install ffmpeg -y
 apt-get install wget -y
