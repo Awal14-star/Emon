@@ -928,6 +928,7 @@ client.on('group-participants-update', async (anu) => {
                     			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			     		await limitAdd(sender)
 					break
+					
 					/*<=========================[AKHIR MAKER MENU]=========================>*/
 					
 					/*<============================[TOOLS MENU]==========================>*/
@@ -1293,7 +1294,7 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/nhentai?code=${code}`, {method: 'get'})
 					reply(ind.wait())
 					ngebuff = await getBuffer(anu.result)
-					client.sendMessage(from, ngebuff, image, {quoted: mek})
+					client.sendMessage(from, ngebuff, document,  {mimetype: 'pdf', filename: `${code}`, quoted: mek})
 					await limitAdd(sender)
 				  	break
 					
@@ -1308,7 +1309,8 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, image, { caption: 'Comli teross', quoted: mek})
 					await limitAdd(sender)
-					break			
+					break	
+					
 			case 'blowjob':
 			if (!isRegistered) return reply(ind.noregis())
 			if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1485,17 +1487,15 @@ client.on('group-participants-update', async (anu) => {
 					/*<============================[EDUKASI MENU]=============================>*/
 					
 		case 'resepmasakan':
-                if (!isRegistered) return reply(ind.noregis())
-                if (isLimit(sender)) return reply(ind.limitend(pusname))
-                reply(ind.wait)
-                   anu = await fetchJson(`https://masak-apa.tomorisakura.vercel.app/api/search?q=${body.slice(14)}`, {method: 'get'})
-                   masak = '==============================\n'
-                   for (let msk of anu.results){
-                   masak += `• *Title:* ${msk.title}\n• *• *Durasi Masak Sekitar:* ${msk.times}\n• *Porsi:* ${msk.serving}\n• *Tingkat Kesulitan:* ${msk.difficulty}\n• *Link:* https://www.masakapahariini.com/?s=${msk.key}\n==============================\n`
-                    }
-                   reply(masak.trim())
-                   await limitAdd(sender) 
-                   break 
+		if (!isRegistered) return reply(ind.noregis())
+		if (isLimit(sender)) return reply(ind.limitend(pusname))
+                   anu = await fetchJson(`https://mnazria.herokuapp.com/api/resep?key=${body.slice(14)}`, {method: 'get'})
+                   if (anu.error) return reply(anu.error)
+                   buffer = await getBuffer(anu.thumb_item)
+                   hasil = `*title* \n ${anu.title} *item_name* \n ${anu.item_name} *ingredient* \n${anu.ingredient} *step* \n${anu.step}`
+                   client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
+                   await limitAdd(sender)
+		break 
 					
 		case 'quran':
 		if (!isRegistered) return reply(ind.noregis())
@@ -1859,11 +1859,11 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '.......'})
 					break
 					
-					case 'kisahnabi':
+		case 'kisahnabi':
 		if (!isRegistered) return reply(ind.noregis())
            	if (isLimit(sender)) return reply(ind.limitend(pusname))
 		kisah = `${body.slice(11)}`
-		nabi = await fetchJson(`https://onlydevcity.herokuapp.com/api/kisahnabi?nabi=${kissah}&apikey=onlyonedeveloper`, {method: 'get'})
+		nabi = await fetchJson(`https://onlydevcity.herokuapp.com/api/kisahnabi?nabi=${kisah}&apikey=onlyonedeveloper`, {method: 'get'})
 		hasil = `*Nabi: ${nabi.nabi.nabi}\nTahun Lahir: ${nabi.nabi.lahir}\nUmur: ${nabi.nabi.umur}\nTempat: ${nabi.nabi.tempat}*\n\n*Kisah: *${nabi.nabi.kisah}`
 		client.sendMessage(from, hasil, text)
 		await limitAdd(sender)
