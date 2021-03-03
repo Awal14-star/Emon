@@ -1021,7 +1021,7 @@ client.on('group-participants-update', async (anu) => {
 					tels = body.slice(6)	
 					anu = await fetchJson(`https://videfikri.com/api/wiki/?query=${tels}`, {method: 'get'})
 					iskon = `*{anu.result.judul}*\n\n${anu.result.isi_konten}`
-					client.sendMessage(from, iskon, text, {quoted: mek}
+					client.sendMessage(from, iskon, text, {quoted: mek})
                                         await limitAdd(sender)
 					break	
 					
@@ -1042,7 +1042,7 @@ client.on('group-participants-update', async (anu) => {
 					reply(ind.wait)
 		 			jadwal = `${body.slice(14)}`
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/jadwalshalat?q=${jadwal}&apikey=${TobzKey}`, {method: 'get'})
-					js = `*${anu.result.imsak}*\n*${anu.result.subuh}*\n*${anu.result.sunrise}*\n*${anu.result.dzuhur}*\n*${anu.result.ashar}*\n*${anu.result.sunset}*\n*${anu.result.maghrib}*\n*${anu.result.isha}*\n*${anu.result.midnight}*\n*${anu.result.}*`
+					js = `*$Imsak: {anu.result.imsak}*\n*Subuh: ${anu.result.subuh}*\n*Matahari Terbit: ${anu.result.sunrise}*\n*Dzuhur${anu.result.dzuhur}*\n*Ashar: ${anu.result.ashar}*\n*Matahari Tenggelam: ${anu.result.sunset}*\n*Maghrib: ${anu.result.maghrib}*\n*Isya: ${anu.result.isha}*\n*Tahajud: ${anu.result.midnight}*`
 					client.sendMessage(from, js, text, {quoted: mek})
 					await limitAdd(sender)
 					break
@@ -2546,23 +2546,24 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-				case 'ttp':
-				if (!isRegistered) return reply(ind.noregis())
-			 	if (isLimit(sender)) return reply(ind.limitend(pusname))
-				if (args.length < 1) return reply('yang mau dijadiin text sticker apaan, titit kah?')
-					ranp = getRandom('.png')
-					rano = getRandom('.webp')
-					teks = body.slice(4).trim()
-					anu = await fetchJson(`https://mhankbarbar.tech/api/text2image?text=${teks}&apiKey=${BarBarKey}`, {method: 'get'})
-					if (anu.error) return reply(anu.error)
-					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-					fs.unlinkSync(ranp)
-					if (err) return reply(ind.stikga())
-					client.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
-					fs.unlinkSync(rano)
+				case 'ttp': 
+					pngttp = './tmp/ttp.png'
+					webpng = './tmp/ttp.webp'
+					const ttptext = body.slice(5)
+					fetch(`https://api.areltiyan.site/sticker_maker?text=${ttptext}`, { method: 'GET'})
+					.then(async res => {
+					const ttptxt = await res.json()
+					base64Img.img(ttptxt.base64, 'tmp', 'ttp', function(err, filepath) {
+					if (err) return console.log(err);
+					exec(`ffmpeg -i ${pngttp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${webpng}`, (err) => {
+					buffer = fs.readFileSync(webpng)
+					client.sendMessage(from, buffer, sticker)
+					fs.unlinkSync(webpng)
+					fs.unlinkSync(pngttp)
 					})
-                        		await limitAdd(sender)
-					break
+					})
+					});
+				break
 			
 				case 'ttp3d':
 				if (!isRegistered) return reply(ind.noregis())
@@ -2571,20 +2572,20 @@ client.on('group-participants-update', async (anu) => {
                     			teks = `${body.slice(7)}`
                     			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
                     			buffing = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
-						const media = await client.downloadAndSaveMediaMessage(buffing)
+						const ttp = await client.downloadAndSaveMediaMessage(buffing)
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
 						reply(ind.wait)
 						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
-						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
-							fs.unlinkSync(media)
+						await removeBackgroundFromImageFile({path: ttp, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
+							fs.unlinkSync(ttp)
 							let buffer = Buffer.from(res.base64img, 'base64')
 							fs.writeFileSync(ranp, buffer, (err) => {
 								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
 							})
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
-								if (err) return reply(ind.stickga())
+								if (err) return reply(ind.error())
 								ngebuff = fs.readFileSync(ranw)
 								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
 								await limitAdd(sender)
