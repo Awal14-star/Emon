@@ -738,6 +738,16 @@ client.on('group-participants-update', async (anu) => {
 		    			await limitAdd(sender)	
 		    			break
 					
+					case 'shadowtext':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana kak?')
+					sadow = body.slice(12)
+					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/shadowtext/?text=${sadow}`, {method: 'get'})
+					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: '🗿'})
+					await limitAdd(sender)
+					break
+					
 					case 'cslogo':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
