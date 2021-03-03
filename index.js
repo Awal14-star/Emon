@@ -45,7 +45,7 @@ const speed = require('performance-now')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
-const apivhtear = 'alpinbotwa'
+const apivhtear = ''
 const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
 const BarBarKey = 'Xs8AoHAm0g9lFHCLzsEW'
@@ -587,6 +587,46 @@ client.on('group-participants-update', async (anu) => {
 		}, 0)
 		}
 			
+			function addMetadata(packname, author) {	
+				if (!packname) packname = 'Botol LoL'; if (!author) author = 'Bot';	
+				author = author.replace(/[^a-zA-Z0-9]/g, '');	
+				let name = `${author}_${packname}`
+				if (fs.existsSync(`./src/stickers/${name}.exif`)) return `./src/stickers/${name}.exif`
+				const json = {	
+					"sticker-pack-name": packname,
+					"sticker-pack-publisher": author,
+				}
+				const littleEndian = Buffer.from([0x49, 0x49, 0x2A, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x41, 0x57, 0x07, 0x00])	
+				const bytes = [0x00, 0x00, 0x16, 0x00, 0x00, 0x00]	
+
+				let len = JSON.stringify(json).length	
+				let last	
+
+				if (len > 256) {	
+					len = len - 256	
+					bytes.unshift(0x01)	
+				} else {	
+					bytes.unshift(0x00)	
+				}	
+
+				if (len < 16) {	
+					last = len.toString(16)	
+					last = "0" + len	
+				} else {	
+					last = len.toString(16)	
+				}	
+
+				const buf2 = Buffer.from(last, "hex")	
+				const buf3 = Buffer.from(bytes)	
+				const buf4 = Buffer.from(JSON.stringify(json))	
+
+				const buffer = Buffer.concat([littleEndian, buf2, buf3, buf4])	
+
+				fs.writeFile(`./src/stickers/${name}.exif`, buffer, (err) => {	
+					return `./src/stickers/${name}.exif`	
+				})	
+
+			}
           
            		  //kolor
 			colors = ['red','white','black','blue','yellow','green']
@@ -2375,12 +2415,9 @@ client.on('group-participants-update', async (anu) => {
 					}
 					await limitAdd(sender)
 					break
-				case 'stiker': 
+					
+				case 'stiker':
 				case 'sticker':
-				case 's':
-				    if (!isRegistered) return reply(ind.noregis())
-				    if (isLimit(sender)) return reply(ind.limitend(pusname))
-                    			await limitAdd(sender)
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -2393,7 +2430,7 @@ client.on('group-participants-update', async (anu) => {
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
-								reply(ind.stickga())
+								reply(ind.error.stick)
 							})
 							.on('end', function () {
 								console.log('Finish')
@@ -2403,10 +2440,7 @@ client.on('group-participants-update', async (anu) => {
 									fs.unlinkSync(media)	
 									fs.unlinkSync(ran)	
 								})
-								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)*/
-							})
+						})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
@@ -2429,34 +2463,25 @@ client.on('group-participants-update', async (anu) => {
 							.on('end', function () {
 								console.log('Finish')
 								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ran} -o ${ran}`, async (error) => {
-									if (error) return reply(mess.error.stick)
+									if (error) return reply(ind.error.stick)
 									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)
 									fs.unlinkSync(ran)
 								})
-								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
-								fs.unlinkSync(media)
-								fs.unlinkSync(ran)*/
+								
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
-							} else {
-						reply(`Kirim gambar/video/gif dengan caption \n${prefix}sticker (durasi sticker video 1-9 detik)`)
-					}
-					break
-					
-					case 'nobg':
-                                        if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					await limitAdd(sender)
-                                        const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
 						reply(ind.wait)
-						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
-						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
+						keyrmbg = 'Your-ApiKey'
+						
+						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp}).then(res => {
 							fs.unlinkSync(media)
 							let buffer = Buffer.from(res.base64img, 'base64')
 							fs.writeFileSync(ranp, buffer, (err) => {
@@ -2464,14 +2489,18 @@ client.on('group-participants-update', async (anu) => {
 							})
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
-								if (err) return reply(ind.stickga())
-								ngebuff = fs.readFileSync(ranw)
-								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
-})
-                                          } else {
-                                                 reply('Gunakan foto!')
-                                          }
-                                        break
+								if (err) return reply(mess.error.stick)
+								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ranw} -o ${ranw}`, async (error) => {
+									if (error) return reply(ind.error.stick)
+									client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
+									fs.unlinkSync(ranw)
+								})
+								
+					} else {
+						reply('Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim')
+					}
+					break
+					
 				case 'tts':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
