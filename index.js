@@ -2615,6 +2615,8 @@ client.on('group-participants-update', async (anu) => {
 								if (err) return reply(ind.error())
 								ngebuff = fs.readFileSync(ranw)
 								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
+							})
+						})
 								await limitAdd(sender)
 								break
 			
@@ -2932,8 +2934,8 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					teks = body.slice(6)
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/simsimi?text=${teks}&apikey=${tobzapi}`)
-					simii = ${anu.result}
-					client.sendMessage(from, simii, text, {quoted: mek}
+					simii = `${anu.result}`
+					client.sendMessage(from, simii, text, {quoted: mek})
 					await limitAdd(sender)
 					break
 					
