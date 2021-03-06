@@ -1304,7 +1304,8 @@ client.on('group-participants-update', async (anu) => {
 					}
 					reply(teks.trim())
 					await limitAdd(sender)
-					break*/
+					break
+*/
 					
 					case 'cp':
 					case 'couple':
@@ -2666,7 +2667,9 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-				case 'ttp': 
+					case 'ttp': 
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					pngttp = './tmp/ttp.png'
 					webpng = './tmp/ttp.webp'
 					const ttptext = body.slice(5)
