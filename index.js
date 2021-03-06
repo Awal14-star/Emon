@@ -894,6 +894,52 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender) 
 					break
 					
+					case 'wasted':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					var imgbb = require('imgbb-uploader')
+					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+					ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek 
+					reply(ind.wait)
+					owgi = await  client.downloadAndSaveMediaMessage(ger)
+					anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
+					teks = `${anu.display_url}`
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu1 = `https://some-random-api.ml/canvas/wasted?avatar=${teks}`
+					exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+					fs.unlinkSync(ranp)
+					if (err) return reply(ind.error.stick)
+					nobg = fs.readFileSync(rano)
+					client.sendMessage(from, nobg, sticker, {quoted: mek})
+					fs.unlinkSync(rano)
+					})
+					} else {
+					reply('Gunakan foto!')
+					}
+					await limitAdd(sender) 
+					break
+					
+					case 'ytcomment':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana tod?')
+					if (args.length < 2) return reply(`caranya:\n${prefix}ytcommen MiKako / Mending nonton wibu`)
+					comment : `${body.slice(11)}`
+					us = comment.split("/")[0];
+                    			komen = comment.split("/")[1];
+					pp = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
+					if (pp.error) try {
+						pp = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+					} catch { pp = 'https://mmc.tirto.id/image/otf/880x495/2017/08/30/logo-youtube-new-youtube.comcopy.jpg'
+						}
+					ling = await getBuffer(`https://some-random-api.ml/canvas/youtube-comment?username=${us}&comment=${komen}&avatar=${pp}&dark=true`, {method: 'get'})
+					reply(ind.wait)
+					client.sendMessage(from, ling, image, {quoted: mek}
+					await limitAdd(sender)
+					break
+					
+					
 					case 'hartatahta':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -2695,26 +2741,26 @@ client.on('group-participants-update', async (anu) => {
                     			teks = `${body.slice(7)}`
                     			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
                     			buffing = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
-						const ttp = await client.downloadAndSaveMediaMessage(buffing)
-						ranw = getRandom('.webp')
-						ranp = getRandom('.png')
-						reply(ind.wait)
-						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
-						await removeBackgroundFromImageFile({path: ttp, apiKey: keyrmbg.result, size: 'auto', type: 'auto', ranp}).then(res => {
-							fs.unlinkSync(ttp)
-							let buffer = Buffer.from(res.base64img, 'base64')
-							fs.writeFileSync(ranp, buffer, (err) => {
-								if (err) return reply('Gagal, Terjadi kesalahan, silahkan coba beberapa saat lagi.')
-							})
-							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
-								fs.unlinkSync(ranp)
-								if (err) return reply(ind.error())
-								ngebuff = fs.readFileSync(ranw)
-								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
-								})
-								})
-								await limitAdd(sender)
-								break
+					var imgbb = require('imgbb-uploader')
+                                         if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                                         ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+                                         owgi = await client.downloadAndSaveMediaMessage(buffing)
+                                         anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", owgi)
+                                        teks = `${anu.display_url}`
+                                        ranpp = getRandom('.png')
+                                        ranop = getRandom('.webp')
+                                        anu1 = await fetchJson(`https://videfikri.com/api/imgbb/?urlgbr=${teks}`, {method: 'get'})
+                                         exec(`wget ${anu1.url} -O ${ranpp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranop}`, (err) => {
+                                                fs.unlinkSync(ranp)
+                                                if (err) return reply(ind.error.stick)
+                                                nobg = fs.readFileSync(ranop)
+                                                client.sendMessage(from, nobg, sticker, {quoted: mek})
+                                                fs.unlinkSync(ranop)
+})
+                                          } else {
+                                                 reply('Gunakan foto!')
+                                          }
+                                        break
 			
 				case 'setprefix':
 					if (args.length < 1) return
