@@ -737,17 +737,18 @@ client.on('group-participants-update', async (anu) => {
 		    			client.sendMessage(from, buffer, image, {quoted: mek})
 		    			await limitAdd(sender)	
 		    			break
-					
-					case 'shadowtext':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (args.length < 1) return reply('teksnya mana kak?')
-					sadow = body.slice(12)
-					ngebuff = await getBuffer(`https://videfikri.com/api/textmaker/shadowtext/?text=${sadow}`, {method: 'get'})
-					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: '🗿'})
-					await limitAdd(sender)
-					break
-					
+		    			
+		    			case 'textsky':
+		    			if (!isRegistered) return reply(ind.noregis())
+		    			if (isLimit(sender)) return reply(ind.limitend(pusname))
+		    			sky = body.slice(9)
+		    			res = await fetchJson(`https://onlydevcity.herokuapp.com/api/textpro/onedev3?text=${sky}&theme=textsky&apikey=${devcityapi}`, {method: 'get'})
+		    			reply('Wait Ganz, gw ngedit dumlu')
+		    			sult = await getBuffer(res.result.url)
+		    			client.sendMessage(from, sult, image, {quoted: mek})
+		    			await limitAdd(sender)
+		    			break
+		    			
 					case 'cslogo':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
@@ -778,8 +779,8 @@ client.on('group-participants-update', async (anu) => {
 					cpubg = `${body.slice(7)}`
 					pubg1 = cpubg.split("/")[0];
 					pubg2 = cpubg.split("/")[1];
-					anu = await fetchJson(`https://api.shizukaa.xyz/api/pubg?apikey=${ItsApi}&text=${pubg1}&text2=${pubg2}`, {method: 'get'})
-					pubg = await getBuffer(anu.result)
+					anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker/game?text=${pubg1}&text2=${pubg2}&theme=pubg&apikey=${devcityapi}`, {method: 'get'})
+					pubg = await getBuffer(anu.result.url)
 					client.sendMessage(from, pubg, image, {quoted: mek})
 					await limitAdd(sender) 
 					break
@@ -806,8 +807,8 @@ client.on('group-participants-update', async (anu) => {
                     			hm = `${body.slice(8)}`
                     			text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];                    
-                    			anu = await fetchJson(`https://api.shizukaa.xyz/api/glitch?apikey=${ItsApi}&text=${text1}&text2=${text2}`, {method: 'get'})
-					glitch = await getBuffer(anu.result)
+                    			anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker?text=${text1}&text2=${text2}&theme=glitch&apikey=${devcityapi}`, {method: 'get'})
+					glitch = await getBuffer(anu.result.url)
                     			client.sendMessage(from, glitch, image, {quoted: mek, caption: 'nih gan'})
 			     		await limitAdd(sender) 
 			     		break 
@@ -845,7 +846,7 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-					case 'lovem':
+					case 'lovemsg':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
@@ -1030,8 +1031,8 @@ client.on('group-participants-update', async (anu) => {
                                         if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('masukan kata kunci')
 					tels = body.slice(6)	
-					anu = await fetchJson(`https://videfikri.com/api/wiki/?query=${tels}`, {method: 'get'})
-					iskon = `*{anu.result.judul}*\n\n${anu.result.isi_konten}`
+					anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/wikipedia?search=${tels}&apikey=${devcityapi}`, {method: 'get'})
+					iskon = `*${anu.result.title}*\n\n${anu.result.result}`
 					client.sendMessage(from, iskon, text, {quoted: mek})
                                         await limitAdd(sender)
 					break	
@@ -1041,7 +1042,7 @@ client.on('group-participants-update', async (anu) => {
 			if (!isRegistered) return reply(ind.noregis())	
 			reply(ind.wait)
 		 	jamdunia = `${body.slice(10)}`
-			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/jamdunia?lokasi=${jamdunia}&apikey=${TobzKey}`, {method: 'get'})
+			anu = await fetchJson(`https:// tobz-api.herokuapp.com/api/jamdunia?lokasi=${jamdunia}&apikey=${TobzKey}`, {method: 'get'})
 			wtime = `*${anu.result.tittle}*\n*${anu.result.date}*\n*${anu.result.time}*\n*${anu.result.sun}*`
 			client.sendMessage(from, wtime, text, {quoted: mek})
 			await limitAdd(sender) 
@@ -1053,7 +1054,7 @@ client.on('group-participants-update', async (anu) => {
 					reply(ind.wait)
 		 			jadwal = `${body.slice(14)}`
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/jadwalshalat?q=${jadwal}&apikey=${TobzKey}`, {method: 'get'})
-					js = `*$Imsak: {anu.result.imsak}*\n*Subuh: ${anu.result.subuh}*\n*Matahari Terbit: ${anu.result.sunrise}*\n*Dzuhur${anu.result.dzuhur}*\n*Ashar: ${anu.result.ashar}*\n*Matahari Tenggelam: ${anu.result.sunset}*\n*Maghrib: ${anu.result.maghrib}*\n*Isya: ${anu.result.isha}*\n*Tahajud: ${anu.result.midnight}*`
+					js = `*Imsak: ${anu.result.imsak}*\n*Subuh: ${anu.result.subuh}*\n*Matahari Terbit: ${anu.result.sunrise}*\n*Dzuhur${anu.result.dzuhur}*\n*Ashar: ${anu.result.ashar}*\n*Matahari Tenggelam: ${anu.result.sunset}*\n*Maghrib: ${anu.result.maghrib}*\n*Isya: ${anu.result.isha}*\n*Tahajud: ${anu.result.midnight}*`
 					client.sendMessage(from, js, text, {quoted: mek})
 					await limitAdd(sender)
 					break
@@ -1110,6 +1111,19 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break 
 					
+					case 'pixabay':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					tek = body.slice(9);
+					serc = await fetchJson(`https://onlydevcity.herokuapp.com/api/pixabay?q=${tek}&apikey=${devcityapi}`, {method: 'get'})
+					reply(ind.wait)
+					data = JSON.parse(JSON.stringify(serc.result.hits));
+					rand = data[Math.floor(Math.random() * data.length)];
+					pict = await getBuffer(rand)
+					client.sendMessage(from, pict, image, {quoted: mek, caption: `*PIXABAY*\n\n_*KeyWord :*_ ${serc}`});
+					await limitAdd(sender)
+					break
+					
 	/*<==========================================[ANIME MENU]==============================================>*/
 				case 'husbu':
 				if (!isRegistered) return reply(ind.noregis())
@@ -1134,11 +1148,9 @@ client.on('group-participants-update', async (anu) => {
 				case 'loli':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
-					anu = await fetchJson(`https://api.vhtear.com/pinterest?query=loli&apikey=${apivhtear}`, {method: 'get'})
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/randomloli?apikey=${TobzKey}`, {method: 'get'})
 					reply(ind.wait())
-					var lol = JSON.parse(JSON.stringify(anu.result));
-					var i2 =  lol[Math.floor(Math.random() * lol.length)];
-					nyeee = await getBuffer(i2)
+					nyeee = await getBuffer(anu.result)
 					client.sendMessage(from, nyeee, image, { caption: 'Oni chan baka!! >:(', quoted: mek })
 					await limitAdd(sender)
 					break
@@ -1279,7 +1291,7 @@ client.on('group-participants-update', async (anu) => {
 			     	await limitAdd(sender) 
 			     	break  
 					
-				case 'kusonime':
+				/*case 'kusonime':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
 				if (args.length < 1) return reply('teksnya mana gan?')
@@ -1292,8 +1304,35 @@ client.on('group-participants-update', async (anu) => {
 					}
 					reply(teks.trim())
 					await limitAdd(sender)
+					break*/
+					
+					case 'cp':
+					case 'couple':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limiend(pusname))
+					reply(ind.wait)
+					anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/anime/coupleship?apikey=${devcityapi}`, {method: 'get'})
+					cp = JSON.parse(JSON.stringify(anu.result.data));
+					pp = cp[Math.floor(Math.random() * cp.length)];
+					im = await getBuffer(pp.coupleImages.imageUrlOne)
+					age = await getBuffer(pp.coupleImages.imageUrlTwo)
+					cpt = `*${pp.names}*`
+					client.sendMessage(from, im, image,{quoted: mek})
+					client.sendMessage(from, age, image, {caption: `${cpt}`});
+					await limitAdd(sender)
 					break
 					
+					case 'kusonime':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					anu = body.slice(11)
+					anime = await fetchJson(`https://tobz-api.herokuapp.com/api/kuso?q=${anu}&apikey=${TobzKey}`, {method: 'get'})
+					if (anime.error) return reply(anime.error)
+					res = `Judul: ${anime.title}\nIngfo: ${anime.info}\nLink: ${anime.link_dl}\nSinopsis: ${anime.sinopsis}`
+					buffer = await getBuffer(anime.thumb)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: `${res}`})
+					await limitAdd(sender)
+					break
 				case 'nhentai':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1338,6 +1377,28 @@ client.on('group-participants-update', async (anu) => {
 				})
 				await limitAdd(sender)
 				break
+				
+				case 'attp':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				tek = body.slice(6)
+				anu = await getBuffer(`https://xteam.xyz/attp?file&text=${tek}`)
+				if (anu.error) return reply(anu.error)
+				client.sendMessage(from, anu, sticker, {quoted: mek})
+				await limitAdd(sender)
+				break
+				
+				
+				case 'baka':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				onii = await fetchJson(`https://onlydevcity.herokuapp.com/api/nsfw/baka?apikey=${devcityapi}`, {method: 'get'});
+				if (onii.error) return reply(onii.error)
+				chan = await getBuffer(onii.result.url)
+				client.sendMessage(from, chan, sticker, {quoted: mek})
+				await limitAdd(sender)
+				break
+				    
 			case 'nangis':
 			if (!isRegistered) return reply(ind.noregis())
 			if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1422,6 +1483,26 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, nye, image, { caption: 'miku chan!!', quoted: mek })
 					await limitAdd(sender) 
 					break 
+					
+					case 'megumin':
+					if (!isRegistered) return reply(ind.noregis());
+					if (isLimit(sender)) return reply(ind.limitend(puname))
+					ani = await fetchJson(`https://onlydevcity.herokuapp.com/api/sfw/megumin?apikey=${devcityapi}`, {method: 'get'});
+					reply('*Wait, Ganz*')
+					me = await getBuffer(ani.result.url)
+					client.sendMessage(from, me, image, {quoted: mek, caption: '💣explotion💥'});
+					await limitAdd(sender)
+					break
+					
+					case 'shinobu':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					kny = await fetchJson(`https://onlydevcity.herokuapp.com/api/sfw/shinobu?apikey=${devcityapi}`, {method: 'get'});
+					reply('*Wait, Ganz*')
+					kaenye = await getBuffer(kny.result.url)
+					client.sendMessage(from, kaenye, image, {quoted: mek, caption: 'ara ara, daijoubu desu ka?'});
+					await limitAdd(sender)
+					break
 					
 				case 'naruto':
 				if (!isRegistered)return reply(ind.noregis())
@@ -1874,7 +1955,7 @@ client.on('group-participants-update', async (anu) => {
            	if (isLimit(sender)) return reply(ind.limitend(pusname))
 		kisah = `${body.slice(11)}`
 		nabi = await fetchJson(`https://onlydevcity.herokuapp.com/api/kisahnabi?nabi=${kisah}&apikey=onlyonedeveloper`, {method: 'get'})
-		hasil = `*Nabi: ${nabi.nabi.nabi}\nTahun Lahir: ${nabi.nabi.lahir}\nUmur: ${nabi.nabi.umur}\nTempat: ${nabi.nabi.tempat}*\n\n*Kisah: *${nabi.nabi.kisah}`
+		hasil = `*Nabi: ${nabi.result.nabi.nabi}\nTahun Lahir: ${nabi.result.nabi.lahir}\nUmur: ${nabi.result.nabi.umur}\nTempat: ${nabi.result.nabi.tempat}*\n\n*Kisah: *${nabi.result.nabi.kisah}`
 		client.sendMessage(from, hasil, text)
 		await limitAdd(sender)
 		break
@@ -1998,7 +2079,7 @@ client.on('group-participants-update', async (anu) => {
                     for (let i = 0; i < 10; i++) {
                         nom++
                         leaderboardlvl += `*[${nom}]* wa.me/${_level[i].id.replace('@s.whatsapp.net', '')}\n┗⊱ *XP*: ${_level[i].xp} *Level*: ${_level[i].level}\n`
-                        leaderboarduang += `*[${nom}]* wa.me/${uang[i].id.replace('@s.whatsapp.net', '')}\n┣⊱ *Uang*: _Rp${uang[i].uang}_\n┗⊱ *Limit*: ${limitawal - _limit[i].limit}\n`
+                        leaderboarduang += `*[${nom}]* wa.me/${uang[i].id.replace('@s.whatsapp.net', '')}\n┣⊱ *Uang*: _Rp${uang[i].uang}_\n`
                     }
                     await reply(leaderboardlvl)
                     await reply(leaderboarduang)
@@ -2044,11 +2125,11 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, options, text)
 					await limitAdd(sender)
 					break
-                case 'quotemaker':
+            
 		case 'makequote':
                 if (!isRegistered) return reply(ind.noregis())
                 if (isLimit(sender)) return reply(ind.limitend(pusname))
-                var gh = body.slice(12)
+                var gh = body.slice(11)
 					var quote = gh.split("|")[0];
 					var wm = gh.split("|")[1];
 					const pref = `Usage: \n${prefix}quotemaker teks|watermark\n\nEx :\n${prefix}quotemaker ini contoh|bicit`
@@ -2443,6 +2524,8 @@ client.on('group-participants-update', async (anu) => {
 					
 				case 'stiker':
 				case 'sticker':
+				case 'stick':
+				case 's':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -2455,12 +2538,12 @@ client.on('group-participants-update', async (anu) => {
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
-								reply(mess.error.stick)
+								reply(ind.error.stick)
 							})
 							.on('end', function () {
 								console.log('Finish')
 								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ran} -o ${ran}`, async (error) => {
-									if (error) return reply(mess.error.stick)
+									if (error) return reply(ind.error.stick)
 									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)	
 									fs.unlinkSync(ran)	
@@ -2476,7 +2559,7 @@ client.on('group-participants-update', async (anu) => {
 						const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
-						reply(mess.wait)
+						reply(ind.wait)
 						await ffmpeg(`./${media}`)
 							.inputFormat(media.split('.')[1])
 							.on('start', function (cmd) {
@@ -2491,7 +2574,7 @@ client.on('group-participants-update', async (anu) => {
 							.on('end', function () {
 								console.log('Finish')
 								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ran} -o ${ran}`, async (error) => {
-									if (error) return reply(mess.error.stick)
+									if (error) return reply(ind.error.stick)
 									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)
 									fs.unlinkSync(ran)
@@ -2508,7 +2591,7 @@ client.on('group-participants-update', async (anu) => {
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ranw = getRandom('.webp')
 						ranp = getRandom('.png')
-						reply(mess.wait)
+						reply(ind.wait)
 						keyrmbg = 'kX7ctdkQviRbxw7FRKtk5ZVf'
 						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp}).then(res => {
 							fs.unlinkSync(media)
@@ -2518,9 +2601,9 @@ client.on('group-participants-update', async (anu) => {
 							})
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
-								if (err) return reply(mess.error.stick)
+								if (err) return reply(ind.error.stick)
 								exec(`webpmux -set exif ${addMetadata('BOT', authorname)} ${ranw} -o ${ranw}`, async (error) => {
-									if (error) return reply(mess.error.stick)
+									if (error) return reply(ind.error.stick)
 									client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
 									fs.unlinkSync(ranw)
 								})
@@ -2567,9 +2650,9 @@ client.on('group-participants-update', async (anu) => {
 					: gtts.save(ranm, dtt, function() {
 						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 							fs.unlinkSync(ranm)
-							buff = fs.readFileSync(rano)
+							buffer = fs.readFileSync(rano)
 							if (err) return reply(ind.stikga())
-							client.sendMessage(from, buff, audio, {quoted: mek, ptt:true})
+							client.sendMessage(from, buffer, audio, {quoted: mek, ptt:true})
 							fs.unlinkSync(rano)
 						})
 					})
@@ -2625,8 +2708,8 @@ client.on('group-participants-update', async (anu) => {
 								if (err) return reply(ind.error())
 								ngebuff = fs.readFileSync(ranw)
 								client.sendMessage(from, ngebuff, sticker, {quoted: mek})
-							})
-						})
+								})
+								})
 								await limitAdd(sender)
 								break
 			
@@ -2943,7 +3026,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					teks = body.slice(6)
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/simsimi?text=${teks}&apikey=${tobzapi}`)
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/simsimi?text=${teks}&apikey=${TobzKey}`)
 					simii = `${anu.result}`
 					client.sendMessage(from, simii, text, {quoted: mek})
 					await limitAdd(sender)
@@ -3148,7 +3231,7 @@ client.on('group-participants-update', async (anu) => {
 						reply('Sukses mengaktifkan anti firtex di group ini ✔️')
 						client.sendMessage(from,`Perhatian kepada seluruh member anti firtex aktif apabila anda mengirim firtex anda akan di kick dari group`, text)
 					} else if (Number(args[0]) === 0) {
-						if (!isantifirtex) return reply('Mode anti firtex sudah disable')
+						if (!isAntiFirtex) return reply('Mode anti firtex sudah disable')
 						var ini = anti.indexOf(from)
 						antifirtex.splice(ini, 1)
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antifirtex))
