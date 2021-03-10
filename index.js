@@ -52,7 +52,7 @@ const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
 const BarBarKey = 'Xs8AoHAm0g9lFHCLzsEW'
 const TobzKey = 'BotWeA'
-const devcityapi = 'keitoklein896'
+const devcityapi = 'YOUR_APIKEY'
 const TechApi = 'B8r68c-6gwmq1-af4vtS-if1zgD-jni01B'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
@@ -1652,7 +1652,8 @@ case 'galaxytext':
 					}
 					reply(teks.trim())
 					await limitAdd(sender)
-					break*/
+					break
+*/
 					
 					case 'cp':
 					case 'couple':
