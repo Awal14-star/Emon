@@ -19,6 +19,39 @@
   >Banyak fitur yang masih error
   </details>
   
+  | TEXT MAKER | STATUS |
+  |------------|--------|
+  | Sticker    |  😎👍 |
+  | Silk text | 😎👍 |
+  | glitch | 😎👍 |
+  | coffe | 😎👍 |
+  | coffe 2 | 😎👍 |
+  | Attp | 😎👍 |
+  | Text 3D | 😎👍 |
+  | Text 3D 2 | 😎👍 |
+  | Galaxy Text | 😎👍 |
+  | Text Sky | 😎👍 |
+  | PH Logo | 😎👍 |
+  | YT Comment | 😎👍 |
+  | PUBG | 😎👍 |
+  | Make Quote | 😎👍 |
+  | Harta Tahta | 😎👍 |
+  | Love Msg | 😎👍 |
+  | Smoke | 😎👍 |
+  | Logo EPEP | 😎👍 |
+  | Wolf Logo | 😎👍 |
+  | Logo Gayming | 😎👍 |
+  | Nooles | 😎👍 |
+  | Toimg | 😎👍 |
+  | Trigger | 😎👍 |
+  | Wasted | 😎👍 |
+  | Wanted | 😎👍 |
+  | Night Beach | 😎👍 |
+  | Kalender | 😎👍 |
+  | Ocr | 😎👍 |
+  | TTP | 😢👎 |
+  | Kunci Text | 😢👎 |
+  
   ##THANKS YANG UDAH LIHAT PROJECT INI
  
  <p align="center">
