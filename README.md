@@ -22,7 +22,7 @@
     </div>
   <br>
   
-  
+
   ## Maker Menu
   | TEXT MAKER | STATUS |
   |------------|--------|
@@ -57,6 +57,8 @@
   | TTP | 😢👎 |
   | Kunci Text | 😢👎 |
   
+  
+
   ##THANKS YANG UDAH LIHAT PROJECT INI
  
  <p align="center">
