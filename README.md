@@ -11,6 +11,7 @@
 <p align="center">
 <a href="https://github.com/Keito-Klein"><img title="Author" src="https://img.shields.io/badge/AUTHOR-MiKako-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
+<br>
 <div align="center">
 <details>
   
@@ -18,7 +19,11 @@
   
   >Banyak fitur yang masih error
   </details>
+    </p>
+  <br>
   
+  
+  ## Maker Menu
   | TEXT MAKER | STATUS |
   |------------|--------|
   | Sticker    |  😎👍 |
