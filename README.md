@@ -31,5 +31,5 @@
   
   > WhatsApp    : https://wa.wizard.id/2fd29f
   
-  > grub BOT    : https://chat.whatsapp.com/LhsIkcBFUaRFX3mSkgAF6y
+  > grub BOT    : https://chat.whatsapp.com/GIPITfOpg0t3UXMscjQkJh
   
