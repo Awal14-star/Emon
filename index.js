@@ -989,34 +989,34 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-case 'crossgun':
-if (!isRegistered) return reply(ind.noregis())
-if (isLimit(sender)) return reply(ind.limitend(pusname))
-var imgbb = require('imgbb-uploader')
-if ((isMedia && !mek.message.videomessage || isQuotedImage) && args.length == 0) {
-ngontol = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-reply(ind.wait)
-amat = await client.downloadAndSaveMediaMessage(ngontol)
-ngontolAmat = await imgbb('bfe53fe15a978cf1938d96123f065206', amat)
-ngonsol = `${ngontolAmat.display_url}`
-bet = await getBuffer(`https://videfikri.com/api/textmaker/crossgun/?urlgbr=${ngonsol}`)
-ngonsolBet = '*Nih Gayn*'
-client.sendMessage(from, bet, image, {quoted: mek, caption: `${ngonsolBet}`})
-}
-await limitAdd(sender)
-break
+			case 'crossgun':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			var imgbb = require('imgbb-uploader')
+			if ((isMedia && !mek.message.videomessage || isQuotedImage) && args.length == 0) {
+			ngontol = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+			reply(ind.wait)
+			amat = await client.downloadAndSaveMediaMessage(ngontol)
+			ngontolAmat = await imgbb('bfe53fe15a978cf1938d96123f065206', amat)
+			ngonsol = `${ngontolAmat.display_url}`
+			bet = await getBuffer(`https://videfikri.com/api/textmaker/crossgun/?urlgbr=${ngonsol}`)
+			ngonsolBet = '*Nih Gayn*'
+			client.sendMessage(from, bet, image, {quoted: mek, caption: `${ngonsolBet}`})
+			}
+			await limitAdd(sender)
+			break
 
-case 'smoke':
-if (!isRegistered) return reply(ind.noregis())
-if (isLimit(sender)) return reply(ind.limitend(pusname))
-asep = body.slice(7)
-anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker/pro3?text=${asep}&theme=smoke&apikey=${devcityapi}`)
-reply(ind.wait)
-ngonsol = await getBuffer(anu.result.url)
-client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
-await limitAdd(sender)
-break
-case 'galaxytext':
+			case 'smoke':
+			if (!isRegistered) return reply(ind.noregis())
+			if (isLimit(sender)) return reply(ind.limitend(pusname))
+			asep = body.slice(7)
+			anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker/pro3?text=${asep}&theme=smoke&apikey=${devcityapi}`)
+			reply(ind.wait)
+			ngonsol = await getBuffer(anu.result.url)
+			client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
+			await limitAdd(sender)
+			break
+			case 'galaxytext':
 		    case 'galaxylogo':
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1773,6 +1773,15 @@ case 'galaxytext':
 				await limitAdd(sender)
 				break
 				
+				case 'lewd':
+				if (!isRegistered) return reply(ind.noregis())
+				if (isLimit(sender)) return reply(ind.limitend(pusname))
+				reply('Wait Ganz')
+				anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/nsfw/lewd?apikey=${devcityapi}`, {method: 'get'})
+				bufered = await getBuffer(anu.result.url)
+				client.sendMessage(from, bufered, image, {quoted: mek})
+				await limitAdd(sender)
+				break
 				
 				case 'baka':
 				if (!isRegistered) return reply(ind.noregis())
