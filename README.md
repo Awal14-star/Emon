@@ -12,7 +12,7 @@
 <a href="https://github.com/Keito-Klein"><img title="Author" src="https://img.shields.io/badge/AUTHOR-MiKako-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
 <br>
-<div align="center">
+<p align="center">
 <details>
   
   >Bot ini sedang dalam masa pengembangan 
