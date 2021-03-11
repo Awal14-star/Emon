@@ -52,7 +52,7 @@ const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
 const BarBarKey = 'Xs8AoHAm0g9lFHCLzsEW'
 const TobzKey = 'BotWeA'
-const devcityapi = 'YOUR_APIKEY'
+const devcityapi = 'keitoklein896'
 const TechApi = 'B8r68c-6gwmq1-af4vtS-if1zgD-jni01B'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
@@ -914,9 +914,17 @@ client.on('group-participants-update', async (anu) => {
 					hm = `${body.slice(12)}`
 					text1 = hm.split("/")[0];
                     			text2 = hm.split("/")[1];  
-					anu = await fetchJson(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=${isMedia}`, {method: 'get'})
+                    			var imgbb = require('imgbb-uploader')
+                    			if ((isMedia && !mek.message.videoMessage || isQuotedImage)) {
+                    			ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+                    			reply('*Wait Ganz*, ngedit dumlu')
+                    			owgi = await client.downloadAndSaveMediaMessage(ger)
+                    			anu = await imgbb("bfe53fe15a978cf1938d96123f065206", owgi)
+                    			teks = `${anu.display_url}`
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=${teks}`, {method: 'get'})
 					ngebuff = await getBuffer(anu.result)
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'njir, cringe bet dh :v'})
+					}
 					await limitAdd(sender)
 					break
 					
@@ -989,34 +997,34 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
-			case 'crossgun':
-			if (!isRegistered) return reply(ind.noregis())
-			if (isLimit(sender)) return reply(ind.limitend(pusname))
-			var imgbb = require('imgbb-uploader')
-			if ((isMedia && !mek.message.videomessage || isQuotedImage) && args.length == 0) {
-			ngontol = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-			reply(ind.wait)
-			amat = await client.downloadAndSaveMediaMessage(ngontol)
-			ngontolAmat = await imgbb('bfe53fe15a978cf1938d96123f065206', amat)
-			ngonsol = `${ngontolAmat.display_url}`
-			bet = await getBuffer(`https://videfikri.com/api/textmaker/crossgun/?urlgbr=${ngonsol}`)
-			ngonsolBet = '*Nih Gayn*'
-			client.sendMessage(from, bet, image, {quoted: mek, caption: `${ngonsolBet}`})
-			}
-			await limitAdd(sender)
-			break
+case 'crossgun':
+if (!isRegistered) return reply(ind.noregis())
+if (isLimit(sender)) return reply(ind.limitend(pusname))
+var imgbb = require('imgbb-uploader')
+if ((isMedia && !mek.message.videomessage || isQuotedImage) && args.length == 0) {
+ngontol = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+reply(ind.wait)
+amat = await client.downloadAndSaveMediaMessage(ngontol)
+ngontolAmat = await imgbb('bfe53fe15a978cf1938d96123f065206', amat)
+ngonsol = `${ngontolAmat.display_url}`
+bet = await getBuffer(`https://videfikri.com/api/textmaker/crossgun/?urlgbr=${ngonsol}`)
+ngonsolBet = '*Nih Gayn*'
+client.sendMessage(from, bet, image, {quoted: mek, caption: `${ngonsolBet}`})
+}
+await limitAdd(sender)
+break
 
-			case 'smoke':
-			if (!isRegistered) return reply(ind.noregis())
-			if (isLimit(sender)) return reply(ind.limitend(pusname))
-			asep = body.slice(7)
-			anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker/pro3?text=${asep}&theme=smoke&apikey=${devcityapi}`)
-			reply(ind.wait)
-			ngonsol = await getBuffer(anu.result.url)
-			client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
-			await limitAdd(sender)
-			break
-			case 'galaxytext':
+case 'smoke':
+if (!isRegistered) return reply(ind.noregis())
+if (isLimit(sender)) return reply(ind.limitend(pusname))
+asep = body.slice(7)
+anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/textmaker/pro3?text=${asep}&theme=smoke&apikey=${devcityapi}`)
+reply(ind.wait)
+ngonsol = await getBuffer(anu.result.url)
+client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
+await limitAdd(sender)
+break
+case 'galaxytext':
 		    case 'galaxylogo':
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1652,8 +1660,7 @@ client.on('group-participants-update', async (anu) => {
 					}
 					reply(teks.trim())
 					await limitAdd(sender)
-					break
-*/
+					break*/
 					
 					case 'cp':
 					case 'couple':
@@ -1773,15 +1780,6 @@ client.on('group-participants-update', async (anu) => {
 				await limitAdd(sender)
 				break
 				
-				case 'lewd':
-				if (!isRegistered) return reply(ind.noregis())
-				if (isLimit(sender)) return reply(ind.limitend(pusname))
-				reply('Wait Ganz')
-				anu = await fetchJson(`https://onlydevcity.herokuapp.com/api/nsfw/lewd?apikey=${devcityapi}`, {method: 'get'})
-				bufered = await getBuffer(anu.result.url)
-				client.sendMessage(from, bufered, image, {quoted: mek})
-				await limitAdd(sender)
-				break
 				
 				case 'baka':
 				if (!isRegistered) return reply(ind.noregis())
@@ -2570,8 +2568,8 @@ client.on('group-participants-update', async (anu) => {
 					teks = body.slice(7)
 					reply(ind.wait())
 					anu = await fetchJson(`https://mnazria.herokuapp.com/api/screenshotweb?url=${teks}`)
-					buff = await getBuffer(anu.gambar)
-					client.sendMessage(from, buff, image, {quoted: mek})
+					buffer = await getBuffer(anu.gambar)
+					client.sendMessage(from, buffer, image, {quoted: mek})
 					await limitAdd(sender)
 					break
 /*<==========================================[NSFW MENU]==============================================>*/
@@ -3040,22 +3038,6 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 					
-					case 'stickerhide':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-				    	ranp = getRandom('.gif')
-					rano = getRandom('.webp')
-					anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/screed?text=${args[0]}`,{method: 'get'})
-					exec(`wget ${anu} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-						fs.unlinkSync(ranp)
-						if (err) return reply(ind.stikga())
-						buffer = fs.readFileSync(rano)
-						client.sendMessage(from, buffer, sticker, {quoted: mek})
-						fs.unlinkSync(rano)
-					})
-					await limitAdd(sender)
-					break
-					
 				case 'tts':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -3107,11 +3089,10 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, sticker)
 					fs.unlinkSync(webpng)
 					fs.unlinkSync(pngttp)
-							})
-						})
+					})
+					})
 					});
-					await limitAdd(sender)
-					break
+				break
 			
 				case 'ttp3d':
 				if (!isRegistered) return reply(ind.noregis())
@@ -3121,7 +3102,7 @@ client.on('group-participants-update', async (anu) => {
                     			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
                     			buffing = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
 					var imgbb = require('imgbb-uploader')
-                                         anu = await imgbb("bfe53fe15a978cf1938d96123f065206", buffing)
+                                         anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", buffing)
                                         teks = `${anu.display_url}`
                                         ranpp = getRandom('.png')
                                         ranop = getRandom('.webp')
@@ -3550,7 +3531,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(ind.admin())
 					if (args.length < 1) return reply('Boo :𝘃')
 					if (Number(args[0]) === 1) {
-						if (isAntilink) return reply('*SUDAH AKTIF* !!!')
+						if (isAntiLink) return reply('*SUDAH AKTIF* !!!')
 						antilink.push(from)
 						fs.writeFileSync('./database/group/antilink.json', JSON.stringify(antilink))
 						reply('*❬ SUCCESS ❭ ACTIVATED ANTILINK*')
