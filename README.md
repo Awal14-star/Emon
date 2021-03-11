@@ -106,5 +106,5 @@
   
   > WhatsApp    : https://wa.wizard.id/2fd29f
   
-  > grub BOT    : https://chat.whatsapp.com/GIPITfOpg0t3UXMscjQkJh
+  > grub BOT    : https://chat.whatsapp.com/ExWkM4bWmer9WTHlTmYKD8
   
