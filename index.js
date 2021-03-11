@@ -3040,6 +3040,22 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 					
+					case 'stickerhide':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+				    	ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/screed?text=${args[0]}`,{method: 'get'})
+					exec(`wget ${anu} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply(ind.stikga())
+						buffer = fs.readFileSync(rano)
+						client.sendMessage(from, buffer, sticker, {quoted: mek})
+						fs.unlinkSync(rano)
+					})
+					await limitAdd(sender)
+					break
+					
 				case 'tts':
 				if (!isRegistered) return reply(ind.noregis())
 				if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -3091,10 +3107,11 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, sticker)
 					fs.unlinkSync(webpng)
 					fs.unlinkSync(pngttp)
-					})
-					})
+							})
+						})
 					});
-				break
+					await limitAdd(sender)
+					break
 			
 				case 'ttp3d':
 				if (!isRegistered) return reply(ind.noregis())
@@ -3104,7 +3121,7 @@ client.on('group-participants-update', async (anu) => {
                     			if (teks.length > 10) return client.sendMessage(from, 'Teksnya kepanjangan Bambank', text, {quoted: mek})
                     			buffing = await getBuffer(`https://api.zeks.xyz/api/text3dbox?apikey=${zeksapi}&text=${teks}`, {method: 'get'})
 					var imgbb = require('imgbb-uploader')
-                                         anu = await imgbb("718078e929dfa75e7612e23d70d8dad7", buffing)
+                                         anu = await imgbb("bfe53fe15a978cf1938d96123f065206", buffing)
                                         teks = `${anu.display_url}`
                                         ranpp = getRandom('.png')
                                         ranop = getRandom('.webp')
