@@ -57,6 +57,41 @@
   | TTP | 😢👎 |
   | Kunci Text | 😢👎 |
   
+  ## FUN MENU
+  | TEXT MAKER | STATUS |
+  |------------|--------|
+  | Mutual    |  😎👍 |
+  | Next | 😎👍 |
+  | Mining | 😎👍 |
+  | Bisakah | 😎👍 |
+  | Apakah | 😎👍 |
+  | Kapankah | 😎👍 |
+  | Seberapagay | 😎👍 |
+  | Rate | 😎👍 |
+  | Hobby | 😎👍 |
+  | Watak | 😎👍 |
+  | Fitnah | 😎👍 |
+  | Terbalik | 😎👍 |
+  | Say | 😎👍 |
+  | Fakta Unik | 😎👍 |
+  | Truth | 😎👍 |
+  | Dare | 😎👍 |
+  | Babi | 😎👍 |
+  | Cek Ganteng | 😎👍 |
+  | Cek Cantik | 😎👍 |
+  | Ntahlah | 😎👍 |
+  | Slap | 😎👍 |
+  | Kata Ilham | 😎👍 |
+  | Caklontong | 😎👍 |
+  | Family100 | 😢👎 |
+  | Tebak Gambar | 😎👍 |
+  | Mod Droid | 😎👍 |
+  | Happy Mod | 😎👍 |
+  | KBBI | 😎👍 |
+  | Arti Nama | 😎👍 |
+  | Meme Indo | 😎👍 |
+  | Speed | 😎👍 |
+  | Tampar | 😢👎 |
   
 
   ##THANKS YANG UDAH LIHAT PROJECT INI
