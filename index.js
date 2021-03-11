@@ -33,6 +33,7 @@ const { bahasa } = require('./lib/listbahasa')
 const { biografi } = require ('./lib/biografi')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
+const { imenu } = require('./src/imenu.png')
 const { exec } = require("child_process")
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const tiktod = require('tiktok-scraper')
@@ -1660,7 +1661,8 @@ case 'galaxytext':
 					}
 					reply(teks.trim())
 					await limitAdd(sender)
-					break*/
+					break
+*/
 					
 					case 'cp':
 					case 'couple':
@@ -2440,14 +2442,242 @@ case 'galaxytext':
                 const latensi = speed() - timestamp 
                 client.sendMessage(from, `Speed: ${latensi.toFixed(4)} _Second_`, text, { quoted: mek})
                 break
-               			case 'help': 
-				case 'menu':
-				case 'openmenu':
-				if (!isRegistered) return reply(ind.noregis())
-				    const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
-				    const uangku = checkATMuser(sender)
-					await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku), text, tescuk, cr)
-					break
+case 'help': 
+case 'menu':
+case 'openmenu':
+if (!isRegistered) return reply(ind.noregis())
+const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
+const uangku = checkATMuser(sender)
+try {
+	buffer = fs.readFileSync(imenu)
+} catch {
+	buffer = await getBuffer(`https://imgur.com/a/M9oiU76`)
+}
+dftr `
+╭══─⊱ ❰ *ABOUT USER* ❱ ⊰─══
+╠☞ *Nama* : ${pushname}
+╠☞ *Nomer* : wa.me/${sender.split("@")[0]}
+╠☞ *Uang mu* : Rp${uangku}
+╠☞ *XP* : ${getLevelingXp(sender)}/${reqXp}
+╠☞ *Level* : ${getLevelingLevel(sender)}
+╠☞ *User register* : ${_registered.length}
+╰════─⊱  ⸨ *Taufik - Kun* ⸩  ⊰─════╯
+
+           Rules - Simple
+▬▭▬▭▬▭▬▭▬▭▬▭▬
+●⧐ *Spam : Auto Block!*
+●⧐ *telpon/chat bot block*
+●⧐ *Beri Jeda 5detik Saat Menggunakannya!!*
+●⧐ *Bug/Error Harap Cht Owner!*
+●⧐ *Harap Sabar Dengan Bug²nya!*
+●⧐ *Gunakan Bot Sebaik-baiknya!*
+▬▭▬▭▬▭▬▭▬▭▬▭▬
+⚠️ *_Donasi lah_* ⚠️
+*${prefix}donasi*
+*${prefix}owner*
+*${prefix}ingfo*
+*${prefix}bot*
+*${prefix}profile*
+*${prefix}bahasa*
+
+*-=[Bot Bukan Untuk Orang Baperan]=-*
+╭══─⊱ ❰ *MAKER MENU* ❱ ⊰─══➤
+╠☞ *${prefix}sticker* (jika video max. 9det)
+╠☞ *${prefix}stickerhide* 
+╠☞ *${prefix}silktext* [text]
+╠☞ *${prefix}glitch* [text/text]
+╠☞ *${prefix}coffe* [text]
+╠☞ *${prefix}coffe2* [text]
+╠☞ *${prefix}attp* [text]
+╠☞ *${prefix}ttp3d* [text]
+╠☞ *${prefix}ttp3d2* [text]
+╠☞ *${prefix}galaxytext* [text]
+╠☞ *${prefix}textsky* [text]
+╠☞ *${prefix}phlogo* [text / text]
+╠☞ *${prefix}ytcomment* [text / text]
+╠☞ *${prefix}pubg* [text / text]
+╠☞ *${prefix}makequote* [text | watermark]
+╠☞ *${prefix}hartatahta* [text]
+╠☞ *${prefix}*lovemsg* [text]
+╠☞ *${prefix}smoke* [text]
+╠☞ *${prefix}logoepep* [text]
+╠☞ *${prefix}wolflogo* [text / text]
+╠☞ *${prefix}logogaming* [text]
+╠☞ *${prefix}nulis* [nama / kelas / text]
+╠☞ *${prefix}toimg*
+╠☞ *${prefix}trigger*
+╠☞ *${prefix}wasted*
+╠☞ *${prefix}wanted* [nama / text]
+╠☞ *${prefix}nightbeach*
+╠☞ *${prefix}kalender*
+╠☞ *${prefix}ocr*
+╠☞ ~${prefix}ttp~
+╠☞ ~${prefix}kuncitext~
+║
+╠══─⊱ ❰ *FUN MENU* ❱ ⊰─════➤
+╠☞ *${prefix}mutual*
+╠☞ *${prefix}next*
+╠☞ *${prefix}mining* 
+╠☞ *${prefix}bisakah* [question]
+╠☞ *${prefix}kapankah* [question]
+╠☞ *${prefix}apakah* [question]
+╠☞ *${prefix}seberapagay* [nama]
+╠☞ *${prefix}rate* [question]
+╠☞ *${prefix}truth*
+╠☞ *${prefix}dare*
+╠☞ *${prefix}tebalik* [text]
+╠☞ *${prefix}say* [text]
+╠☞ *${prefix}hobby* [nama]
+╠☞ *${prefix}watak* [nama]
+╠☞ *${prefix}fitnah* [tag & text & balasan}
+╠☞ *${prefix}ntahlah*
+╠☞ *${prefix}slap*
+╠☞ *${prefix}babi*
+╠☞ *${prefix}cekganteng*
+╠☞ *${prefix}cekcantik*
+╠☞ *${prefix}katailham*
+╠☞ *${prefix}caklontong*
+╠☞ *${prefix}family100*
+╠☞ *${prefix}tebakin*
+╠☞ *${prefix}faktaunik*
+╠☞ *${prefix}kbbi* [text]
+╠☞ *${prefix}artinama* [nama]
+╠☞ *${prefix}memeindo*
+╠☞ *${prefix}moddroid* [judul]
+╠☞ *${prefix}happymof* [judul]
+╠☞ *${prefix}ping*
+╠☞ *~${prefix}tampar~ (Error)*
+║
+╠══─⊱ ❰ *MEDIA MENU* ❱ ⊰─═══➤
+╠☞ *${prefix}beritahoax*
+╠☞ *${prefix}brainly* [question]
+╠☞ *${prefix}wiki* [question]
+╠☞ *${prefix}jadwalsholat* [tempat]
+╠☞ *${prefix}kisahnabi* [nama]
+╠☞ *${prefix}quran*
+╠☞ *${prefix}pantun*
+╠☞ *${prefix}pinterest* [judul]
+╠☞ *${prefix}wpmuntainview*
+╠☞ *${prefix}tts*
+║    contoh : #tts id MiKako yang tampan
+╠☞ *${prefix}play* [judul]
+╠☞ *${prefix}lirik* [judul]
+╠☞ *${prefix}chord* [judul]
+╠☞ *${prefix}tomp3*
+╠☞ *${prefix}ytmp3* [link]
+╠☞ *${prefix}yutubdl* [link]
+╠☞ *${prefix}ssweb* [link]
+╠☞ *${prefix}qrcode* [link]
+╠☞ *${prefix}map* [tempat]
+╠☞ *${prefix}stalkig* [username]
+╠☞ *${prefix}qrcode* [link]
+╠☞ *${prefix}randomkpop*
+╠☞ *${prefix}wait*
+╠☞ *${prefix}img2url*
+║    
+╠══─⊱ ❰ *DUNIA WIBU* ❱ ⊰─═══➤
+╠☞ *${prefix}wibu*
+╠☞ *${prefix}husbu*
+╠☞ *${prefix}waifu*
+╠☞ *${prefix}couple*
+╠☞ *${prefix}loli*
+╠☞ ~${prefix}loli2~
+╠☞ *${prefix}shota*
+╠☞ *${prefix}neko*
+╠☞ ~${prefix}nekopoi~
+╠☞ *${prefix}nekonime*
+╠☞ *${prefix}ranime*
+╠☞ *${prefix}anime*
+╠☞ *${prefix}randomhentong*
+╠☞ *${prefix}baka*
+╠☞ *${prefix}nangis
+╠☞ *${prefix}blowjob*
+╠☞ *${prefix}nsfwloli*
+╠☞ *${prefix}nsfwneko*
+╠☞ *${prefix}hentai*
+╠☞ *${prefix}yuri*
+╠☞ *${prefix}animekiss*
+╠☞ *${prefix}kusonime* [judul]
+║    
+║───────⟪  CHARACTER ANIME ⟫───────
+║  
+╠☞ *${prefix}naruto*
+╠☞ *${prefix}boruto*
+╠☞ *${prefix}sasuke*
+╠☞ *${prefix}hinata*
+╠☞ *${prefix}sakura*
+╠☞ *${prefix}minato*
+╠☞ *${prefix}kurumi*
+╠☞ *${prefix}miku*
+╠☞ *${prefix}megumin*
+╠☞ *${prefix}shinobu*
+║ 
+╠══─⊱ ❰ *LIMIT MENU* ❱ ⊰─═══➤
+╠☞ *${prefix}limit*
+╠☞ *${prefix}buylimit* [jumlah]
+╠☞ *${prefix}dompet*
+╠☞ *${prefix}transfer* [nomor | jumlah]
+║
+╠══─⊱ ❰ *NSFW MENU* ❱ ⊰─═══➤
+╠☞ *${prefix}pokemon*
+╠☞ *${prefix}anjing*
+║
+╠══─⊱ ❰ *GROUP MENU* ❱ ⊰─══➤
+╠☞ *${prefix}hidetag*
+╠☞ *${prefix}grouplist*
+╠☞ *${prefix}level*
+╠☞ *${prefix}leaderboard*
+╠☞ *${prefix}linkgc*
+╠☞ *${prefix}tagall*
+╠☞ *${prefix}delete*
+╠☞ *${prefix}setpp*
+╠☞ *${prefix}add* [nomor]
+╠☞ *${prefix}kick* [tag]
+╠☞ *${prefix}setname* [nama]
+╠☞ *${prefix}setdesc* [text]
+╠☞ *${prefix}demote* [tag]
+╠☞ *${prefix}promote* [tag]
+╠☞ *${prefix}listadmin*
+╠☞ *${prefix}lstbadword*
+╠☞ *${prefix}addbadword* [text]
+╠☞ *${prefix}delbadword* [text]
+╠☞ *${prefix}antibadword* [on/off]
+╠☞ *${prefix}antilink* [1/0]
+╠☞ *${prefix}group* [buka/tutup]
+╠☞ *${prefix}leveling* [enable/disable]
+╠☞ *${prefix}nsfw* [1/0]
+╠☞ *${prefix}welcome* [1/0]
+║
+╠══─⊱ ❰ *OWNER MENU* ❱ ⊰─══➤
+╠☞ *${prefix}bc* [text]
+╠☞ *${prefix}bcgc* [text]
+╠☞ *${prefix}kickall* Mau Ngapain Tod? >:
+╠☞ *${prefix}setreply*
+╠☞ *${prefix}setprefix* [symbol]
+╠☞ *${prefix}clearall*
+╠☞ *${prefix}resetlimit*
+╠☞ *${prefix}block* [nomor]
+╠☞ *${prefix}unblock* [nomor]
+╠☞ *${prefix}listblock*
+╠☞ *${prefix}totaluser*
+╠☞ *${prefix}leave*
+╠☞ *${prefix}event* [1/0]
+╠☞ *${prefix}clone* [tag]
+╠☞ *${prefix}setppbot*
+║
+╠══─⊱ ❰ *THANGKS TO* ❱ ⊰─══➤
+║
+╠☞ *Botol - LoL*
+╠☞ *Reyna*
+╠☞ *Damar*
+╠☞ *Yuno*
+╠☞ *★Taufik - Kun★*
+╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
+`
+client.sendMessage(from, buffer, image, {caption: dftr})
+//await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku), text, tescuk, cr)
+break
+					
 				case 'donasi':
 				case 'donate':
 				if (!isRegistered) return reply(ind.noregis())
@@ -3057,6 +3287,22 @@ case 'galaxytext':
 							client.sendMessage(from, buffer, audio, {quoted: mek, ptt:true})
 							fs.unlinkSync(rano)
 						})
+					})
+					await limitAdd(sender)
+					break
+					
+					case 'stickerhide':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+				    	ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/screed?text=${args[0]}`,{method: 'get'})
+					exec(`wget ${anu} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply(ind.stikga())
+						buffer = fs.readFileSync(rano)
+						client.sendMessage(from, buffer, sticker, {quoted: mek})
+						fs.unlinkSync(rano)
 					})
 					await limitAdd(sender)
 					break
