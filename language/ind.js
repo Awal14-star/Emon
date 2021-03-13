@@ -2,6 +2,10 @@ exports.wait = () => {
 	return`*「 WAIT 」 SEDANG PROSES*`
 }
 
+exports.ban = () => {
+	return`*「 YA MAAP AJA BRO 」*\n\n Tapi Nih ya. Lu udah di banned dari database BOT\n\n Yahaha Wahyu\nPalpale pal pale`
+}
+
 exports.succes = () => {
 	return`*「 SUCCES 」*`
 }
