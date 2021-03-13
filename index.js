@@ -2462,8 +2462,8 @@ const uangku = checkATMuser(sender)
 runtime = process.uptime()
 teks = `${kyun(runtime)}`
 //result = fs.readFileSync('sticker/iky.ekif')
-var itsme = `${numbernye}@s.whatsapp.net`
-var split = `${fake}`
+var itsme = `${numer}@s.whatsapp.net`
+var split = `${cr}`
 // var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 const bruhhhh = {
 	contextInfo: {
