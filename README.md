@@ -58,7 +58,7 @@
   | Kunci Text | 😢👎 |
   
   ## FUN MENU
-  | TEXT MAKER | STATUS |
+  | FUN MENU | STATUS |
   |------------|--------|
   | Mutual    |  😎👍 |
   | Next | 😎👍 |
@@ -93,7 +93,78 @@
   | Speed | 😎👍 |
   | Tampar | 😢👎 |
   
-
+  ## MEDIA MENU
+  | MEDIA MENU | STATUS |
+  |------------|--------|
+  | Berita Hoax |  😎👍 |
+  | brainly | 😎👍 |
+  | wiki | 😎👍 |
+  | jadwalsholat | 😎👍 |
+  | kisahnabi | 😎👍 |
+  | quran | 😎👍 |
+  | pantun | 😎👍 |
+  | pinterest | 😎👍 |
+  | wpmuntainview | 😎👍 |
+  | tts | 😎👍 |
+  | play | 😎👍 |
+  | lirik | 😎👍 |
+  | chord | 😎👍 |
+  | tomp3 | 😎👍 |
+  | ytmp3 | 😢👎 |
+  | yutubdl | 😢👎 |
+  | qrcode | 😎👍 |
+  | map | 😎👍 |
+  | stalkig | 😎👍 |
+  | randomkpop | 😎👍 |
+  | wait | 😎👍 |
+  | img2url | 😎👍 |
+  
+  ## DUNIA WIBU
+  | DUNIA WIBU | STATUS |
+  |------------|--------|
+  | wibu |  😎👍 |
+  | husbu | 😎👍 |
+  | waifu | 😎👍 |
+  | couple | 😎👍 |
+  | loli | 😎👍 |
+  | shota | 😎👍 |
+  | neko | 😎👍 |
+  | nekonime | 😎👍 |
+  | ranime | 😎👍 |
+  | anime | 😎👍 |
+  | randomhentong | 😎👍 |
+  | baka | 😎👍 |
+  | nangis | 😎👍 |
+  | blowjob | 😎👍 |
+  | nsfwloli | 😎👍 |
+  | hentai | 😎👍 |
+  | yuri | 😎👍 |
+  | animekiss | 😎👍 |
+  | kusonime | 😎👍 |
+  
+  ## CHARACHTER ANIME
+  | CHARACTER | STATUS |
+  |------------|--------|
+  | naruto |  😎👍 |
+  | boruto | 😎👍 |
+  | sasuke | 😎👍 |
+  | hinata | 😎👍 |
+  | sakura | 😎👍 |
+  | minato | 😎👍 |
+  | kurumi | 😎👍 |
+  | miku | 😎👍 |
+  | megumin | 😎👍 |
+  
+  ## LIMIT MENU
+  | LIMIT | STATUS |
+  |------------|--------|
+  | limit |  😎👍 |
+  | buylimit | 😎👍 |
+  | dompet | 😎👍 |
+  | transfer | 😎👍 |
+  | Profile | 😎👍 |
+  
+  
   ##THANKS YANG UDAH LIHAT PROJECT INI
  
  <p align="center">
