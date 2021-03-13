@@ -64,7 +64,10 @@ const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
 prefix = '#'
 blocked = []   
 limitawal = '100' //terserah ganti/gk
-cr = '*Jangan digunakan Via PC co*'
+cr = '*Dhlah Males✅*'
+numer = '0'
+ghoibsu = 'tes'
+myteks = 'okeh nyala'
 
 /******** OWNER NUMBER**********/
 const ownerNumber = ["6289675651966@s.whatsapp.net","6285807479634@s.whatsapp.net"]  //ganti menjadi nomormu
@@ -85,6 +88,7 @@ const uang = JSON.parse(fs.readFileSync('./database/user/uang.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
 const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
+const ban = Json.parse(fs.readFileSync('./database/user/banned.json'))
 const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
 /*********** END LOAD ***********/
 
@@ -406,6 +410,7 @@ client.on('group-participants-update', async (anu) => {
             const isEventon = isGroup ? event.includes(from) : false
             const isRegistered = checkRegisteredUser(sender)
 	    const isNoMedia = nomedia.includes(from) || false
+	    const isBanned = ban.includes(sender)
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
             const isLevelingOn = isGroup ? _leveling.includes(from) : false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
@@ -869,7 +874,7 @@ client.on('group-participants-update', async (anu) => {
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana tod?')
 					if (args.length < 2) return reply('harus 2 kata kaak')
-					nar = `${body.slice(14)}`
+					nar = body.slice(14)
 					anu = await fetchJson(`https://api.zeks.xyz/api/naruto?text=${nar}&apikey=${zeksapi}`, {method: 'get'})
 					reply('Wait Ganz, lagi ngedit')
 					ngebuff = await getBuffer(anu.result)
@@ -2448,12 +2453,30 @@ case 'openmenu':
 if (!isRegistered) return reply(ind.noregis())
 const reqXp  = 5000 * (Math.pow(2, getLevelingLevel(sender)) - 1)
 const uangku = checkATMuser(sender)
-try {
+/*try {
 	buffer = fs.readFileSync(imenu)
 } catch {
 	buffer = await getBuffer(`https://imgur.com/a/M9oiU76`)
-}
-dftr `
+}*/
+
+runtime = process.uptime()
+teks = `${kyun(runtime)}`
+//result = fs.readFileSync('sticker/iky.ekif')
+var itsme = `${numbernye}@s.whatsapp.net`
+var split = `${fake}`
+// var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+const bruhhhh = {
+	contextInfo: {
+		participant: itsme,
+			quotedMessage: {
+				extendedTextMessage: {
+					text: split,
+						}
+					}
+				}
+			}
+
+dftr = `
 ╭══─⊱ ❰ *ABOUT USER* ❱ ⊰─══
 ╠☞ *Nama* : ${pushname}
 ╠☞ *Nomer* : wa.me/${sender.split("@")[0]}
@@ -2674,9 +2697,11 @@ dftr `
 ╠☞ *★Taufik - Kun★*
 ╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
 `
-client.sendMessage(from, buffer, image, {caption: dftr})
-//await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku), text, tescuk, cr)
+client.sendMessage(from, `${dftr}`, text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "_「 の ＭｅＩｋｙ あ」_", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('storage/image/takagi.png')}}}})
 break
+//client.sendMessage(from, buffer, image, {caption: dftr})
+//await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku), text, tescuk, cr)
+//break
 					
 				case 'donasi':
 				case 'donate':
