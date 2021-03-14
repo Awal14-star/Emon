@@ -255,6 +255,19 @@ return ikan[position].id
         ikan.push(ovj)
         fs.writeFileSync('./database/user/ikan.json', JSON.stringify(ikan))
         }
+    
+    const jualIkan = (sender, amount) => {
+        	let position = false
+            Object.keys(ikan).forEach((i) => {
+                if (ikan[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                ikan[position].fish -= amount
+                fs.writeFileSync('./database/user/uang.json', JSON.stringify(uang))
+            }
+        }
     		//END OF MANCING FUNCTION
         
         const addLevelingLevel = (sender, amount) => {
@@ -939,7 +952,21 @@ client.on('group-participants-update', async (anu) => {
 					await reply(`*「 PEMBAYARAN BERHASIL 」*\n\n*pengirim* : Admin\n*penerima* : ${pushname}\n*nominal pembelian* : ${payout} \n *harga limit* : ${koinPerlimit}/limit\n *sisa uang mu* : ${checkATMuser(sender)}\n\nproses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
 				} 
 				break
-					
+				
+				case 'jualikan':
+					if (!isRegistered) return reply(ind.noregis())
+					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
+					bayar = body.slice(10)
+					const hargaIkan = 250
+					const hasil = hargaIkan * bayar
+					if ( getMancingIkan = null) return reply(`maaf ${pusname} kamu tidak punya ikan`)
+					if ( getMancingIkan > null) {
+						jualIkan(sender, bayar)
+						addKoinUser(sender, hasil)
+					await reply(`*「 PUNJUALAN BERHASIL 」*\n\n*Jumlah ikan dijual:* ${bayar}\n*Uang didapat:* ${hasil}\n\n*Sisa ikan:* ${getMancingIkan(sender)}\n*Sisa uang:* ${checkATMuser(sender)}\n\nProses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
+					}
+					break
+						
 				case 'resetlimit':
 				if (!isOwner) return reply(ind.ownerb())
 				var ngonsol = []
