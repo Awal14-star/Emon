@@ -212,7 +212,7 @@ const getAfkPosition = (sender) => {
 }
 	//END OF AFK FUNCTION
         
-	//MANCING FUNCTION BY TAUFIK - KUN
+	//MANCING FUNCTION BY GW SENDIRI
         const addIkan = (sender, amount) => {
         let position = false
         Object.keys(ikan).forEach((i) => {
@@ -605,18 +605,18 @@ client.on('group-participants-update', async (anu) => {
 	
 	//AFK NGULI
 	if (isGroup) {
-            for (let ment of mentionedJidList) {
+            for (let ment of sender) {
                 if (checkAfkUser(ment, _afk)) {
                     const getId = getAfkId(ment, _afk)
                     const getReason = getAfkReason(getId, _afk)
                     const getTime = getAfkTime(getId, _afk)
-                    	client.sendMessage(from, ind.afkMentioned(getReason, getTime), id)
+                    	client.sendMessage(from, ind.afkMentioned(getReason, getTime), text)
                 }
             }
-            if (checkAfkUser(sender.id) && !isCmd) {
+            if (checkAfkUser(sender) && !isCmd) {
                 _afk.splice(getAfkPosition(sender.id, _afk), 1)
                 fs.writeFileSync('./database/user/afk.json', JSON.stringify(_afk))
-                	client.sendMessage(from, ind.afkDone(pushname))
+                	client.sendMessage(from, ind.afkDone(pushname), text)
             }
         }
         
@@ -4252,11 +4252,11 @@ break
 					
 					case 'afk':
                 			if (!isRegistered) return reply(ind.noregis())
-                			if (!isGroupMsg) return reply(ind.groupo())
+                			if (!isGroup) return reply(ind.groupo())
                	 			if (isAfkOn) return reply(ind.afkOnAlready())
                 			const reason = q ? q : 'Nothing.'
-                			afk.addAfkUser(sender.id, time, reason, _afk)
-                			client.sendMessage(from, ind.afkOn(pushname, reason), id)
+                			addAfkUser(sender.id, time, reason, _afk)
+                			client.sendMessage(from, ind.afkOn(pushname, reason))
             				break
 
 					case 'antifirtex':
