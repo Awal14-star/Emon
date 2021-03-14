@@ -613,7 +613,7 @@ client.on('group-participants-update', async (anu) => {
                     	client.sendMessage(from, ind.afkMentioned(getReason, getTime), text)
                 }
             }
-            if (checkAfkUser(sender) && !isCmd) {
+            if (checkAfkUser(sender.id _afk) && !isCmd) {
                 _afk.splice(getAfkPosition(sender.id, _afk), 1)
                 fs.writeFileSync('./database/user/afk.json', JSON.stringify(_afk))
                 	client.sendMessage(from, ind.afkDone(pushname), text)
