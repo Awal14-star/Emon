@@ -959,8 +959,8 @@ client.on('group-participants-update', async (anu) => {
 					bayar = body.slice(10)
 					const hargaIkan = 250
 					const hasil = hargaIkan * bayar
-					if ( getMancingIkan = null) return reply(`maaf ${pusname} kamu tidak punya ikan`)
-					if ( getMancingIkan > null) {
+					if ( getMancingIkan >= 1 ) return reply(`maaf ${pusname} kamu tidak punya ikan`)
+					if ( getMancingIkan <= 1 ) {
 						jualIkan(sender, bayar)
 						addKoinUser(sender, hasil)
 					await reply(`*「 PUNJUALAN BERHASIL 」*\n\n*Jumlah ikan dijual:* ${bayar}\n*Uang didapat:* ${hasil}\n\n*Sisa ikan:* ${getMancingIkan(sender)}\n*Sisa uang:* ${checkATMuser(sender)}\n\nProses berhasil dengan nomer pembayaran\n${createSerial(15)}`)
