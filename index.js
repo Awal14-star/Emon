@@ -32,7 +32,8 @@ const { donasi } = require('./lib/donasi')
 const { bahasa } = require('./lib/listbahasa')
 const { biografi } = require ('./lib/biografi')
 const { fetchJson } = require('./lib/fetcher')
-const { recognize } = require('./lib/ocr')
+const { recognize } = require('./lib/ocr')
+
 const { virtex } = require('./src/virtex')
 const { virtex2 } = require('./src/virtex2')
 const { exec } = require("child_process")
@@ -93,6 +94,7 @@ const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
 const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
 const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
+const _afk = JSON.parse(fs.readFileSync('./database/group/afk.json'))
 const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
 /*********** END LOAD ***********/
 
@@ -145,7 +147,72 @@ const getLevelingXp = (sender) => {
                 fs.writeFileSync('./database/user/level.json', JSON.stringify(_level))
             }
         }
+	
+	//FUNCTION AFK
+const addAfkUser = (sender, time, reason) => {
+    const obj = { id: sender, time: time, reason: reason }
+    	_afk.push(obj)
+    	fs.writeFileSync('./database/user/afk.json', JSON.stringify(_afk))
+	}
+
+const checkAfkUser = (sender) => {
+    let status = false
+    Object.keys(_afk).forEach((i) => {
+        if (_afk[i].id === sender) {
+            status = true
+        }
+    })
+    return status
+}
+
+const getAfkReason = (sender) => {
+    let position = null
+    Object.keys(_afk).forEach((i) => {
+        if (_afk[i].id === sender) {
+            position = i
+        }
+    })
+    if (position !== null) {
+        return _afk[position].reason
+    }
+}
+
+const getAfkTime = (sender) => {
+    let position = null
+    Object.keys(_afk).forEach((i) => {
+        if (_afk[i].id === sender) {
+            position = i
+        }
+    })
+    if (position !== null) {
+        return _afk[position].time
+    }
+}
+
+const getAfkId = (sender) => {
+    let position = null
+    Object.keys(_afk).forEach((i) => {
+        if (_afk[i].id === sender) {
+            position = i
+        }
+    })
+    if (position !== null) {
+        return _afk[position].id
+    }
+}
+
+const getAfkPosition = (sender) => {
+    let position = null
+    Object.keys(_afk).forEach((i) => {
+        if (_afk[i].id === sender) {
+            position = i
+        }
+    })
+    return position
+}
+	//END OF AFK FUNCTION
         
+	//MANCING FUNCTION BY TAUFIK - KUN
         const addIkan = (sender, amount) => {
         let position = false
         Object.keys(ikan).forEach((i) => {
@@ -182,6 +249,13 @@ if (position !== false) {
 return ikan[position].id
     }
 }
+    
+    const addMancingId = (sender) => {
+        const ovj = {id: sender, fish: 0}
+        ikan.push(ovj)
+        fs.writeFileSync('./database/user/ikan.json', JSON.stringify(ikan))
+        }
+    		//END OF MANCING FUNCTION
         
         const addLevelingLevel = (sender, amount) => {
             let position = false
@@ -202,12 +276,7 @@ return ikan[position].id
             fs.writeFileSync('./database/user/level.json', JSON.stringify(_level))
         }
         
-        const addMancingId = (sender) => {
-        const ovj = {id: sender, fish: 0}
-        ikan.push(ovj)
-        fs.writeFileSync('./database/user/ikan.json', JSON.stringify(ikan))
-        }
-        
+       
         const getLimit = (sender) => {
         	let position = false
               Object.keys(limit).forEach ((i) => {
@@ -429,7 +498,7 @@ client.on('group-participants-update', async (anu) => {
 			const content = JSON.stringify(mek.message)
 			const from = mek.key.remoteJid
 			const type = Object.keys(mek.message)[0]
-			const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
+			const { text,  isGroupMsg, id, mentionedJidList, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 			const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
 			const timi = moment.tz('Asia/Jakarta').add(30, 'days').calendar();
 			const timu = moment.tz('Asia/Jakarta').add(20, 'days').calendar();
@@ -458,6 +527,7 @@ client.on('group-participants-update', async (anu) => {
             const isRegistered = checkRegisteredUser(sender)
 	    const isNoMedia = nomedia.includes(from) || false
 	    const isBanned = ban.includes(sender)
+	    const isAfkOn = checkAfkUser(sender)
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
             const isLevelingOn = isGroup ? _leveling.includes(from) : false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
@@ -518,6 +588,23 @@ client.on('group-participants-update', async (anu) => {
         const Fisha = getMancingIkan(sender)
         const FishId = getMancingId(sender)
         if (Fisha === undefined && FishId === undefined) addMancingId(sender)
+        }
+	
+	//AFK NGULI
+	if (isGroup) {
+            for (let ment of mentionedJidList) {
+                if (checkAfkUser(ment, _afk)) {
+                    const getId = getAfkId(ment, _afk)
+                    const getReason = getAfkReason(getId, _afk)
+                    const getTime = getAfkTime(getId, _afk)
+                    	client.sendMessage(from, ind.afkMentioned(getReason, getTime), id)
+                }
+            }
+            if (checkAfkUser(sender.id) && !isCmd) {
+                _afk.splice(getAfkPosition(sender.id, _afk), 1)
+                fs.writeFileSync('./database/user/afk.json', JSON.stringify(_afk))
+                	client.sendMessage(from, ind.afkDone(pushname))
+            }
         }
         
           //function check limit
@@ -4124,7 +4211,7 @@ break
                     await reply(lbw)
                     break 
 
-					case 'afk':
+					case 'afk2':
 					if (!isRegistered) return reply(ind.noregis())
                                         tels = body.slice(4)
                                         if (args.length < 1) return reply('kakak afk karena apa?')
@@ -4135,6 +4222,15 @@ break
                                         }
                                         client.sendMessage(from, tag, text, {quoted: mek})
                                         break
+					
+					case 'afk':
+                			if (!isRegistered) return reply(ind.noregis())
+                			if (!isGroupMsg) return reply(ind.groupo())
+               	 			if (isAfkOn) return reply(ind.afkOnAlready())
+                			const reason = q ? q : 'Nothing.'
+                			afk.addAfkUser(sender.id, time, reason, _afk)
+                			client.sendMessage(from, ind.afkOn(pushname, reason), id)
+            				break
 
 					case 'antifirtex':
 					case 'antivirtex':
