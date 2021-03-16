@@ -2916,8 +2916,6 @@ dftr = `
 ╠☞ *${prefix}coffe* [text]
 ╠☞ *${prefix}coffe2* [text]
 ╠☞ *${prefix}attp* [text]
-╠☞ *${prefix}ttp3d* [text]
-╠☞ *${prefix}ttp3d2* [text]
 ╠☞ *${prefix}galaxytext* [text]
 ╠☞ *${prefix}textsky* [text]
 ╠☞ *${prefix}phlogo* [text / text]
