@@ -4045,6 +4045,11 @@ break
 	                }
 	                await reply(listPremi)
 	           	 break
+					
+					case 'checkprem':
+				const cekExp = ms(getPremiumExpired(sender) - Date.now())
+				reply(`*「 PREMIUM EXPIRED 」*\n\n➸ *ID*: ${sender.split('@')[0]}\n➸ *Premium left*: ${cekExp.days} day(s) ${cekExp.hours} hour(s) ${cekExp.minutes} minute(s)`)
+				break
 			
 					case 'kicktime':
 					case 'hedshot':
