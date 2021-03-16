@@ -960,7 +960,7 @@ client.on('group-participants-update', async (anu) => {
 					} else if( player == 'gunting' ) {
 					resu = ( bot == 'batu' ) ? 'Kamu KALAH!' : 'Kamu MENANG!';
 					} else {
-					resu = '🥱 Dhalah, Males main sama noob!' ;
+					resu = return reply('🥱 Dhalah, Males main sama noob!');
 					} 
 					const suitxp = Math.ceil(Math.random() * 5000);
 					addLevelingXp(sender, suitxp)
@@ -1253,6 +1253,18 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, ngebuff, image, {quoted: mek, caption: 'ckp tw ngebabunya'})
 					await limitAdd(sender)
 					break
+					
+				case 'matrix':
+					if (isBanned) return reply(ind.ban())
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('teksnya mana Tod?')
+					mat = body.slice(8)
+					anu = await getBuffer(`https://api.zeks.xyz/api/matrix?apikey=${zesapi}&text=${mat}`)
+					reply(ind.wait())
+					client.sendMessage(from, anu, image, {quoted: mek}
+					await limitAdd(sender)
+					break   
 					
 					case 'ngopi':
 					case 'coffe':
@@ -4558,6 +4570,32 @@ break
 					
 				
 				default:
+					
+		if (/^>/.test(pes)) {
+	            let txt = pes.replace(/^>/, '')
+	            let type = Function
+	            if (/await/.test(pes)) type = (async () => {}).constructor
+	            let func = new type('print', 'client', 'MessageType', 'mek', 'text', 'from', 'image', 'os', 'fetch', txt)
+	            console.log('[EvalF]', func.toString())
+	            let output
+	            try {
+	                output = await func((...args) => {
+	                    console.log('[EvalP]', ...args)
+	                    client.sendMessage(from, util.format(...args), MessageType.extendedText, {
+	                        quoted: mek
+	                    })
+	                }, client, MessageType, mek, text, from, await image, os, fetch)
+	                console.log('[EvalO]', output)
+	                client.sendMessage(from, util.format(output), MessageType.extendedText, {
+	                    quoted: mek
+	                })
+	            } catch (e) {
+	                console.error('[EvalE]', e)
+	                client.sendMessage(from, util.format(e), MessageType.extendedText, {
+	                    quoted: mek
+	                })
+	            }
+            }
 			if (isGroup && !isCmd && isSimi && budy != undefined) {
 						console.log(budy)
 						muehe = await simih(budy)
