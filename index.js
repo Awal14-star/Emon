@@ -911,12 +911,41 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break
 					
+					case 'giftlimit': 
+				if (!isOwner,!isPrem) return reply(ind.premon(pushname))
+				const nomerr = args[0].replace('@','')
+                const jmla = args[1]
+                if (jmla <= 1) return reply(`minimal gift limit adalah 1`)
+                if (isNaN(jmla)) return reply(`limit harus berupa angka`)
+                if (!nomerr) return reply(`maaf format salah\nmasukan parameter yang benar\ncontoh : ${prefix}giftlimit @62895710074883 20`)
+                const cysz = nomerr + '@s.whatsapp.net'
+                var found = false
+                        Object.keys(_limit).forEach((i) => {
+                            if(_limit[i].id === cysz){
+                                found = i
+                            }
+                        })
+                        if (found !== false) {
+                            _limit[found].limit -= jmla
+                            const updated = _limit[found]
+                            const result = `Gift kuota limit sukses dengan SN: ${createSerial(8)} pada ${moment().format('DD/MM/YY HH:mm:ss')}
+*「 GIFT KUOTA LIMIT 」*
+• User : @${updated.id.replace('@s.whatsapp.net','')}
+• Limit: ${limitawal-updated.limit}`
+                            console.log(_limit[found])
+                            fs.writeFileSync('./database/user/limit.json',JSON.stringify(_limit));
+                            reply(result)
+                        } else {
+                                reply(`Maaf, nomor ${nomerr} tidak terdaftar di database!`)
+                        }
+                break
+					
 					case 'jankenpom':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					const player = body.slice(11)
 					const botc = ['batu','kertas','gunting'];
-					//const p = player.includes('batu','kertas','gunting');
+					//const p = player.includes('batu','kertas','gunting');  //BIKIN ERROR AJA LU ANJING
 					if ( args.length < 1 ) return reply('Lu mau pilih apa?')
 					bot = botc[Math.floor(Math.random() * botc.length)]
 					var resu = '';
@@ -944,8 +973,6 @@ client.on('group-participants-update', async (anu) => {
 					waktu = `*_BOT_* telah aktif selama : ${kyun(uptime)}`;
 					client.sendMessage(from, waktu, text, {quoted: mek})
 					break
-					
-										
 					
 					case 'gimeg':
 					if (!isOwner) return reply(ind.ownerb())
@@ -2439,6 +2466,32 @@ case 'galaxytext':
 			reply('Sedang Mancing selama 2 menit, silahkan tunggu...')
 			}, 0) //1sec
 			break
+					case 'casino':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
+					cas = body.slice(8)
+					if ( cas == NaN ) return reply('Lu mau taruhan brp?')
+					res = [ "Kamu MENANG!" , "Kamu KALAH" ];
+					bayar = confirmATM(sender, cas)
+					setTimeout( () => {
+					const rand = Math.ceil(Math.random() * 1000)
+					const judi = cas + rand 
+					const hasil = res(Math.floor[Math.random() * res.length])
+					if ( resug == "Kamu MENANG" ) {
+						addKoinUser(sender, judi)
+						reply(`*SELAMAT🥳*\n\n${pushname} Kamu memenangkan casino sebesar *_${judi}_*\n\nKumpulkan uang untuk membeli limit`)
+					} else {
+						reply("Kamu KALAH!")
+					}
+					}, 60000); //1 Minute
+					setTimeout( () => {
+						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
+					}, 0) //1 sec
+						await limitAdd(sender)
+						break
+					
+					
 			
 			case 'ikanku':
 			if (!isRegistered) return reply(ind.noregis())
@@ -3303,21 +3356,20 @@ break
 					break 
 
 				case 'ytmp3':
-					if (!isRegistered) return reply(ind.noregis())
-                			if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (isNoMedia) return reply(ind.nomed)
-					if (args.length < 1) return reply('Urlnya mana gan?')
-					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.error.Iv)
-					anu = await fetchJson(`https://videfikri.com/api/ytmp3/?url=${args[0]}`, {method: 'get'})
+                    if (!isRegistered) return reply(ind.noregis())
+                    if (!isPrem) return reply(ind.premon(pushname))
+                    if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (args.length < 1) return reply('Urlnya mana um?')
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(ind.wrogf())
+					anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/ytmp3?url=${args[0]}`, {method: 'get'})
 					if (anu.error) return reply(anu.error)
-					yta = `╭─「 *YOUTUBE MP3 DOWNLOADER* 」\n│\n│• *Title:* ${anu.result.judul}\n│• *Size:* ${anu.result.size}\n│\n│ Tunggu Sebentar 1 menit Mungkin Agak Lama │ Karna Mendownload Video\n╰─────────────────────`
-					buffing = await getBuffer(anu.result.thumbnail)
-					reply(ind.wait)
-					buffer = await getBuffer(anu.result.url)
-					client.sendMessage(from, buffing, image, {quoted: mek, caption: yta})
-					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.result.judul}.mp3`, quoted: mek})
-					await limitAdd(sender) 
-					break 
+					teks = `*Title* : ${anu.title}\n*Size* : ${anu.filesize}`
+					thumb = await getBuffer(anu.thumb)
+					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					buffer = await getBuffer(anu.result)
+					client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+					await limitAdd(sender)
+					break
 				case 'lirik':    
                			if (!isRegistered) return reply(ind.noregis())
               			if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -3723,7 +3775,13 @@ break
 					await limitAdd(sender)
 					break
 					
-					case 'ttp': 
+					case 'ttp':
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/ttp?text=${body.slice(5)}&apikey=BotWeA`)
+				res = await getBase64(anu.base64)
+				client.sendMessage(from, res, sticker, {quoted:mek})
+				break
+					
+					case 'ttp2': 
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					pngttp = './tmp/ttp.png'
@@ -3895,8 +3953,8 @@ break
                        if (!isGroupAdmins) return reply(ind.admin())
                         if (!isBotGroupAdmins) return reply(ind.badmin())
                        media = await client.downloadAndSaveMediaMessage(mek)
-                         await client.updateProfilePicture(from, media)
-                        reply('[SUKSES] Mengganti icon grub')
+                         await client.updateProfilePicture (from, media)
+                        reply('SUCCESS CHANGE PROFILE GROUP')
 					break						
 				case 'add':
 					if (!isGroup) return reply(ind.groupo())
