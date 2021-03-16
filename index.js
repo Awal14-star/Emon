@@ -33,7 +33,6 @@ const { bahasa } = require('./lib/listbahasa')
 const { biografi } = require ('./lib/biografi')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
-
 const { virtex } = require('./src/virtex')
 const { virtex2 } = require('./src/virtex2')
 const { exec } = require("child_process")
@@ -47,6 +46,8 @@ const lolis = require('lolis.life')
 const loli = new lolis()
 const doujinshi = require('nhentai-api')
 const speed = require('performance-now')
+const ms = require('parse-ms')
+const toMs = require('ms')
 const cd = 4.32e+7
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const { ind } = require('./language')
@@ -94,6 +95,7 @@ const antilink = JSON.parse(fs.readFileSync('./database/group/antilink.json'))
 const antifirtex = JSON.parse(fs.readFileSync('./database/group/antifirtex.json'))
 const bad = JSON.parse(fs.readFileSync('./database/group/bad.json'))
 const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
+const prem = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const _afk = JSON.parse(fs.readFileSync('./database/group/afk.json'))
 const badword = JSON.parse(fs.readFileSync('./database/group/badword.json'))
 /*********** END LOAD ***********/
@@ -433,6 +435,43 @@ return ikan[position].id
                 fs.writeFileSync('./database/user/limit.json', JSON.stringify(_limit))
             }
         }
+	    
+	   //BUAT FUNCTIONNYA
+	    const getPremiumExpired = (sender) => {
+		    let position = null
+		    Object.keys(prem).forEach((i) => {
+		        if (prem[i].id === sender) {
+		            position = i
+		        }
+		    })
+		    if (position !== null) {
+		        return prem[position].expired
+		    }
+		} 
+		
+		const expiredCheck = () => {
+		    setInterval(() => {
+		        let position = null
+		        Object.keys(prem).forEach((i) => {
+		            if (Date.now() >= prem[i].expired) {
+		                position = i
+		            }
+		        })
+		        if (position !== null) {
+		            console.log(`Premium expired: ${prem[position].id}`)
+		            prem.splice(position, 1)
+		            fs.writeFileSync('./database/bot/prem.json', JSON.stringify(prem))
+		        }
+		    }, 1000)
+		} 
+		
+		const getAllPremiumUser = () => {
+		    const array = []
+		    Object.keys(prem).forEach((i) => {
+		        array.push(prem[i].id)
+		    })
+		    return array
+		}
 
 
         
@@ -539,6 +578,8 @@ client.on('group-participants-update', async (anu) => {
             const isEventon = isGroup ? event.includes(from) : false
             const isRegistered = checkRegisteredUser(sender)
 	    const isNoMedia = nomedia.includes(from) || false
+	    const isOwner = ownerNumber.includes(sender)
+	    const isPrem = prem.includes(sender) || isOwner //tambahin ownerbiar owner bisa gunain fitur prem
 	    const isBanned = ban.includes(sender)
 	    const isAfkOn = checkAfkUser(sender)
             const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
@@ -550,7 +591,6 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isBadWord = isGroup ? badword.includes(from) : false
                         const isAntiFirtex= isGroup ? antifirtex.includes(from) : false
-			const isOwner = ownerNumber.includes(sender)
 			const isImage = type === 'imageMessage'
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -595,6 +635,15 @@ client.on('group-participants-update', async (anu) => {
                 console.error(err)
             }
         }
+			
+			//FUNCTION PREMIUM RESPONDER
+			var premi = '*X*'
+			if (isPrem) {
+				premi = '*✓*'
+			} 
+			if (isOwner) {
+				premi = '*owner*'
+			}
         
         //FUCNTION MANCING BY TAUFIK - KUN
         if (isGroup && isEventon) {
@@ -679,11 +728,12 @@ client.on('group-participants-update', async (anu) => {
             }
         }
 		//AUTO RESPONDER
-		/*if (budy.includes('Bot')){
+		if (budy.includes('Bot')){
 			const on =['Yoo👋','Hai, nani desuka? :)','What?','Bot on, ketik #menu untuk melihat menu Botol-LoL','apa Tod?']
 			const Bot = on[Math.floor(Math.random() * on.length)]
 			client.sendMessage(from, Bot, text, {quoted: mek})
-		}*/
+		}
+
 			
 
 		//function antilink
@@ -3952,6 +4002,49 @@ break
 						client.groupRemove(from, mentioned)
 					}
 					break
+					
+					//BIKIN CASE NYA
+					//COCOKIN SM SC MU
+				case 'addprem':
+				if (!isOwner) return reply(ind.ownerb()) //owner only
+				expired = "30d"
+				if (args.length < 1 ) return reply(' tag member')
+				mente = `${args[0].replace('@','')}@s.whatsapp.net`
+				const pnom = {id: mente , expired: Date.now() + toMs(expired) }
+				prem.push(pnom) 
+				fs.writeFileSync('./database/user/prem.json',JSON.stringify(prem))
+				reply(ind.premadd(args[0])) //nah ini tambahin pesannya 
+				break
+				
+				case 'delprem':
+				if (!isOwner) return reply(ind.ownerb())
+				if (args.length < 1 ) return reply(' tag member')
+				mente = `${args[0].replace('@','')}@s.whatsapp.net`
+ 			   for( var i = 0; i < arr.length; i++){ 
+ 		       if ( arr[i] === mente) { 
+    		      	  arr.splice(i, 1); 
+      		   	  i--; 
+      				fs.writeFileSync('./database/user/prem.json',JSON.stringify(arr))
+       			 }
+ 			    }
+				reply(ind.dellprem(args[0])) //ini juga
+				break 
+					
+			case 'premlist':
+	            case 'listprem':
+	                if (!isRegistered) return reply( ind.noregis())
+	                let listPremi = '「 *PREMIUM USER LIST* 」\n\n'
+	                let nomorList = 0
+	                const deret = getAllPremiumUser()
+	                const arrayPremi = []
+	                for (let i = 0; i < deret.length; i++) {
+	                    const checkExp = ms(getPremiumExpired(deret[i]) - Date.now())
+	                    arrayPremi.push(getAllPremiumUser()[i])
+	                    nomorList++
+	                    listPremi += `${nomorList}. wa.me/${getAllPremiumUser()[i].split("@")[0]}\n➸ *Expired*: ${checkExp.days} day(s) ${checkExp.hours} hour(s) ${checkExp.minutes} minute(s)\n\n`
+	                }
+	                await reply(listPremi)
+	           	 break
 			
 					case 'kicktime':
 					case 'hedshot':
