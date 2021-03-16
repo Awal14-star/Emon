@@ -904,6 +904,7 @@ client.on('group-participants-update', async (anu) => {
 			switch(command) {
 				case 'bot':
 				case 'Bot':
+					if (isBanned) return reply(ind.ban())
 					bot = body.slice(1)
 					const on =['Yoo👋','Hai, nani desuka? :)','What?','Bot on, ketik #menu untuk melihat menu Botol-LoL','apa Tod?']
 					const Bot = on[Math.floor(Math.random() * on.length)]
@@ -941,6 +942,7 @@ client.on('group-participants-update', async (anu) => {
                 break
 					
 					case 'jankenpom':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					const player = body.slice(11)
@@ -968,6 +970,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'runtime':
+					if (isBanned) return reply(ind.ban())
 					me = client.user
 					uptime = process.uptime()
 					waktu = `*_BOT_* telah aktif selama : ${kyun(uptime)}`;
@@ -987,6 +990,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, 'Gambarnya udh di save gayn. Coba lu cek di tetmux', text, {quoted: mek})
 					await limitAdd(sender)
 					break
+					
 					case 'kirim':
 					if (!isOwner) return reply(ind.ownerb())
 					if (args.length < 1) return reply('yg mau di kirim gambar apa Tod? gambar hentai kh?')
@@ -1044,17 +1048,20 @@ client.on('group-participants-update', async (anu) => {
 					
 								
 				case 'dompet':
+				if (isBanned) return reply(ind.ban())
 				if (!isRegistered) return reply(ind.noregis())
 					const kantong = checkATMuser(sender)
 					reply(ind.uangkau(pushname, sender, kantong))
 					break
 					
 					case 'limit':
+				if (isBanned) return reply(ind.ban())
 				if (!isRegistered) return reply(ind.noregis())
 				checkLimit(sender)
 				break
 					
 				case 'buylimit':
+				if (isBanned) return reply(ind.ban())
 				if (!isRegistered) return reply(ind.noregis())
 					payout = body.slice(10)
 					const koinPerlimit = 1000
@@ -1068,6 +1075,7 @@ client.on('group-participants-update', async (anu) => {
 				break
 				
 				case 'jualikan':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
 					bayar = body.slice(10)
@@ -1091,6 +1099,7 @@ client.on('group-participants-update', async (anu) => {
 				break
 					
 				case 'transfer':
+				if (isBanned) return reply(ind.ban())
 				if (!isRegistered) return reply(ind.noregis())
 				if (!q.includes('|')) return  reply(ind.wrongf())
                 			const tujuan = q.substring(0, q.indexOf('|') - 1)
@@ -1108,6 +1117,7 @@ client.on('group-participants-update', async (anu) => {
                 			break
 					
 				case 'profile':
+				if (isBanned) return reply(ind.ban())
 				if (!isRegistered) return reply(ind.noregis())
     				client.updatePresence(from, Presence.composing)
 					if (!isRegistered) return reply(ind.noregis())
@@ -1124,6 +1134,7 @@ client.on('group-participants-update', async (anu) => {
 					
 					//MAKER MENU
 					case 'silktext':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))				
 					if (args.length < 1) return reply(ind.wrongf())
@@ -1138,6 +1149,7 @@ client.on('group-participants-update', async (anu) => {
 		    			break
 		    			
 		    			case 'textsky':
+					if (isBanned) return reply(ind.ban())
 		    			if (!isRegistered) return reply(ind.noregis())
 		    			if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    			sky = body.slice(9)
@@ -1149,6 +1161,7 @@ client.on('group-participants-update', async (anu) => {
 		    			break
 		    			
 					case 'cslogo':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
           				cslogoo = body.slice(8)
@@ -1159,6 +1172,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'crossfire':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					cf = body.slice(11)
@@ -1170,6 +1184,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 				
 					case 'slide':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('*Textnya mana Tod?*')
@@ -1181,6 +1196,7 @@ client.on('group-participants-update', async (anu) => {
 					break  
 					
 					case 'pubg':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Teksnya mana gan??')
@@ -1196,6 +1212,7 @@ client.on('group-participants-update', async (anu) => {
 					
 					case 'cml':
 					case 'ml':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('Teksnya mana gan??')
@@ -1209,6 +1226,7 @@ client.on('group-participants-update', async (anu) => {
 					break  
 					
 					case 'glitch':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
               	   			if (args.length < 1) return reply('teksnya mana gan?')
@@ -1223,6 +1241,7 @@ client.on('group-participants-update', async (anu) => {
 			     		break 
 					
 					case 'narutobanner':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana tod?')
@@ -1237,6 +1256,7 @@ client.on('group-participants-update', async (anu) => {
 					
 					case 'ngopi':
 					case 'coffe':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
@@ -1248,6 +1268,7 @@ client.on('group-participants-update', async (anu) => {
 					
 					case 'ngopi2':
 					case 'coffe2':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
@@ -1258,6 +1279,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'lovemsg':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana gayn?')
@@ -1268,6 +1290,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'memecreate':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
 					hm = `${body.slice(12)}`
@@ -1288,6 +1311,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'trigger':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pushname))
 					var imgbb = require('imgbb-uploader')
@@ -1314,6 +1338,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'wasted':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					var imgbb = require('imgbb-uploader')
@@ -1340,6 +1365,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 					case 'nightbeach':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					var imgbb = require('imgbb-uploader')
@@ -1357,6 +1383,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					
 case 'crossgun':
+if (isBanned) return reply(ind.ban())
 if (!isRegistered) return reply(ind.noregis())
 if (isLimit(sender)) return reply(ind.limitend(pusname))
 var imgbb = require('imgbb-uploader')
@@ -1374,6 +1401,7 @@ await limitAdd(sender)
 break
 
 case 'smoke':
+if (isBanned) return reply(ind.ban())
 if (!isRegistered) return reply(ind.noregis())
 if (isLimit(sender)) return reply(ind.limitend(pusname))
 asep = body.slice(7)
@@ -1385,6 +1413,7 @@ await limitAdd(sender)
 break
 case 'galaxytext':
 		    case 'galaxylogo':
+			if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    logo = body.slice(11)
@@ -1395,6 +1424,7 @@ case 'galaxytext':
 		    break
 		    
 		    case 'grafity':
+		if (isBanned) return reply(ind.ban())
 		    if(!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    baner = body.slice(9)
@@ -1406,6 +1436,7 @@ case 'galaxytext':
 		    break
 		    
 		    case 'narutext':
+		if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    narto = body.slice(10)
@@ -1417,6 +1448,7 @@ case 'galaxytext':
 		    break
 		    
 		    case 'logogaming':
+			if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    logo = body.slice(12)
@@ -1427,6 +1459,7 @@ case 'galaxytext':
 		    break
 		    
 		    case 'lightning':
+			if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
 		    var imgbb = require('imgbb-uploader')
@@ -1454,6 +1487,7 @@ case 'galaxytext':
 
 					
 					case 'wanted':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(nd.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					want = body.slice(8)
@@ -1473,6 +1507,7 @@ case 'galaxytext':
 					break
 					
 					case 'kalender':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					var imgbb = require('imgbb-uploader')
@@ -1491,6 +1526,7 @@ case 'galaxytext':
 					
 					
 					case 'ytcomment':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana tod?')
@@ -1521,6 +1557,7 @@ case 'galaxytext':
 					
 					
 					case 'phlogo':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					logo = body.slice(8)
@@ -1533,6 +1570,7 @@ case 'galaxytext':
 					break
 					
 					case 'logoepep':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					epep = body.slice(10)
@@ -1543,6 +1581,7 @@ case 'galaxytext':
 					break
 				
 					case 'wolflogo':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					logo = body.slice(10)
@@ -1555,6 +1594,7 @@ case 'galaxytext':
 					break
 					
 					case 'hartatahta':
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply(`「❗」Contoh : ${prefix}hartatahta botwea`)
@@ -1566,6 +1606,7 @@ case 'galaxytext':
 					break
 					
 					case 'kuncitext':   
+					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
               	    			if (args.length < 1) return reply('teksnya mana kak?')
@@ -1577,6 +1618,7 @@ case 'galaxytext':
 		    			break
 					
 					case 'text3d':
+					if (isBanned) return reply(ind.ban())
                 			if (!isRegistered) return reply(ind.noregis())
                 			if (isLimit(sender)) return reply(ind.limitend(pusname))
               	    			if (args.length < 1) return reply('teksnya mana Tod?')
@@ -1589,6 +1631,7 @@ case 'galaxytext':
 					break
 					
 					case 'text3d2':
+					if (isBanned) return reply(ind.ban())
                 			if (!isRegistered) return reply(ind.noregis())
                 			if (isLimit(sender)) return reply(ind.limitend(pusname))
               	    			if (args.length < 1) return reply('teksnya mana Tod?')
@@ -2683,8 +2726,8 @@ case 'galaxytext':
 					case 'quotes':
 					if (!isRegistered) return reply(ind.noregis())
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					anu = await fetchJson(`https://docs-jojo.herokuapp.com/api/quotesnime/random`, {method: 'get'})
-					reply(anu.quotes)
+					anu = await fetchJson(`https://api.zeks.xyz/api/quote?apikey=${zeksapi}`, {method: 'get'})
+					reply(anu.result.quotes)
 					await limitAdd(sender)
 					break
 					case 'quoteanime':
