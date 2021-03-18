@@ -38,7 +38,7 @@ Sōshite
 ```js
 const ownerNumber = ["6289675651966@s.whatsapp.net","6285807479634@s.whatsapp.net"]  //ganti jadi nomormu
 ```
-BTW TEMPATNYA DI incex.js ya ngeod
+BTW TEMPATNYA DI index.js YA NGEOD
 
 ## Cara install di termux   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="29px">
 ```bash
