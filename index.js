@@ -733,6 +733,114 @@ client.on('group-participants-update', async (anu) => {
 			const Bot = on[Math.floor(Math.random() * on.length)]
 			client.sendMessage(from, Bot, text, {quoted: mek})
 		}
+			
+		//FUNCTION ANTIDELETE
+		/*t messageStubType = WA_MESSAGE_STUB_TYPES[mek.messageStubType] || 'MESSAGE'
+		const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
+		const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
+		const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
+		const isRevoke = mek.key.remoteJid.endsWith('@s.whatsapp.net') ? true : mek.key.remoteJid.endsWith('@g.us') ? dataRevoke.includes(from) : false
+		const isCtRevoke = mek.key.remoteJid.endsWith('@g.us') ? true : dataCtRevoke.data ? true : false
+		const isBanCtRevoke = mek.key.remoteJid.endsWith('@g.us') ? true : !dataBanCtRevoke.includes(sender) ? true : false
+		if (messageStubType == 'REVOKE') {
+			console.log(Status untuk grup : ${!isRevoke}\nStatus semua kontak : ${!isCtRevoke}\nStatus kontak dikecualikan : ${!isBanCtRevoke})
+			if (!isRevoke) return
+			if (!isCtRevoke) return
+			if (!isBanCtRevoke) return
+			const isGroup = mek.key.remoteJid.endsWith('@g.us') ? true : false
+			let int
+			let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
+			const id_deleted = mek.key.id
+			const conts = mek.key.fromMe ? client.user.jid : client.contacts[sender] || { notify: jid.replace(/@.+/, '') }
+			const opt4tag = {
+				contextInfo: { mentionedJid: [sender] }
+			}
+			for (let i = 0; i < infoMSG.length; i++) {
+				if (infoMSG[i].key.id == id_deleted) {
+					const dataInfo = infoMSG[i]
+					const type = Object.keys(infoMSG[i].message)[0]
+					const timestamp = infoMSG[i].messageTimestamp
+					'= {
+						no: i,
+						type: type,
+						timestamp: timestamp,
+						data: dataInfo
+					}
+				}
+			}
+			const index = Number(int.no)
+			const mediaData = int.type === 'extendedTextMessage' ? JSON.parse(JSON.stringify(int.data).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : int.data
+			var itsme = ${numer}@s.whatsapp.net
+				var split = ${cr}
+				// var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+				var selepbot72 = {
+					contextInfo: {
+						participant: itsme,
+						quotedMessage: {
+							extendedTextMessage: {
+								text: split,
+							}
+						}
+					}
+				}
+			if (int.type == 'conversation' || int.type == 'extendedTextMessage') {
+				const strConversation = `「 ANTI-DELETE 」
+
+Nama : ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
+Tipe : Text
+Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
+Pesan : ${body ? body : '-'}
+`
+				client.sendMessage(from, strConversation, MessageType.text, selepbot72)
+			} else if (int.type == 'stickerMessage') {
+				var itsme = ${numer}@s.whatsapp.net
+					var split = ${cr}
+					const pingbro23 = {
+						contextInfo: {
+							participant: itsme,
+							quotedMessage: {
+								extendedTextMessage: {
+									text: split,
+								}
+							}
+						}
+					}
+				const filename = ${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}
+				const savedFilename = await client.downloadAndSaveMediaMessage(int.data, ./media/sticker/${filename});
+				const strConversation = `「 ANTI-DELETE 」
+
+Nama 😘 ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
+Tipe 😘 Sticker
+Waktu 😘 ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
+`
+
+				const bufferd = fs.readFileSync(savedFilename)
+				client.sendMessage(from, strConversation, MessageType.text, opt4tag)
+				client.sendMessage(from, bufferd, MessageType.sticker, pingbro23)
+				// console.log(stdout)
+				fs.unlinkSync(savedFilename)
+
+			} else if (int.type == 'imageMessage') {
+				var itsme = ${numer}@s.whatsapp.net
+					var split = ${cr}
+					const pingbro22 = {
+						contextInfo: {
+							participant: itsme,
+							quotedMessage: {
+								extendedTextMessage: {
+									text: split,
+								}
+							}
+						}
+					}
+				const filename = ${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}
+				const savedFilename = await client.downloadAndSaveMediaMessage(int.data, ./media/revoke/${filename});
+				const buff = fs.readFileSync(savedFilename)
+				const strConversation = `「 ANTI-DELETE 」
+
+Nama : ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
+Tipe : Image
+Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
 
 			
 
@@ -940,6 +1048,32 @@ client.on('group-participants-update', async (anu) => {
                                 reply(`Maaf, nomor ${nomerr} tidak terdaftar di database!`)
                         }
                 break
+					
+					case 'casino':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
+					const cas = body.slice(8)
+					if (isNaN(cas))return reply{'Lu mau taruhan brp?')
+					res = [ "Kamu MENANG!" , "Kamu KALAH" ];
+					bayar = confirmATM(sender, cas)
+					setTimeout( () => {
+					const rand = Math.ceil(Math.random() * 1000)
+					const judi = cas + rand 
+					const hasil = res[Math.floor(Math.random() * res.length)]
+					if ( resug == "Kamu MENANG" ) {
+						addKoinUser(sender, judi)
+						reply(`*SELAMAT🥳*\n\n${pushname} Kamu memenangkan casino sebesar *_${judi}_*\n\nKumpulkan uang untuk membeli limit`)
+							}
+					if ( resug == "Kamu KALAH" ) {
+						reply("Kamu KALAH!!")
+						}
+					}, 60000); //1 Minute
+					setTimeout( () => {
+						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
+					}, 0) //1 sec
+						await limitAdd(sender)
+						break
 					
 					case 'jankenpom':
 					if (isBanned) return reply(ind.ban())
@@ -1262,7 +1396,7 @@ client.on('group-participants-update', async (anu) => {
 					mat = body.slice(8)
 					anu = await getBuffer(`https://api.zeks.xyz/api/matrix?apikey=${zesapi}&text=${mat}`)
 					reply(ind.wait())
-					client.sendMessage(from, anu, image, {quoted: mek}
+					client.sendMessage(from, anu, image, {quoted: mek})
 					await limitAdd(sender)
 					break   
 					
@@ -1423,8 +1557,8 @@ ngonsol = await getBuffer(anu.result.url)
 client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
 await limitAdd(sender)
 break
-case 'galaxytext':
-		    case 'galaxylogo':
+			case 'galaxytext':
+		    	case 'galaxylogo':
 			if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -2490,6 +2624,7 @@ case 'galaxytext':
           	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
+			if (!isLevelingOn) return reply(ind.lvlnoon())
                       if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan oleh owner`)
                       if (isOwner) {
                       const one = 999999999
@@ -2521,30 +2656,7 @@ case 'galaxytext':
 			reply('Sedang Mancing selama 2 menit, silahkan tunggu...')
 			}, 0) //1sec
 			break
-					case 'casino':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
-					cas = body.slice(8)
-					if ( cas == NaN ) return reply('Lu mau taruhan brp?')
-					res = [ "Kamu MENANG!" , "Kamu KALAH" ];
-					bayar = confirmATM(sender, cas)
-					setTimeout( () => {
-					const rand = Math.ceil(Math.random() * 1000)
-					const judi = cas + rand 
-					const hasil = res(Math.floor[Math.random() * res.length])
-					if ( resug == "Kamu MENANG" ) {
-						addKoinUser(sender, judi)
-						reply(`*SELAMAT🥳*\n\n${pushname} Kamu memenangkan casino sebesar *_${judi}_*\n\nKumpulkan uang untuk membeli limit`)
-					} else {
-						reply("Kamu KALAH!")
-					}
-					}, 60000); //1 Minute
-					setTimeout( () => {
-						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
-					}, 0) //1 sec
-						await limitAdd(sender)
-						break
+					
 					
 					
 			
