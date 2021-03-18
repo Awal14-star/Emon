@@ -728,11 +728,11 @@ client.on('group-participants-update', async (anu) => {
             }
         }
 		//AUTO RESPONDER
-		/*if (budy.includes('Bot')){
+		if (budy.includes('Bot')){
 			const on =['Yoo👋','Hai, nani desuka? :)','What?','Bot on, ketik #menu untuk melihat menu Botol-LoL','apa Tod?']
 			const Bot = on[Math.floor(Math.random() * on.length)]
 			client.sendMessage(from, Bot, text, {quoted: mek})
-		}*/
+		}
 		
 		if (budy.includes('ohayou')) {
 		reply('ohayou gozaimasu')
@@ -2564,7 +2564,8 @@ case 'galaxytext':
 						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
 					}, 0) //1 sec
 						await limitAdd(sender)
-						break*/
+						break
+*/
 					
 					
 			
