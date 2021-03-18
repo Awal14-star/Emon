@@ -44,8 +44,8 @@ const ownerNumber = ["6289675651966@s.whatsapp.net","6285807479634@s.whatsapp.ne
 > pkg update && pkg upgrade
 > pkg install mc -y
 > pkg install git -y && pkg install bash -y
-> git clone https://github.com/Nama-Akunmu/Nama-Repositorymu
-> cd Nama-Repositorymu
+> git clone https://github.com/Nama-Akunmu/Nama-Repositorymu (klo mau pake punya gw ya tinggal copy link web ini)
+> cd Nama-Repositorymu (klo mau pake punya w cd whatsapp)
 > bash install.sh
 > npm audit fix (optional)
 > node index
