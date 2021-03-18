@@ -211,10 +211,9 @@ NOTE : WA yang di pakai scan code = jadi BOT
  <p align="center">
    "Contact Me On"
   <div align="center">
-  
-  <div align="center">
+
 | [<img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Instagram.svg" alt="instagram logo" width="30">](https://www.instagram.com/gamerz_garena/) | [<img src="https://raw.githubusercontent.com/Delta456/Delta456/master/img/twitter.png" alt="twitter logo" width="30">](https://twitter.com/Taufik572577) | [<img src="https://user-images.githubusercontent.com/77515527/111603419-ebab8580-8806-11eb-9e32-7ff359641d32.png" alt="facebook logo" width="30">](https://www.facebook.com/taufik.qillah.73) | [<img src="https://user-images.githubusercontent.com/77515527/111604893-60cb8a80-8808-11eb-8402-4318318c5aa2.jpg" alt="whatsapp logo" width="30">](https://wa.wizard.id/2fd29f) |
-  </div>
+
 
   
-  
+ 
