@@ -24,7 +24,7 @@ const devcityapi = 'Your_Apikey'
 const TechApi = 'Your_Apikey'
 ```
 
-## Cara Ganti Owner & Nomer Bot   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/gandalf_parrot.gif"  width="30px">
+## Cara Ganti Nama & Nomer Owner   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/gandalf_parrot.gif"  width="30px">
 Caranya cukup ganti yang di bawah ini
 ```js
 const vcard = 'BEGIN:VCARD\n' // INI JANGAN DI UBAH, BIARIN GINI
