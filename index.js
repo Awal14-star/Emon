@@ -56,7 +56,7 @@ const zeksapi = 'apivinz'
 const ItsApi = 'itsmeiky633'
 const BarBarKey = 'Xs8AoHAm0g9lFHCLzsEW'
 const TobzKey = 'BotWeA'
-const devcityapi = 'yourapikey'
+const devcityapi = 'Botol-Lol'
 const TechApi = 'B8r68c-6gwmq1-af4vtS-if1zgD-jni01B'
 const vcard = 'BEGIN:VCARD\n'  // Jangan di ubah biar ga error
             + 'VERSION:3.0\n'  // Jangan di ubah biar ga error
@@ -728,119 +728,23 @@ client.on('group-participants-update', async (anu) => {
             }
         }
 		//AUTO RESPONDER
-		if (budy.includes('Bot')){
+		/*if (budy.includes('Bot')){
 			const on =['Yoo👋','Hai, nani desuka? :)','What?','Bot on, ketik #menu untuk melihat menu Botol-LoL','apa Tod?']
 			const Bot = on[Math.floor(Math.random() * on.length)]
 			client.sendMessage(from, Bot, text, {quoted: mek})
+		}*/
+		
+		if (budy.includes('ohayou')) {
+		reply('ohayou gozaimasu')
 		}
-			
-		//FUNCTION ANTIDELETE
-		/*t messageStubType = WA_MESSAGE_STUB_TYPES[mek.messageStubType] || 'MESSAGE'
-		const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
-		const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
-		const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
-		const isRevoke = mek.key.remoteJid.endsWith('@s.whatsapp.net') ? true : mek.key.remoteJid.endsWith('@g.us') ? dataRevoke.includes(from) : false
-		const isCtRevoke = mek.key.remoteJid.endsWith('@g.us') ? true : dataCtRevoke.data ? true : false
-		const isBanCtRevoke = mek.key.remoteJid.endsWith('@g.us') ? true : !dataBanCtRevoke.includes(sender) ? true : false
-		if (messageStubType == 'REVOKE') {
-			console.log(Status untuk grup : ${!isRevoke}\nStatus semua kontak : ${!isCtRevoke}\nStatus kontak dikecualikan : ${!isBanCtRevoke})
-			if (!isRevoke) return
-			if (!isCtRevoke) return
-			if (!isBanCtRevoke) return
-			const isGroup = mek.key.remoteJid.endsWith('@g.us') ? true : false
-			let int
-			let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
-			const id_deleted = mek.key.id
-			const conts = mek.key.fromMe ? client.user.jid : client.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-			const opt4tag = {
-				contextInfo: { mentionedJid: [sender] }
-			}
-			for (let i = 0; i < infoMSG.length; i++) {
-				if (infoMSG[i].key.id == id_deleted) {
-					const dataInfo = infoMSG[i]
-					const type = Object.keys(infoMSG[i].message)[0]
-					const timestamp = infoMSG[i].messageTimestamp
-					'= {
-						no: i,
-						type: type,
-						timestamp: timestamp,
-						data: dataInfo
-					}
-				}
-			}
-			const index = Number(int.no)
-			const mediaData = int.type === 'extendedTextMessage' ? JSON.parse(JSON.stringify(int.data).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : int.data
-			var itsme = ${numer}@s.whatsapp.net
-				var split = ${cr}
-				// var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-				var selepbot72 = {
-					contextInfo: {
-						participant: itsme,
-						quotedMessage: {
-							extendedTextMessage: {
-								text: split,
-							}
-						}
-					}
-				}
-			if (int.type == 'conversation' || int.type == 'extendedTextMessage') {
-				const strConversation = `「 ANTI-DELETE 」
-
-Nama : ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
-Tipe : Text
-Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
-Pesan : ${body ? body : '-'}
-`
-				client.sendMessage(from, strConversation, MessageType.text, selepbot72)
-			} else if (int.type == 'stickerMessage') {
-				var itsme = ${numer}@s.whatsapp.net
-					var split = ${cr}
-					const pingbro23 = {
-						contextInfo: {
-							participant: itsme,
-							quotedMessage: {
-								extendedTextMessage: {
-									text: split,
-								}
-							}
-						}
-					}
-				const filename = ${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}
-				const savedFilename = await client.downloadAndSaveMediaMessage(int.data, ./media/sticker/${filename});
-				const strConversation = `「 ANTI-DELETE 」
-
-Nama 😘 ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
-Tipe 😘 Sticker
-Waktu 😘 ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
-`
-
-				const bufferd = fs.readFileSync(savedFilename)
-				client.sendMessage(from, strConversation, MessageType.text, opt4tag)
-				client.sendMessage(from, bufferd, MessageType.sticker, pingbro23)
-				// console.log(stdout)
-				fs.unlinkSync(savedFilename)
-
-			} else if (int.type == 'imageMessage') {
-				var itsme = ${numer}@s.whatsapp.net
-					var split = ${cr}
-					const pingbro22 = {
-						contextInfo: {
-							participant: itsme,
-							quotedMessage: {
-								extendedTextMessage: {
-									text: split,
-								}
-							}
-						}
-					}
-				const filename = ${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}
-				const savedFilename = await client.downloadAndSaveMediaMessage(int.data, ./media/revoke/${filename});
-				const buff = fs.readFileSync(savedFilename)
-				const strConversation = `「 ANTI-DELETE 」
-
-Nama : ${pushname} ( @${sender.replace('@s.whatsapp.net', '')} )
-Tipe : Image
-Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
+		
+		if (budy.includes('ohayo')) {
+		reply('ohayou gozaimaau')
+		}
+		
+		if (budy.includes('oyasumi')) {
+		reply('oyasuminasai')
+		}
 
 			
 
@@ -1049,32 +953,6 @@ Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
                         }
                 break
 					
-					case 'casino':
-					if (!isRegistered) return reply(ind.noregis())
-					if (isLimit(sender)) return reply(ind.limitend(pusname))
-					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
-					const cas = body.slice(8)
-					if (isNaN(cas))return reply{'Lu mau taruhan brp?')
-					res = [ "Kamu MENANG!" , "Kamu KALAH" ];
-					bayar = confirmATM(sender, cas)
-					setTimeout( () => {
-					const rand = Math.ceil(Math.random() * 1000)
-					const judi = cas + rand 
-					const hasil = res[Math.floor(Math.random() * res.length)]
-					if ( resug == "Kamu MENANG" ) {
-						addKoinUser(sender, judi)
-						reply(`*SELAMAT🥳*\n\n${pushname} Kamu memenangkan casino sebesar *_${judi}_*\n\nKumpulkan uang untuk membeli limit`)
-							}
-					if ( resug == "Kamu KALAH" ) {
-						reply("Kamu KALAH!!")
-						}
-					}, 60000); //1 Minute
-					setTimeout( () => {
-						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
-					}, 0) //1 sec
-						await limitAdd(sender)
-						break
-					
 					case 'jankenpom':
 					if (isBanned) return reply(ind.ban())
 					if (!isRegistered) return reply(ind.noregis())
@@ -1094,7 +972,7 @@ Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
 					} else if( player == 'gunting' ) {
 					resu = ( bot == 'batu' ) ? 'Kamu KALAH!' : 'Kamu MENANG!';
 					} else {
-					resu = return reply('🥱 Dhalah, Males main sama noob!');
+					resu = reply('🥱 Dhalah, Males main sama noob!');
 					} 
 					const suitxp = Math.ceil(Math.random() * 5000);
 					addLevelingXp(sender, suitxp)
@@ -1394,7 +1272,7 @@ Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
 					if (isLimit(sender)) return reply(ind.limitend(pusname))
 					if (args.length < 1) return reply('teksnya mana Tod?')
 					mat = body.slice(8)
-					anu = await getBuffer(`https://api.zeks.xyz/api/matrix?apikey=${zesapi}&text=${mat}`)
+					anu = await getBuffer(`https://api.zeks.xyz/api/matrix?apikey=${zeksapi}&text=${mat}`)
 					reply(ind.wait())
 					client.sendMessage(from, anu, image, {quoted: mek})
 					await limitAdd(sender)
@@ -1449,7 +1327,7 @@ Waktu : ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}`*/
                     			owgi = await client.downloadAndSaveMediaMessage(ger)
                     			anu = await imgbb("bfe53fe15a978cf1938d96123f065206", owgi)
                     			teks = `${anu.display_url}`
-					anu = await fetchJson(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${teks1}&text-bawah=${teks2}&background-url=${teks}`, {method: 'get'})
+					anu = await fetchJson(`https://mnazria.herokuapp.com/api/create-meme?text-atas=${text11}&text-bawah=${text2}&background-url=${teks}`, {method: 'get'})
 					ngebuff = await getBuffer(anu.result)
 					client.sendMessage(from, ngebuff, image, {quoted: mek,caption: 'njir, cringe bet dh :v'})
 					}
@@ -1557,8 +1435,8 @@ ngonsol = await getBuffer(anu.result.url)
 client.sendMessage(from, ngonsol, image, {quoted: mek, caption: 'merokok membunuhmu!'})
 await limitAdd(sender)
 break
-			case 'galaxytext':
-		    	case 'galaxylogo':
+case 'galaxytext':
+		    case 'galaxylogo':
 			if (isBanned) return reply(ind.ban())
 		    if (!isRegistered) return reply(ind.noregis())
 		    if (isLimit(sender)) return reply(ind.limitend(pusname))
@@ -1808,6 +1686,11 @@ break
 						reply(ind.ocron())
 					}
 					await limitAdd(sender)
+					break
+					
+					case 'timenow':
+					const ks = new Date()
+					reply(`${ks}`)
 					break
 					
 					case 'cuaca': 
@@ -2624,7 +2507,6 @@ break
           	case 'mining':
                       if (!isRegistered) return reply(ind.noregis())
                       if (isLimit(sender)) return reply(ind.limitend(pushname))
-			if (!isLevelingOn) return reply(ind.lvlnoon())
                       if (!isEventon) return reply(`maaf ${pushname} event mining tidak di aktifkan oleh owner`)
                       if (isOwner) {
                       const one = 999999999
@@ -2656,7 +2538,33 @@ break
 			reply('Sedang Mancing selama 2 menit, silahkan tunggu...')
 			}, 0) //1sec
 			break
-					
+					/*case 'casino':
+					if (!isRegistered) return reply(ind.noregis())
+					if (isLimit(sender)) return reply(ind.limitend(pusname))
+					if (!isEventon) return reply('ya maap aja bro, tapi event grub belum di aktifkan')
+					cas = body.slice(8)
+					if ( args.length < 1 ) return reply('Dih, NooB!!')
+					if ( isNaN(cas)) return reply('Lu mau taruhan brp?')
+					const resg = ["Kamu MENANG!!","Kamu KALAH!!"];
+					bayar = confirmATM(sender, cas)
+					setTimeout( () => {
+					const rand = Math.ceil(Math.random() * 1000)
+					const judi = cas + rand 
+					const hasil = resg[Math.floor(Math.random() * resg.length)]
+					if ( hasil == "Kamu MENANG!!" ) {
+						addKoinUser(sender, judi)
+						reply(`*SELAMAT🥳*\n\n${pushname} Kamu memenangkan casino sebesar *_${judi}_*\n\nKumpulkan uang untuk membeli limit`)
+					} else if(hasil == "Kamu KALAH!!") {
+						reply("Kamu KALAH!!")
+					} else {
+					reply(" X error X ")
+					}
+					}, 60000); //1 Minute
+					setTimeout( () => {
+						reply(`Wait Ganz, Sedang bermain dengan *_MASTAH_* pro pler!!\nSelama 1 menit.`)
+					}, 0) //1 sec
+						await limitAdd(sender)
+						break*/
 					
 					
 			
@@ -3270,7 +3178,7 @@ dftr = `
 ╠☞ *★Taufik - Kun★*
 ╰════─⊱  ⸨ *MiKako⚔️* ⸩  ⊰─════╯
 `
-client.sendMessage(from, buffer, image, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "★彡[Bot͢͢͢oℓ]彡 *•* MiKako★ ", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('storage/image/takagi-san.jpeg')}}}, caption: `${dftr}`})
+client.sendMessage(from, buffer, image, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "★彡[Bot͢͢͢oℓ]彡 *•* MiKako★ ", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('storage/image/takagi.jpeg')}}}, caption: `${dftr}`})
 break
 //client.sendMessage(from, buffer, image, {quoted: mek, caption: dftr})
 //await costum(ind.menu(pushname, prefix, getLevelingLevel, getLevelingXp, sender, reqXp, _registered, uangku), text, tescuk, cr)
@@ -4140,14 +4048,42 @@ break
 					if (!isGroup) return reply(ind.groupo())
 					if (!isGroupAdmins) return reply(ind.admin())
 					if (!isBotGroupAdmins) return reply(ind.badmin())
-					if (args[0] === 'buka') {
-					    reply(`*BERHASIL MEMBUKA GROUP*`)
+					if  (args[0] === 'buka') {
+					    reply(`*HEY BUNG!!*\n\nBangunlah, dan ayo mengaduk bersamaku!!`)
 						client.groupSettingChange(from, GroupSettingChange.messageSend, false)
 					} else if (args[0] === 'tutup') {
-						reply(`*BERHASIL MENUTUP GROUP`)
+						reply(`*Berdasarkan UUW*\n\nUndang-undang whatsapp pasal 4B ayat 5\ntentang penutupan GC saat jam malam.\n Dan apabila admin melanggar hal tersebut, akan di berikan sanksi yang setimpal\n\n*SEKIAN TERIMA KASIH*`)
 						client.groupSettingChange(from, GroupSettingChange.messageSend, true)
 					}
-					break      
+					break
+					
+					case 'gcsetime':
+					if (!isGroup) return reply(ind.groupo())
+					if (!isGroupAdmins) return reply(ind.admin())
+					if (!isBotGroupAdmins) return reply(ind.badmin())
+					wktu = body.slice(10)
+					buka = wktu.split("/")[0];
+					tutup = wktu.split("/")[1];
+					const milsec = (`${tutup}` * 1000);
+					if (isNaN(`${tutup}`)) return reply('waktunya mank')
+					if (`${buka}` == 'buka') {
+					setTimeout( () => {
+					client.groupSettingChange(from, GroupSettingChange.messageSend, false)
+					reply('*BERHASIL MEMBUKA GROUP*')
+					}, `${milsec}`);
+					setTimeout( () => {
+					reply(`*PRINTAH DITERIMA*\n\nGC akan dibuka dalam ${tutup} detik`)
+					}, 0);
+					} else if (`${buka}` == 'tutup') {
+					setTimeout( () => {
+					client.groupsettingChange(from, GroupSettingChange.messageSend, true)
+					reply('*BERHASIL.MENUTUP GROUP*')
+					}, `${milsec}`);
+					setTimeout( () => {
+					reply(`*Perintah Diterima*\n\n⚠️ *PERINGATAN BAGI MEMBER* ⚠️\n\nBOT akan menutup GC dalam ${wktu}deik‼️`)
+					}, 0);
+					}
+					break
             case 'admin':
             case 'owner':
             case 'creator':
