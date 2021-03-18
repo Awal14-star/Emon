@@ -12,6 +12,47 @@
 <a href="https://github.com/Keito-Klein"><img title="Author" src="https://img.shields.io/badge/AUTHOR-MiKako-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
 <br>
+
+## Cara Ganti ApiKey Gimana?    <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/coin.gif" width="30px">
+Cara Mengganti Nya Cukup Gampang, Kalian Hanya Perlu Untuk Mengganti Syntax Di Bawah Ini
+```js
+const apivhtear = 'Your_Apikey'
+const zeksapi = 'Your_Apikey'
+const BarBarKey = 'Your_Apikey'
+const TobzKey = 'Your_Apikey'
+const devcityapi = 'Your_Apikey'
+const TechApi = 'Your_Apikey'
+```
+
+## Cara Ganti Owner & Nomer Bot   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/gandalf_parrot.gif"  width="30px">
+Caranya cukup ganti yang di bawah ini
+```js
+const vcard = 'BEGIN:VCARD\n' // INI JANGAN DI UBAH, BIARIN GINI
+            + 'VERSION:3.0\n'  // INI JUGA
+            + 'FN:MiKako\n'  // Ganti jadi namamu
+            + 'ORG: Pengembang Taufik-Kun;\n'  // Ganti jadi namamu/Botmu
+            + 'TEL;type=CELL;type=VOICE;waid=6289675651966:+62 896-7565-1966\n'  // Ganti jadi nomormu, tapi jangan ubah polanya
+            + 'END:VCARD' // jangan di ubah
+```
+Sōshite
+```js
+const ownerNumber = ["6289675651966@s.whatsapp.net","6285807479634@s.whatsapp.net"]  //ganti jadi nomormu
+```
+
+## Cara install di termux   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="29px">
+```bash
+> pkg update && pkg upgrade
+> pkg install mc -y
+> pkg install git -y && pkg install bash -y
+> git clone https://github.com/Nama-Akunmu/Nama-Repositorymu
+> cd Nama-Repositorymu
+> bash install.sh
+> npm audit fix (optional)
+> node index
+> Scan Code QR 
+```
+NOTE : WA yang di pakai scan code = jadi BOT
+
 <div align="center">
 <details>
   
@@ -171,10 +212,6 @@
    "Contact Me On"
   <div align="center">
   
-  > FB          : https://www.facebook.com/taufik.qillah.73
-  
-  > IG          : https://www.instagram.com/gamerz_garena
-  
-  > WhatsApp    : https://wa.wizard.id/2fd29f
-  
+| [<img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Instagram.svg" alt="instagram logo" width="30">](https://www.instagram.com/gamerz_garena/) | [<img src="https://raw.githubusercontent.com/Delta456/Delta456/master/img/twitter.png" alt="twitter logo" width="34">](https://twitter.com/Taufik572577) | [<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F711850284840401553%2F&psig=AOvVaw2oihQcoUk3Bf_io_jKSF_U&ust=1616145765929000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDZqaXCue8CFQAAAAAdAAAAABAK" width="30">](https://www.facebook.com/taufik.qillah.73) | [<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iospedia.net%2F2018%2F10%2Fcara-mengembalikan-chat-whatsapp-wa.html&psig=AOvVaw08UTqWB0LcOhiBJKyi_vmT&ust=1616145945481000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOiWjfzCue8CFQAAAAAdAAAAABAO" width="30">](https://wa.wizard.id/2fd29f)
+|---|---|---|---|---|---|---|---|
   
