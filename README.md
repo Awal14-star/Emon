@@ -42,8 +42,7 @@ BTW TEMPATNYA DI index.js YA NGEOD
 
 ## Cara install di termux   <img src="https://github.com/TheDudeThatCode/TheDudeThatCode/blob/master/Assets/Rocket.gif" width="29px">
 ```bash
-> pkg update && pkg upgrade
-> pkg install mc -y
+> pkg update -y && pkg upgrade -y
 > pkg install git -y && pkg install bash -y
 > git clone https://github.com/Nama-Akunmu/Nama-Repositorymu (klo mau pake punya gw ya tinggal copy link web ini)
 > cd Nama-Repositorymu (klo mau pake punya w cd whatsapp)
