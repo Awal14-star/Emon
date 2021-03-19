@@ -16,12 +16,12 @@
   "author": "Taufik - Kun",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/affisjunianto/botwasapv2.git"
+    "url": "git+https://github.com/keito-klein/whatsapp.git"
   },
   "bugs": {
-    "url": "https://github.com/affisjunianto/botwasapv2/issues"
+    "url": "https://github.com/keito-klein/whatsapp/issues"
   },
-"homepage": "https://github.com/affisjunianto/botwasapv2/readme",
+"homepage": "https://github.com/keito-klein/whatsapp/readme",
 "license": "ISC",
 "dependencies": {
     "@adiwajshing/baileys": "^3.3.0",
